@@ -1,0 +1,25 @@
+<div class="min-h-screen bg-slate-50 flex flex-col font-sans text-slate-900">
+  <app-navbar #mainNavbar></app-navbar>
+
+  <div class="flex flex-1 pt-16">
+    @if ((globalStateService.isAsidebarOpen$ | async)) {
+    <button class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-40 lg:hidden transition-opacity"
+      (click)="toggleMenuEvent()">
+    </button>
+    }
+
+    <app-aside #mainAsidebar></app-aside>
+
+    <main class="flex-1 lg:ml-64 p-5 md:ml-[60px]">
+      <app-bread-crumbs  #mainBreadCrumbs
+        [breadCrumbs]="breadCrumbs()">
+      </app-bread-crumbs>
+
+      @if(true) {
+      <router-outlet></router-outlet>
+      }
+    </main>
+  </div>
+
+  <app-footer #mainFooter></app-footer>
+</div>
