@@ -1,6 +1,44 @@
 <!doctype html>
 <html lang="en">
+
 <head>
+  <style>
+    .splash-screen {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #ffffff;
+      position: fixed;
+      /* Ensures it stays on top */
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 9999;
+    }
+
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid #f3f3f3;
+      border-top: 5px solid #3498db;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+
   <meta charset="utf-8">
   <title>AngularDemo</title>
   <base href="/">
@@ -9,7 +47,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
+
 <body>
-  <app-root></app-root>
+  <app-root>
+    <div class="splash-screen">
+      <div class="logo">My App</div>
+      <div class="spinner"></div>
+      <p>Setting up your session...</p>
+    </div>
+  </app-root>
 </body>
+
 </html>

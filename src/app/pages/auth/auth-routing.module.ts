@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { signInRoute } from "@constants";
+import { loginRoute } from "@constants";
 
 
 const routes: Routes = [
@@ -8,13 +8,13 @@ const routes: Routes = [
     path: '',
     children: [
       {
-        path: signInRoute,
+        path: loginRoute,
         canActivate: [],
         loadChildren: () => import('./sign-in/sign-in.module').then((m) => m.SignInModule),
       },
       {
         path: '',
-        redirectTo: signInRoute,
+        redirectTo: loginRoute,
         pathMatch: 'full',
       },
     ],

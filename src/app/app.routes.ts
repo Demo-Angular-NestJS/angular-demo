@@ -1,10 +1,16 @@
 import { Routes } from '@angular/router';
 import { MainLayoutComponent } from '@c/layout/main-layout/main-layout.component';
-import { defaultRoute } from '@constants';
+import { authRoute, defaultRoute, storeRoute } from '@constants';
 import { adminGuard } from '@g/admin.guard';
 import { guestGuard } from '@g/guest.guard';
 
 export const routes: Routes = [
+  {
+    path: '',
+    redirectTo: defaultRoute,
+    pathMatch: 'full',
+  },
+
   // {
   //   path: 'error',
   //   component: MainLayoutComponent,
@@ -12,8 +18,9 @@ export const routes: Routes = [
   //     layout: 'emtpy'
   //   }
   // }
+
   {
-    path: '',
+    path: authRoute,
     component: MainLayoutComponent,
     data: {
       layout: 'authorization'
@@ -21,8 +28,9 @@ export const routes: Routes = [
     canActivate: [guestGuard],
     loadChildren: () => import('@pages/auth/auth.module').then((m) => m.AuthModule),
   },
+
   {
-    path: '',
+    path: storeRoute,
     component: MainLayoutComponent,
     data: {
       layout: 'admin'
@@ -30,5 +38,7 @@ export const routes: Routes = [
     canActivate: [adminGuard],
     loadChildren: () => import('@pages/admin/admin.module').then((m) => m.AdminModule),
   },
+
   { path: '**', redirectTo: defaultRoute },
+  // { path: '**', redirectTo: '' },
 ];

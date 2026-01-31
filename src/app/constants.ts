@@ -1,12 +1,25 @@
 
-export const signInRoute = 'sign-in';
+export const authRoute = 'auth';
+export const loginRoute = 'login';
+
+export const signInRoute = `${authRoute}/${loginRoute}`;
+export const searchSignInRoute = `/${signInRoute}`;
+
+
+export const storeRoute = 'store';
+
 export const homeRoute = 'home';
-export const searchHomeRoute = `/${homeRoute}`;
+export const searchHomeRoute = `/${storeRoute}/${homeRoute}`;
 export const toyRoute = 'toy';
-export const searchToyRoute = `/${toyRoute}`;
+export const searchToyRoute = `/${storeRoute}/${toyRoute}`;
+
+export const defaultRoute = searchHomeRoute;
+
+
+
 export const favoriteRoute = 'favorite';
 export const searchFavoriteRoute = `/${favoriteRoute}`
-export const defaultRoute = `/${homeRoute}`;
+
 export const settingRoute = 'setting';
 export const searchSettingRoute = `/${settingRoute}`;
 export const myPurchaseRoute = 'my-purchase';
