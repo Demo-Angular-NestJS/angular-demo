@@ -6,4 +6,5 @@ import { BehaviorSubject } from "rxjs";
 })
 export class GlobalStateService {
   public isAsidebarOpen$ = new BehaviorSubject(false);
+  public isInitializing$ = new BehaviorSubject(true);
 }

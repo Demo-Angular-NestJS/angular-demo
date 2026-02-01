@@ -5,7 +5,7 @@ import { inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { searchHomeRoute, searchSignInRoute } from '@constants';
 import { environment } from '@env/environment';
-import { catchError, delay, map, NEVER, Observable, of, tap, timeout } from 'rxjs';
+import { catchError, map, NEVER, Observable, of, tap, timeout } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -49,7 +49,7 @@ export class AuthService {
 
   public logout() {
     this._http.post(`${this.API_URL}/logout`, {}).pipe(
-      catchError(() => of(null)), // Ignore errors on logout
+      catchError(() => of(null)),
       tap(() => this.handleUnauthenticated())
     ).subscribe();
   }
