@@ -2,16 +2,16 @@
 export const authRoute = 'auth';
 export const loginRoute = 'login';
 
-export const signInRoute = `${authRoute}/${loginRoute}`;
+export const signInRoute = `${loginRoute}`;
 export const searchSignInRoute = `/${signInRoute}`;
 
 
 export const storeRoute = 'store';
 
 export const homeRoute = 'home';
-export const searchHomeRoute = `/${storeRoute}/${homeRoute}`;
+export const searchHomeRoute = `/${homeRoute}`;
 export const toyRoute = 'toy';
-export const searchToyRoute = `/${storeRoute}/${toyRoute}`;
+export const searchToyRoute = `/${toyRoute}`;
 
 export const defaultRoute = searchHomeRoute;
 

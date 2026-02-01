@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { MainLayoutComponent } from '@c/layout/main-layout/main-layout.component';
-import { authRoute, defaultRoute, storeRoute } from '@constants';
+import { defaultRoute } from '@constants';
 import { adminGuard } from '@g/admin.guard';
 import { guestGuard } from '@g/guest.guard';
 
@@ -20,7 +20,7 @@ export const routes: Routes = [
   // }
 
   {
-    path: authRoute,
+    path: '',
     component: MainLayoutComponent,
     data: {
       layout: 'authorization'
@@ -30,7 +30,7 @@ export const routes: Routes = [
   },
 
   {
-    path: storeRoute,
+    path: '',
     component: MainLayoutComponent,
     data: {
       layout: 'admin'
