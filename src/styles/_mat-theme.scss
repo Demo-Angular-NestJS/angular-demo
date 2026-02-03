@@ -1,0 +1,18 @@
+@use "@angular/material" as mat;
+
+$my-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: light,
+      primary: mat.$azure-palette,
+      /* Maps to internal M3 variables */
+      tertiary: mat.$blue-palette,
+    ),
+    typography: (
+      brand-family: "Inter, Roboto, sans-serif",
+    ),
+    density: (
+      scale: -1,
+    ),
+  )
+);

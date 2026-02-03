@@ -9,15 +9,15 @@ export const guestGuard: CanActivateFn = (route) => {
   const router = inject(Router);
   const platformId = inject(PLATFORM_ID);
 
-  // If on server, just let it pass so the server renders the Shell.
-  // The REAL check happens 3 seconds later in the browser.
   if (isPlatformServer(platformId)) {
     return true;
   }
 
   const isAuth = authService.isAuthenticated();
 
-  if (!isAuth) return true;
+  if (!isAuth) {
+    return true
+  };
 
   const returnUrl = route.queryParams['returnUrl'] || defaultRoute;
   return router.createUrlTree([returnUrl]);

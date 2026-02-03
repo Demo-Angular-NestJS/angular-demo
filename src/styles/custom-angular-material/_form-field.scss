@@ -1,0 +1,80 @@
+@mixin styles() {
+  .mat-mdc-form-field {
+    /* 1. STRUCTURAL OVERRIDES (Shape & Borders) */
+    // We use the variables defined in your _variables.css and @theme bridge
+    --mdc-outlined-field-container-shape: var(--radius-custom, 12px) !important;
+    --mdc-outlined-field-outline-width: var(--border-thin, 1px) !important;
+    --mdc-outlined-field-focus-outline-width: var(
+      --border-thick,
+      2px
+    ) !important;
+
+    /* 2. COLOR TOKENS */
+    // Mapping Material 3 internal tokens to our Tailwind/System variables
+    --mdc-outlined-field-outline-color: var(--slate-200) !important;
+    --mdc-outlined-field-focus-outline-color: var(--color-primary) !important;
+    --mdc-outlined-field-label-text-color: var(--slate-500) !important;
+    --mdc-outlined-field-focus-label-text-color: var(
+      --color-primary
+    ) !important;
+
+    /* 3. THE "GHOST SPACE" FIX (Subscript Management) */
+    // By default, collapse the area reserved for hints/errors
+    .mat-mdc-form-field-subscript-wrapper {
+      height: 0;
+      min-height: 0;
+      margin: 0;
+      padding: 0 !important;
+      overflow: hidden;
+      display: grid;
+      transition: all 0.2s ease-in-out; // Smooth transition when error appears
+    }
+
+    // Remove the bottom-aligner that forces vertical height
+    .mat-mdc-form-field-bottom-align {
+      display: none;
+    }
+
+    /* 4. CONDITIONAL VISIBILITY */
+    // Using :has() to only show the subscript space if there is content
+    &:has(.mat-mdc-form-field-error),
+    &:has(.mat-hint) {
+      margin-bottom: 1.25rem; // Add breathing room only when text is present
+
+      .mat-mdc-form-field-subscript-wrapper {
+        height: auto;
+        display: block;
+        padding-top: 6px !important;
+      }
+
+      .mat-mdc-form-field-bottom-align {
+        display: block;
+      }
+    }
+
+    /* 5. THE NOTCH FIX */
+    // Ensures the M3 floating label notch doesn't have alignment glitches
+    .mdc-notched-outline__notch {
+      border-right: none !important;
+    }
+  }
+
+  /* 6. INPUT TEXT ALIGNMENT */
+  // Ensure the native input color matches your slate theme
+  input.mat-mdc-input-element {
+    color: var(--color-brand-deep, #1e293b);
+    font-weight: 500;
+  }
+
+  .mat-mdc-form-field {
+    &.mat-form-field-disabled {
+      opacity: 0.6;
+      background-color: var(--slate-50); // Slightly grayer background
+      cursor: not-allowed;
+
+      .mat-mdc-text-field-wrapper {
+        background-color: #f8fafc !important; // slate-50
+      }
+    }
+  }
+}

@@ -1,6 +1,7 @@
 
 export const authRoute = 'auth';
 export const loginRoute = 'login';
+export const logoutRoute = '/logout'
 
 export const signInRoute = `${loginRoute}`;
 export const searchSignInRoute = `/${signInRoute}`;
@@ -24,3 +25,27 @@ export const settingRoute = 'setting';
 export const searchSettingRoute = `/${settingRoute}`;
 export const myPurchaseRoute = 'my-purchase';
 export const searchMyPurchaseRoute = `/${myPurchaseRoute}`;
+
+
+export const maskSeparator = {
+  int: '9999999999',
+  separator: 'separator.0',
+  separator6: 'separator.6',
+  separator3: 'separator.3',
+  separator2: 'separator.2',
+  thousandSeparator: '',
+};
+
+export const maskMaxIntDigitsHelper = {
+  max12: '100000000000',
+  max11: '10000000000',
+  max10: '1000000000',
+  max9: '100000000',
+  max8: '10000000',
+  max7: '1000000',
+  max6: '100000',
+  max5: '10000',
+  max4: '1000',
+  max3: '100',
+  max2: '10',
+};

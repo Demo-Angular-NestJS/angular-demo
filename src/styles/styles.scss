@@ -1,0 +1,27 @@
+@use "@angular/material" as mat;
+@use "./mat-theme" as theme;
+@use "./custom-angular-material/custom-material.scss" as custom;
+
+/* 3. Tailwind v4 Theme Bridge */
+@theme {
+  --color-primary: var(--brand-primary);
+  --color-secondary: var(--mat-sys-secondary);
+  --color-tertiary: var(--mat-sys-tertiary);
+  --color-error: var(--mat-sys-error);
+}
+
+/* 4. Apply Material Theme */
+html {
+  @include mat.all-component-themes(theme.$my-theme);
+  @include mat.system-level-colors(theme.$my-theme);
+  @include mat.system-level-typography(theme.$my-theme);
+
+  height: 100%;
+  margin: 0;
+}
+
+:root {
+  --mat-sys-primary: var(--color-primary) !important;
+}
+
+@include custom.overrides();

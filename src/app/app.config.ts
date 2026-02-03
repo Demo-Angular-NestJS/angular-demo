@@ -6,9 +6,11 @@ import { provideIcons } from '@core/icons/icons.provider';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { authInterceptor } from '@interc/auth.interceptor';
 import { provideCheckSessionInitializer } from '@core/auth/check-session.provider';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideAnimationsAsync(),
     // Core Angular & Platform
     provideRouter(routes),
     provideClientHydration(withEventReplay()),

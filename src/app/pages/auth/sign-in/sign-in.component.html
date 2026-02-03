@@ -6,9 +6,10 @@
       <div class="absolute bottom-0 left-0 w-40 h-40 bg-yellow-400 rounded-full -ml-10 -mb-10 opacity-80"></div>
 
       <div class="relative z-10 text-white">
-        <h2 class="text-4xl font-bold mb-4">Donde los sueños cobran vida.</h2>
-        <p class="text-indigo-100 text-lg">Únete a nuestra comunidad y descubre ofertas exclusivas en las mejores marcas
-          de juguetes.</p>
+        <h2 class="text-4xl font-bold mb-4">Where dreams come to life.</h2>
+        <p class="text-indigo-100 text-lg">
+          Join our community and discover exclusive offers on the best toy brands.
+        </p>
 
         <div class="mt-10 flex justify-center">
           <svg class="w-48 h-48 text-yellow-300 drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
@@ -26,45 +27,25 @@
           </div>
           <span class="text-xl font-bold tracking-tight text-slate-800">ToyStore</span>
         </div>
-        <a href="#" class="text-sm font-semibold text-indigo-600 hover:text-indigo-500">Crear cuenta</a>
+        <a href="#" class="text-sm font-semibold text-indigo-600 hover:text-indigo-500">Create account</a>
       </div>
 
-      <h1 class="text-3xl font-bold text-slate-900 mb-2">¡Hola de nuevo!</h1>
-      <p class="text-slate-500 mb-8">Ingresa tus datos para entrar a tu panel.</p>
+      <h1 class="text-3xl font-bold text-slate-900 mb-2">¡Hello!</h1>
+      <p class="text-slate-500 mb-8">Enter your details to access your panel.</p>
 
-      <form action="#" class="space-y-5">
-        <div>
-          <span class="block text-sm font-medium text-slate-700 mb-1">Correo electrónico</span>
-          <input type="email" placeholder="ejemplo@correo.com"
-            class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-600 focus:border-transparent outline-none transition-all placeholder:text-slate-400">
-        </div>
+      <app-sign-in-form #signInForm
+        [networkActive]="networkActive()"
+        (signInEvent)="signInEvent($event)">
+      </app-sign-in-form>
 
-        <div>
-          <div class="flex justify-between mb-1">
-            <span class="text-sm font-medium text-slate-700">Contraseña</span>
-            <a href="#" class="text-sm font-semibold text-indigo-600 hover:underline">¿La olvidaste?</a>
-          </div>
-          <input type="password" placeholder="••••••••"
-            class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-600 focus:border-transparent outline-none transition-all placeholder:text-slate-400">
-        </div>
-
-        <div class="flex items-center gap-2 py-2">
-          <input type="checkbox" id="remember"
-            class="w-4 h-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-600">
-          <span for="remember" class="text-sm text-slate-600">Mantener sesión iniciada</span>
-        </div>
-
-        <button type="button"
-          class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg shadow-indigo-200 transition-all transform active:scale-[0.98] cursor-pointer"
-          (click)="signInEvent($event)">
-          Iniciar Sesión
-        </button>
-      </form>
+      @if (errorMessage()) {
+        <p class="w-full text-center text-red-500 my-4 font-semibold">{{ errorMessage() }}</p>
+      }
 
       <div class="mt-8">
         <div class="relative flex items-center mb-6">
           <div class="flex-grow border-t border-slate-200"></div>
-          <span class="px-4 text-xs text-slate-400 uppercase tracking-widest">O continúa con</span>
+          <span class="px-4 text-xs text-slate-400 uppercase tracking-widest">Or continue with</span>
           <div class="flex-grow border-t border-slate-200"></div>
         </div>
 

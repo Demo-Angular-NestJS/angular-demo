@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
-import { searchHomeRoute } from '@constants';
+import { ChangeDetectionStrategy, Component, inject, signal, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { defaultRoute, searchHomeRoute } from '@constants';
 import { AuthService } from '@s/auth.service';
+import { SignInFormComponent, SignInFormModel } from '@c/auth';
 
 @Component({
   standalone: true,
@@ -11,35 +12,34 @@ import { AuthService } from '@s/auth.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     CommonModule,
+    SignInFormComponent,
   ]
 })
 export class SignInComponent {
-  //#region Variables
+  @ViewChild(SignInFormComponent) signInForm!: SignInFormComponent;
+
+  protected networkActive = signal(false);
+  protected errorMessage = signal<string | null>(null);
   protected searchHomeRoute = searchHomeRoute;
-  //#endregion
 
   //#region Service Injection
   private _authService = inject(AuthService);
   private _router = inject(Router);
+  private _route = inject(ActivatedRoute);
   //#endregion
 
-
-  protected signInEvent(event: Event): void {
-    // event.preventDefault(); // Stop the reload
-    // this._router.navigate([searchHomeRoute]);
-
-    this._authService.login({
-      email: 'judethc82@gmail.com',
-      password: 'testFornow',
-    }).subscribe({
+  protected signInEvent(event: SignInFormModel): void {
+    this.errorMessage.set(null);
+    this.networkActive.set(true);
+    this._authService.login(event).subscribe({
       next: () => {
-        // El AuthService ya maneja la redirección al /home o /admin
-        // this.isLoading.set(false);
+        const returnUrl = this._route.snapshot.queryParams['returnUrl'];
+        this._router.navigate([returnUrl || defaultRoute]);
+        this.networkActive.set(false);
       },
       error: (err) => {
-        // this.isLoading.set(false);
-        // this.errorMessage.set('Credenciales inválidas o error de servidor');
-        console.error('Login error:', err);
+        this.networkActive.set(false);
+        this.errorMessage.set(err?.error?.message ?? 'something was wrong');
       }
     });
   }

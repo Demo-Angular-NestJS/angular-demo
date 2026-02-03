@@ -1,0 +1,39 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-5">
+  <mat-form-field class="w-full" appearance="outline" floatLabel="always">
+    <mat-label>Email</mat-label>
+    <input id="email" matInput formControlName="email" autocomplete="email" placeholder="ejemplo@correo.com"
+      [tDisable]="networkActive()">
+    @if (isError('email', 'required')) { <mat-error>Email is required</mat-error> }
+    @else if (isError('email', 'email')) { <mat-error>Please enter a valid email</mat-error> }
+  </mat-form-field>
+
+  <mat-form-field class="w-full" appearance="outline" floatLabel="always">
+    <mat-label>Password</mat-label>
+    <input id="password" matInput formControlName="password" placeholder="Password"
+      [type]="hidePassword() ? 'password' : 'text'"
+      [tDisable]="networkActive()">
+    <button  type="button"  mat-icon-button  matSuffix
+      [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hidePassword()"
+      [disabled]="networkActive()"
+      (click)="togglePassword()" >
+      <mat-icon>{{ hidePassword() ? 'visibility_off' : 'visibility' }}</mat-icon>
+    </button>
+    @if (isError('password', 'required')) { <mat-error>Password is required</mat-error> }
+  </mat-form-field>
+
+  <div class="flex justify-end mb-2">
+    <a class="text-sm font-semibold text-indigo-600 hover:underline">¿Forgot your password?</a>
+  </div>
+
+  <button matButton="filled" color="primary" type="submit" class="w-full" [disabled]="networkActive() || !form.valid">
+    @if (networkActive()) {
+    <div class="flex items-center justify-center gap-2">
+      <mat-spinner diameter="20" color="accent"></mat-spinner>
+      <span>Signing in...</span>
+    </div>
+    } @else {
+    <span>Sign-In</span>
+    }
+  </button>
+</form>

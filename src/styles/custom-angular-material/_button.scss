@@ -1,0 +1,50 @@
+@mixin styles() {
+  /* --- Primary Color Override --- */
+  .mat-mdc-button.mat-primary,
+  .mat-mdc-unelevated-button.mat-primary,
+  .mat-mdc-raised-button.mat-primary {
+    --mat-button-filled-container-color: var(--color-primary) !important;
+    --mat-button-filled-label-text-color: #ffffff !important;
+    --mat-sys-primary: var(--color-primary) !important;
+  }
+
+  /* Small: 32px height */
+  .mat-mdc-button.btn-sm,
+  .mat-mdc-unelevated-button.btn-sm,
+  .mat-mdc-raised-button.btn-sm {
+    height: 32px !important;
+    --mdc-button-label-text-size: 0.75rem !important;
+    --mat-mdc-button-persistent-ripple-color: transparent;
+    padding: 0 12px !important;
+
+    .mdc-button__label {
+      line-height: 32px !important;
+    }
+  }
+
+  /* Medium: 40px height (Standard) */
+  .mat-mdc-button.btn-md,
+  .mat-mdc-unelevated-button.btn-md,
+  .mat-mdc-raised-button.btn-md {
+    height: 40px !important;
+    --mdc-button-label-text-size: 0.875rem !important;
+    padding: 0 16px !important;
+
+    .mdc-button__label {
+      line-height: 40px !important;
+    }
+  }
+
+  /* Large: 56px height */
+  .mat-mdc-button.btn-lg,
+  .mat-mdc-unelevated-button.btn-lg,
+  .mat-mdc-raised-button.btn-lg {
+    height: 56px !important;
+    --mdc-button-label-text-size: 1.125rem !important;
+    padding: 0 28px !important;
+
+    .mdc-button__label {
+      line-height: 56px !important;
+    }
+  }
+}

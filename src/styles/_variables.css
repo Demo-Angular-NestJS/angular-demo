@@ -1,0 +1,16 @@
+@layer base {
+  :root {
+    /* Brand Tokens */
+    --brand-primary: theme("colors.indigo.600");
+    --brand-tertiary: #4f46e5; /* Your Indigo */
+
+    /* Semantic tokens for your overrides */
+    --form-radius: 12px;
+    --border-thin: 1px;
+    --border-thick: 2px;
+
+    /* Slate Scale for borders */
+    --slate-200: #e2e8f0;
+    --slate-500: #64748b;
+  }
+}
