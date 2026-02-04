@@ -7,6 +7,7 @@ import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/
 import { authInterceptor } from '@interc/auth.interceptor';
 import { provideCheckSessionInitializer } from '@core/auth/check-session.provider';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { idempotencyInterceptor } from '@interc/idempotency.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,7 +21,7 @@ export const appConfig: ApplicationConfig = {
     // Networking
     provideHttpClient(
       withFetch(),
-      withInterceptors([authInterceptor])
+      withInterceptors([authInterceptor, idempotencyInterceptor])
     ),
 
     // Custom App Logic / Features
