@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, signal, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { defaultRoute, searchHomeRoute } from '@constants';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { defaultRoute, searchHomeRoute, searchRegisterRoute } from '@constants';
 import { AuthService } from '@s/auth.service';
 import { SignInFormComponent, SignInFormModel } from '@c/auth';
 
@@ -12,6 +12,7 @@ import { SignInFormComponent, SignInFormModel } from '@c/auth';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     CommonModule,
+    RouterModule,
     SignInFormComponent,
   ]
 })
@@ -21,6 +22,7 @@ export class SignInComponent {
   protected networkActive = signal(false);
   protected errorMessage = signal<string | null>(null);
   protected searchHomeRoute = searchHomeRoute;
+  protected searchRegisterRoute = searchRegisterRoute;
 
   //#region Service Injection
   private _authService = inject(AuthService);

@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { loginRoute } from "@constants";
+import { loginRoute, registerRoute } from "@constants";
 
 
 const routes: Routes = [
@@ -11,6 +11,11 @@ const routes: Routes = [
         path: loginRoute,
         canActivate: [],
         loadChildren: () => import('./sign-in/sign-in.module').then((m) => m.SignInModule),
+      },
+      {
+        path: registerRoute,
+        canActivate: [],
+        loadChildren: () => import('./register/register.module').then((m) => m.RegisterModule),
       },
       {
         path: '',

@@ -5,6 +5,8 @@ export const logoutRoute = '/logout'
 
 export const signInRoute = `${loginRoute}`;
 export const searchSignInRoute = `/${signInRoute}`;
+export const registerRoute = 'register';
+export const searchRegisterRoute = `/${registerRoute}`;
 
 
 export const storeRoute = 'store';
