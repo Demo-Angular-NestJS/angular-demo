@@ -11,137 +11,14 @@
         <span class="text-xl font-bold tracking-tight hidden sm:block">ToyStore</span>
       </div>
 
-      <div class="hidden md:flex flex-1 max-w-md mx-10 relative" #searchContainer>
-        <div class="relative w-full">
-          <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
-            <mat-icon class="w-5 h-5">search</mat-icon>
-          </span>
-          <input type="text" (click)="onSearchFocusEvent()" (focus)="onSearchFocusEvent()"
-            class="w-full bg-slate-100 border-none rounded-xl py-2 pl-10 focus:ring-2 focus:ring-indigo-600 transition-all text-sm"
-            placeholder="Buscar el juguete perfecto...">
-        </div>
-
-        @if (isSearchOpen()) {
-        <div
-          class="absolute top-full left-0 w-full mt-2 bg-white rounded-2xl shadow-2xl border border-slate-100 z-50 overflow-hidden animate-fade-in-down">
-          <div class="p-3">
-            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-3 mb-2">Sugerencias</p>
-
-            <div class="space-y-1">
-              @for (item of (searchResults() || []); track $index) {
-              <div
-                class="flex items-center gap-4 p-3 hover:bg-indigo-50 rounded-xl cursor-pointer transition-colors group">
-                <div
-                  class="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center text-2xl group-hover:bg-white transition-colors">
-                  {{ item.img }}
-                </div>
-                <div class="flex-1">
-                  <h4 class="text-sm font-semibold text-slate-800">{{ item.name }}</h4>
-                  <p class="text-xs text-slate-500">{{ item.category }}</p>
-                </div>
-                <div class="text-sm font-bold text-indigo-600">
-                  ${{ item.price }}
-                </div>
-              </div>
-              }
-            </div>
-          </div>
-
-          <div class="bg-slate-50 p-3 border-t border-slate-100">
-            <button
-              class="w-full text-center text-xs font-bold text-indigo-600 hover:text-indigo-800 transition-colors">
-              Ver todos los resultados para "{{ searchQuery }}"
-            </button>
-          </div>
-        </div>
-        }
+      <div class="md:flex flex-1 max-w-md mx-10 relative">
+        <app-search-bar class="w-full" #searchBar></app-search-bar>
       </div>
 
       <div class="flex items-center gap-4 relative">
-        <div class="relative" #notifContainer>
-          <button (click)="toggleNotificationsEvent()"
-            class="p-2 text-slate-500 hover:bg-slate-100 rounded-full relative transition-colors cursor-pointer">
-            <mat-icon class="w-6 h-6">notifications</mat-icon>
-            <span class="absolute top-1 right-1 w-2.5 h-2.5 bg-pink-500 rounded-full border-2 border-white"></span>
-          </button>
+        <app-notifications #notifications></app-notifications>
 
-          @if (isNotificationsOpen()) {
-          <div
-            class="absolute right-0 mt-3 w-80 bg-white rounded-2xl shadow-2xl border border-slate-100 z-50 overflow-hidden animate-fade-in-down">
-            <div class="p-4 border-b border-slate-50 flex justify-between items-center bg-slate-50/50">
-              <h3 class="font-bold text-slate-900">Notificaciones</h3>
-              <span class="text-xs font-medium text-indigo-600 cursor-pointer hover:underline">Marcar todo como
-                leído</span>
-            </div>
-
-            <div class="max-h-96 overflow-y-auto">
-              @for(n of (notifications() || []); track n.id) {
-              <div
-                class="p-4 flex gap-4 hover:bg-slate-50 cursor-pointer transition-colors border-b border-slate-50 last:border-0">
-                <div
-                  class="flex-shrink-0 w-10 h-10 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center text-xl">
-                  {{ n.icon }}
-                </div>
-                <div class="flex-1">
-                  <p class="text-sm text-slate-800 leading-tight" [ngClass]="{'font-bold': !n.read}">
-                    {{ n.text }}
-                  </p>
-                  <span class="text-xs text-slate-400 mt-1 block">{{ n.time }}</span>
-                </div>
-                @if (!n.read) {
-                <div class="w-2 h-2 bg-indigo-500 rounded-full mt-2"></div>
-                }
-              </div>
-              }
-            </div>
-
-            <a href="#"
-              class="block p-3 text-center text-sm font-semibold text-slate-600 bg-slate-50 hover:text-indigo-600 transition-colors">
-              Ver todas las notificaciones
-            </a>
-          </div>
-          }
-        </div>
-
-        <div class="relative" #profileContainer>
-          <button
-            class="w-10 h-10 rounded-full bg-yellow-400 border-2 border-white shadow-sm flex items-center justify-center font-bold text-indigo-900 cursor-pointer hover:scale-105 transition-transform"
-            (click)="toggleProfileEvent()">
-            JD
-          </button>
-
-          @if (isProfileOpen()) {
-          <div
-            class="absolute right-0 mt-3 w-56 bg-white rounded-2xl shadow-xl border border-slate-100 py-2 z-50 animate-fade-in-down">
-            <div class="px-4 py-3 border-b border-slate-50">
-              <p class="text-sm font-bold text-slate-900">Juan Delgado</p>
-              <p class="text-xs text-slate-500 truncate">juan.toy@ejemplo.com</p>
-            </div>
-
-            <div class="p-2">
-              <a href="#"
-                class="flex items-center gap-3 px-3 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-indigo-600 rounded-xl transition-all">
-                <mat-icon class="w-4 h-4" >account_circle</mat-icon>
-                Mi Perfil
-              </a>
-              <a href="#"
-                class="flex items-center gap-3 px-3 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-indigo-600 rounded-xl transition-all">
-                <mat-icon class="w-4 h-4">settings</mat-icon>
-                Configuración
-              </a>
-            </div>
-
-            <div class="p-2 border-t border-slate-50">
-              <button
-                class="w-full flex items-center gap-3 px-3 py-2 text-sm text-pink-600 hover:bg-pink-50 rounded-xl transition-all font-medium cursor-pointer"
-                (click)="signOutEvent($event)">
-                <mat-icon class="w-4 h-4" svgIcon="singOut"></mat-icon>
-                Cerrar Sesión
-              </button>
-            </div>
-          </div>
-          }
-        </div>
+        <app-profile #profile></app-profile>
       </div>
     </div>
   </nav>

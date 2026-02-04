@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { LoadingSkeletonComponent } from '@c/common/core/loading-skeleton/loading-skeleton.component';
 import { GlobalStateService } from '@s/common';
 
 @Component({
@@ -11,6 +12,7 @@ import { GlobalStateService } from '@s/common';
   imports: [
     CommonModule,
     RouterOutlet,
+    LoadingSkeletonComponent,
   ],
 })
 export class RootComponent {

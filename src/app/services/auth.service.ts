@@ -26,7 +26,7 @@ export class AuthService {
     }
 
     return this._http.get(`${this.API_URL}/me`).pipe(
-      timeout(5000),
+      timeout(environment.apiTimeoutMs),
       tap(() => this.isAuthenticated.set(true)),
       map(() => true),
       catchError(() => {
