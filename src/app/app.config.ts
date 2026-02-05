@@ -2,12 +2,14 @@ import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZonelessC
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
-import { provideIcons } from '@core/icons/icons.provider';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
-import { authInterceptor } from '@interc/auth.interceptor';
-import { provideCheckSessionInitializer } from '@core/auth/check-session.provider';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { provideCheckSessionInitializer, provideCSFRInitializer } from '@core/auth';
+import { authInterceptor } from '@interc/auth.interceptor';
 import { idempotencyInterceptor } from '@interc/idempotency.interceptor';
+import { csrfInterceptor } from '@interc/x-csrf-token.interceptor';
+import { provideIcons } from '@core/icons/icons.provider';
+
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -21,11 +23,12 @@ export const appConfig: ApplicationConfig = {
     // Networking
     provideHttpClient(
       withFetch(),
-      withInterceptors([authInterceptor, idempotencyInterceptor])
+      withInterceptors([authInterceptor, idempotencyInterceptor, csrfInterceptor])
     ),
 
     // Custom App Logic / Features
     provideIcons(),
+    provideCSFRInitializer(),
     provideCheckSessionInitializer(),
   ]
 };
