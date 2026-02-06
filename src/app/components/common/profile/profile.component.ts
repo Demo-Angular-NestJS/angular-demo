@@ -1,9 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ElementRef, HostListener, inject, signal, ViewChild } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { MatIconModule } from '@angular/material/icon';
-import { Router } from '@angular/router';
-import { signInRoute } from '@constants';
+import { Router, RouterModule } from '@angular/router';
+import { searchSettingRoute, signInRoute } from '@constants';
+import { CurrentUserService } from '@data/services';
 import { AuthService } from '@s/auth.service';
+import { PropInitialsModule } from 'app/pipe';
 
 @Component({
   standalone: true,
@@ -13,15 +16,20 @@ import { AuthService } from '@s/auth.service';
   imports: [
     CommonModule,
     MatIconModule,
+    RouterModule,
+    PropInitialsModule,
   ]
 })
 export class ProfileComponent {
   @ViewChild('profileContainer') profileContainer!: ElementRef;
 
-  protected isProfileOpen = signal(false);
+  protected authService = inject(AuthService);
+  protected currentUserService = inject(CurrentUserService);
+  protected router = inject(Router);
 
-  private _authService = inject(AuthService);
-  private _router = inject(Router);
+  protected isProfileOpen = signal(false);
+  protected currentUser = toSignal(this.currentUserService.current$, { initialValue: null });
+  protected searchSettingRoute = searchSettingRoute;
 
   @HostListener('document:click', ['$event'])
   clickout(event: PointerEvent | MouseEvent) {
@@ -36,7 +44,7 @@ export class ProfileComponent {
   }
 
   protected signOutEvent(): void {
-    this._authService.logout();
-    this._router.navigate([`/${signInRoute}`]);
+    this.authService.logout();
+    this.router.navigate([`/${signInRoute}`]);
   }
 }

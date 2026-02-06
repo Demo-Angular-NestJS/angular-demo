@@ -1,33 +1,24 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 //#region ROUTES
-export const authRoute = 'auth';
 export const loginRoute = 'login';
 export const logoutRoute = '/logout'
-
 export const signInRoute = `${loginRoute}`;
 export const searchSignInRoute = `/${signInRoute}`;
 export const registerRoute = 'register';
 export const searchRegisterRoute = `/${registerRoute}`;
 
-
-export const storeRoute = 'store';
-
 export const homeRoute = 'home';
 export const searchHomeRoute = `/${homeRoute}`;
 export const toyRoute = 'toy';
 export const searchToyRoute = `/${toyRoute}`;
-
-export const defaultRoute = searchHomeRoute;
-
-
-
 export const favoriteRoute = 'favorite';
 export const searchFavoriteRoute = `/${favoriteRoute}`
-
 export const settingRoute = 'setting';
 export const searchSettingRoute = `/${settingRoute}`;
 export const myPurchaseRoute = 'my-purchase';
 export const searchMyPurchaseRoute = `/${myPurchaseRoute}`;
+
+export const defaultRoute = searchHomeRoute;
 //#endregion
 
 export const DEBOUNCE_TIME_MS = 400;

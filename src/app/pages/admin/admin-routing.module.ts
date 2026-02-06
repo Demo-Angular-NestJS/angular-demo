@@ -1,10 +1,12 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { favoriteRoute, homeRoute, myPurchaseRoute, settingRoute, toyRoute } from "@constants";
+import { currentUserGuard } from "@data/guards";
 
 const routes: Routes = [
   {
     path: '',
+    canActivate: [currentUserGuard],
     children: [
       {
         path: homeRoute,

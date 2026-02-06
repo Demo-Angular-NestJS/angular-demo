@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { RegisterFormComponent, RegisterFormModel } from '@c/auth';
 import { searchSignInRoute } from '@constants';
 import { UserModel } from '@m/class';

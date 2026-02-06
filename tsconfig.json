@@ -19,6 +19,7 @@
       "@m/*": ["app/models/*"],
       "@c/*": ["app/components/*"],
       "@core/*": ["app/core/*"],
+      "@data/*": ["app/data/*"],
       "@d/*": ["app/directives/*"],
       "@g/*": ["app/guards/*"],
       "@interc/*": ["app/interceptors/*"],

@@ -2,27 +2,22 @@
   <button
     class="w-10 h-10 rounded-full bg-yellow-400 border-2 border-white shadow-sm flex items-center justify-center font-bold text-indigo-900 cursor-pointer hover:scale-105 transition-transform"
     (click)="toggleProfileEvent()">
-    JD
+    {{ currentUser()?.userName | propInitials }}
   </button>
 
   @if (isProfileOpen()) {
   <div
     class="absolute right-0 mt-3 w-56 bg-white rounded-2xl shadow-xl border border-slate-100 py-2 z-50 animate-fade-in-down">
     <div class="px-4 py-3 border-b border-slate-50">
-      <p class="text-sm font-bold text-slate-900">Juan Delgado</p>
-      <p class="text-xs text-slate-500 truncate">juan.toy@ejemplo.com</p>
+      <p class="text-sm font-bold text-slate-900">{{ currentUser()?.userName }}</p>
+      <p class="text-xs text-slate-500 truncate">{{ currentUser()?.email }}</p>
     </div>
 
     <div class="p-2">
-      <a href="#"
-        class="flex items-center gap-3 px-3 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-indigo-600 rounded-xl transition-all">
-        <mat-icon class="w-4 h-4">account_circle</mat-icon>
-        Mi Perfil
-      </a>
-      <a href="#"
+      <a [routerLink]="[searchSettingRoute]"
         class="flex items-center gap-3 px-3 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-indigo-600 rounded-xl transition-all">
         <mat-icon class="w-4 h-4">settings</mat-icon>
-        Configuración
+        Configuration
       </a>
     </div>
 
@@ -31,7 +26,7 @@
         class="w-full flex items-center gap-3 px-3 py-2 text-sm text-pink-600 hover:bg-pink-50 rounded-xl transition-all font-medium cursor-pointer"
         (click)="signOutEvent()">
         <mat-icon class="w-4 h-4" svgIcon="singOut"></mat-icon>
-        Cerrar Sesión
+        Sign Out
       </button>
     </div>
   </div>

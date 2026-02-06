@@ -6,7 +6,6 @@ import { AsideComponent, BreadCrumbsComponent, FooterComponent, NavbarComponent 
 import { PageBreadCrumbModel } from '@m/page-bread-crumb.model';
 import { GlobalStateService } from '@s/common';
 
-
 @Component({
   standalone: true,
   selector: 'app-admin-layout',

@@ -9,6 +9,7 @@ import { authInterceptor } from '@interc/auth.interceptor';
 import { idempotencyInterceptor } from '@interc/idempotency.interceptor';
 import { csrfInterceptor } from '@interc/x-csrf-token.interceptor';
 import { provideIcons } from '@core/icons/icons.provider';
+import { provideData } from './data/data.provider';
 
 
 export const appConfig: ApplicationConfig = {
@@ -27,6 +28,7 @@ export const appConfig: ApplicationConfig = {
     ),
 
     // Custom App Logic / Features
+    ...provideData(),
     provideIcons(),
     provideCSFRInitializer(),
     provideCheckSessionInitializer(),

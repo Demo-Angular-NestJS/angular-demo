@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, OnDestroy } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { AdminLayoutComponent } from '@c/layout';
+import { CurrentUserService } from '@data/services';
 import { PageBreadCrumbModel } from '@m/page-bread-crumb.model';
 
 @Component({
@@ -13,9 +15,10 @@ import { PageBreadCrumbModel } from '@m/page-bread-crumb.model';
   ],
 })
 export class HomePageComponent implements OnDestroy {
-  //#region Service and injectables
   protected adminLayout = inject(AdminLayoutComponent);
-  //#endregion
+  protected currentUserService = inject(CurrentUserService);
+
+  protected currentUser = toSignal(this.currentUserService.current$, { initialValue: null });
 
   constructor() {
     this.adminLayout.breadCrumbs.set(breadCrumbs);
