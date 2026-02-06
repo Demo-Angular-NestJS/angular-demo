@@ -9,10 +9,4 @@ export const environment: EnvironmentModel = {
     apiVersionHeaderKey: 'apiVersion',
     apiVersion: '1',
     baseHref: '/',
-    localStorageKeys: {
-        sessionRefreshTime: 'session-refresh-time',
-        sessionExpirationTime: 'session-expiration-time',
-        userId: 'user-id',
-        accessToken: 'access-token',
-    }
 };

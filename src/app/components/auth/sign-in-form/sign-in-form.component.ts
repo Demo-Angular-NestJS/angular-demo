@@ -13,7 +13,7 @@ import { FormDefaultsModule } from '@c/shared/form-defaults.module';
 })
 export class SignInFormComponent extends FormBaseComponent<SignInFormModel> {
   networkActive = input<boolean>(false);
-  signInEvent = output<SignInFormModel>();
+  submitData = output<SignInFormModel>();
 
   public form = getGroup<SignInFormModel>(signInForm);
   protected hidePassword = signal(true);
@@ -27,11 +27,11 @@ export class SignInFormComponent extends FormBaseComponent<SignInFormModel> {
   public override onSubmit(): void {
     const value = this.validatedValue;
     if (value) {
-      this.signInEvent.emit(value);
+      this.submitData.emit(value);
     }
   }
 
-  togglePassword() {
+  protected togglePassword() {
     this.hidePassword.update(prev => !prev);
   }
 }

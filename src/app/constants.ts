@@ -1,4 +1,5 @@
-
+/* eslint-disable @typescript-eslint/naming-convention */
+//#region ROUTES
 export const authRoute = 'auth';
 export const loginRoute = 'login';
 export const logoutRoute = '/logout'
@@ -27,7 +28,9 @@ export const settingRoute = 'setting';
 export const searchSettingRoute = `/${settingRoute}`;
 export const myPurchaseRoute = 'my-purchase';
 export const searchMyPurchaseRoute = `/${myPurchaseRoute}`;
+//#endregion
 
+export const DEBOUNCE_TIME_MS = 400;
 
 export const maskSeparator = {
   int: '9999999999',

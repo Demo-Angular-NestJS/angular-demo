@@ -3,7 +3,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
 import { environment } from '@env/environment';
-import { LoginModel } from '@m/login.model';
+import { LoginModel } from '@m/class';
 import { catchError, map, NEVER, Observable, of, tap, timeout } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })

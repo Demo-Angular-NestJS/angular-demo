@@ -38,7 +38,7 @@
 
       <app-sign-in-form #signInForm
         [networkActive]="networkActive()"
-        (signInEvent)="signInEvent($event)">
+        (submitData)="signInEvent($event)">
       </app-sign-in-form>
 
       @if (errorMessage()) {

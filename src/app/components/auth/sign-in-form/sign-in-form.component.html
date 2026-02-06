@@ -1,36 +1,7 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-5">
-  <!-- <div class="flex flex-col">
-    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5 ml-1">
-      Email
-    </label>
-    <mat-form-field appearance="outline" class="custom-field w-full">
-      <input id="email" matInput formControlName="email" autocomplete="email" placeholder="ejemplo@correo.com"
-        [tDisable]="networkActive()" class="text-sm">
-
-      @if (isError('email', 'required')) { <mat-error>El email es obligatorio</mat-error> }
-      @else if (isError('email', 'email')) { <mat-error>Ingresa un email válido</mat-error> }
-    </mat-form-field>
-  </div>
-
-  <div class="flex flex-col">
-    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5 ml-1">
-      Contraseña
-    </label>
-    <mat-form-field appearance="outline" class="custom-field w-full">
-      <input id="password" matInput formControlName="password" placeholder="••••••••" autocomplete="new-password"
-        [type]="hidePassword() ? 'password' : 'text'" [tDisable]="networkActive()" class="text-sm">
-
-      <button type="button" mat-icon-button matSuffix (click)="togglePassword()" [disabled]="networkActive()"
-        class="text-slate-400">
-        <mat-icon class="text-lg">{{ hidePassword() ? 'visibility_off' : 'visibility' }}</mat-icon>
-      </button>
-
-      @if (isError('password', 'required')) { <mat-error>La contraseña es obligatoria</mat-error> }
-    </mat-form-field>
-  </div> -->
   <mat-form-field class="w-full" appearance="outline" floatLabel="always">
     <mat-label>Email</mat-label>
-    <input id="email" matInput formControlName="email" autocomplete="email" placeholder="ejemplo@correo.com"
+    <input id="sifEmail" matInput formControlName="email" autocomplete="email" placeholder="ejemplo@correo.com"
       [tDisable]="networkActive()">
     @if (isError('email', 'required')) { <mat-error>Email is required</mat-error> }
     @else if (isError('email', 'email')) { <mat-error>Please enter a valid email</mat-error> }
@@ -38,7 +9,7 @@
 
   <mat-form-field class="w-full" appearance="outline" floatLabel="always">
     <mat-label>Password</mat-label>
-    <input id="password" matInput formControlName="password" placeholder="Password" autocomplete="new-password"
+    <input id="sifPassword" matInput formControlName="password" placeholder="Password" autocomplete="new-password"
       [type]="hidePassword() ? 'password' : 'text'"
       [tDisable]="networkActive()">
     <button  type="button"  mat-icon-button  matSuffix
