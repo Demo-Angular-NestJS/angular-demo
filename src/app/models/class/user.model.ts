@@ -11,19 +11,6 @@ export class UserModel extends BaseModel implements IUser {
 
   constructor(data: Partial<any>) {
     super();
-
-    if (data) {
-      Object.keys(this).forEach((key) => {
-        if (Object.prototype.hasOwnProperty.call(data, key)) {
-          (this as any)[key] = data[key];
-        }
-      });
-
-      Object.keys(this).forEach((key) => {
-        if ((this as any)[key] === undefined) {
-          delete (this as any)[key];
-        }
-      });
-    }
+    this.initialize(data);
   }
 }
