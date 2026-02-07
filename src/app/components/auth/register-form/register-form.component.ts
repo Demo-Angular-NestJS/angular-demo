@@ -20,7 +20,7 @@ export class RegisterFormComponent extends FormBaseComponent<RegisterFormModel> 
   errorMessage = input<string | null>(null);
   submitData = output<RegisterFormModel>();
 
-  public form = getGroup<RegisterFormModel>(registerForm);
+  public form = getGroup(registerForm);
 
   protected hidePassword = signal(true);
   protected hideConfirmPassword = signal(true);

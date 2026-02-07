@@ -1,0 +1,12 @@
+@mixin styles() {
+  .mat-mdc-slide-toggle.mat-primary {
+    // Selected (On) State
+    --mdc-switch-selected-handle-color: #4f46e5; // indigo-600
+    --mdc-switch-selected-track-color: #a5b4fc; // indigo-300 (standard for tracks)
+    --mdc-switch-selected-focus-handle-color: #4338ca; // indigo-700
+
+    // Unselected (Off) State
+    --mdc-switch-unselected-handle-color: #ffffff;
+    --mdc-switch-unselected-track-color: #e2e8f0; // slate-200
+  }
+}

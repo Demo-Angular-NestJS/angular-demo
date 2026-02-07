@@ -2,9 +2,12 @@ import { DefaultDataServiceConfig, EntityDataModuleConfig, EntityMetadataMap } f
 import { ActionReducer, ActionReducerMap, MetaReducer } from '@ngrx/store';
 import { GlobalActionTypes } from './actions/global.actions';
 import { environment } from '@env/environment';
-import { UserModel } from '@m/class';
+import { UserConfigurationModel, UserModel } from '@m/class';
 
 const entityMetadata: EntityMetadataMap = {
+  CurrentUserConfiguration: {
+    selectId: (model: UserConfigurationModel) => model.id,
+  },
   CurrentUser: {
     selectId: (model: UserModel) => model.id,
   },
@@ -12,6 +15,7 @@ const entityMetadata: EntityMetadataMap = {
 
 const pluralNames = {
   CurrentUser: 'CurrentUser',
+  CurrentUserConfiguration: 'CurrentUserConfiguration'
 };
 
 export const entityConfig: EntityDataModuleConfig = {

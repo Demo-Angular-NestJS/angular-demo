@@ -14,8 +14,8 @@
     </div>
 
     <div class="p-2">
-      <a [routerLink]="[searchSettingRoute]"
-        class="flex items-center gap-3 px-3 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-indigo-600 rounded-xl transition-all">
+      <a class="flex items-center gap-3 px-3 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-indigo-600 rounded-xl transition-all"
+        [routerLink]="[searchSettingRoute]" (click)="onCloseClickEvent()">
         <mat-icon class="w-4 h-4">settings</mat-icon>
         Configuration
       </a>

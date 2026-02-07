@@ -5,6 +5,8 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { MatSelectModule } from "@angular/material/select";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { DisableFormDirectiveModule } from "@d/disable-form-directive";
 
@@ -19,6 +21,8 @@ import { DisableFormDirectiveModule } from "@d/disable-form-directive";
     MatButtonModule,
     MatIconModule,
     MatProgressSpinnerModule,
+    MatSlideToggleModule,
+    MatSelectModule,
   ],
   exports: [
     FormsModule,
@@ -29,6 +33,8 @@ import { DisableFormDirectiveModule } from "@d/disable-form-directive";
     MatButtonModule,
     MatIconModule,
     MatProgressSpinnerModule,
+    MatSlideToggleModule,
+    MatSelectModule,
   ],
   declarations: [],
   providers: [],

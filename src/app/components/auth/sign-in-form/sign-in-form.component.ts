@@ -15,7 +15,7 @@ export class SignInFormComponent extends FormBaseComponent<SignInFormModel> {
   networkActive = input<boolean>(false);
   submitData = output<SignInFormModel>();
 
-  public form = getGroup<SignInFormModel>(signInForm);
+  public form = getGroup(signInForm);
   protected hidePassword = signal(true);
 
   constructor() {

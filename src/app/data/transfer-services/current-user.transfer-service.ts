@@ -10,17 +10,11 @@ import { map } from 'rxjs/operators';
 @Injectable({ providedIn: 'root' })
 export class CurrentUserTransferService extends BaseTransferService<UserModel> {
     constructor() {
-        super('CurrentUser', inject(HttpClient), inject(HttpUrlGenerator));
+        super('CurrentUser', inject(HttpClient), inject(HttpUrlGenerator), `${environment.apiUrl}/user`);
     }
 
-    /**
-     * NgRx Data expects an Array for getAll().
-     * Since 'current' returns a single object, we wrap it in an array.
-     */
     public override getAll(): Observable<UserModel[]> {
-        const url = `${environment.apiUrl}/user/current`;
-
-        return this.http.get<UserModel>(url).pipe(
+        return this.http.get<UserModel>(`${this.rootPath}/current`).pipe(
             map((user) => [user])
         );
     }

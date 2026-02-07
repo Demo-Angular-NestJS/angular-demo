@@ -1,7 +1,9 @@
 @use 'button';
 @use 'form-field';
+@use 'slide-toggle';
 
 @mixin overrides() {
   @include button.styles();
   @include form-field.styles();
+  @include slide-toggle.styles();
 }

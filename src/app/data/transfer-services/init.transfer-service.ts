@@ -4,6 +4,7 @@ import { Injectable, inject } from '@angular/core';
 import { EntityDataService } from '@ngrx/data';
 import { BaseTransferService } from './base.transfer-service';
 import { CurrentUserTransferService } from './current-user.transfer-service';
+import { CurrentUserConfigurationTransferService } from './current-user-config.transfer-service';
 
 @Injectable({ providedIn: 'root' })
 export class InitTransferService {
@@ -12,6 +13,7 @@ export class InitTransferService {
 
     return {
       CurrentUser: inject(CurrentUserTransferService),
+      CurrentUserConfiguration: inject(CurrentUserConfigurationTransferService),
     };
   }
 

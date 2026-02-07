@@ -47,4 +47,8 @@ export class ProfileComponent {
     this.authService.logout();
     this.router.navigate([`/${signInRoute}`]);
   }
+
+  protected onCloseClickEvent(): void {
+    this.isProfileOpen.set(false);
+  }
 }

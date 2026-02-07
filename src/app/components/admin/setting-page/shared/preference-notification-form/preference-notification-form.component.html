@@ -1,0 +1,35 @@
+<form [formGroup]="form" class="p-8 space-y-6">
+  <div class="flex items-center justify-between">
+    <div>
+      <p class="font-bold text-slate-700">Email Notifications</p>
+      <p class="text-sm text-slate-500">Receive exclusive offers and weekly coupons.</p>
+    </div>
+    <mat-slide-toggle color="primary"  formControlName="enableEmailNotifications">
+    </mat-slide-toggle>
+  </div>
+
+  <hr class="border-slate-100">
+
+  <div class="flex items-center justify-between">
+    <div>
+      <p class="font-bold text-slate-700">Order Status</p>
+      <p class="text-sm text-slate-500">Real-time notifications about the shipment of your toys.</p>
+    </div>
+    <mat-slide-toggle color="primary"  formControlName="enableOrderStatus">
+    </mat-slide-toggle>
+  </div>
+
+  <hr class="border-slate-100">
+
+  <div class="flex flex-col space-y-2">
+    <p class="font-bold text-slate-700">System Timezone</p>
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Select Timezone</mat-label>
+      <mat-select formControlName="systemTimeZone">
+        <mat-option value="UTC">UTC</mat-option>
+        <mat-option value="America/New_York">Eastern Time</mat-option>
+        <mat-option value="Europe/London">London</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</form>
