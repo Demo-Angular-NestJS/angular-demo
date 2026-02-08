@@ -1,3 +1,4 @@
+@use 'ngx-toastr/toastr';
 @use "@angular/material" as mat;
 @use "./mat-theme" as theme;
 @use "./custom-angular-material/custom-material.scss" as custom;

@@ -42,10 +42,6 @@
     @else if (isError('confirmPassword', 'mismatch')) { <mat-error>Passwords do not match</mat-error> }
   </mat-form-field>
 
-  @if (errorMessage()) {
-  <p class="w-full text-center text-red-500 my-2 font-semibold">{{ errorMessage() }}</p>
-  }
-
   <button matButton="filled" color="primary" type="submit" class="w-full" [disabled]="networkActive() || !form.valid">
     @if (networkActive()) {
     <div class="flex items-center justify-center gap-2">

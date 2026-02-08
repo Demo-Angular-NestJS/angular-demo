@@ -37,6 +37,7 @@ export class AuthService {
   }
 
   public logout() {
+    this.isAuthenticated.set(false);
     this._http.post(`${this.API_URL}/logout`, {}).pipe(
       catchError(() => of(null)),
       tap(() => this.handleUnauthenticated())

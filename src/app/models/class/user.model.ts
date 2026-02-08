@@ -5,6 +5,7 @@ import { BaseModel } from './base.model';
 export class UserModel extends BaseModel implements IUser {
   userName!: string;
   email!: string;
+  phoneNumber!: string;
   password!: string;
   isActive!: boolean;
   isAdmin!: boolean;

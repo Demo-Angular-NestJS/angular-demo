@@ -9,13 +9,17 @@ import { map } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class CurrentUserTransferService extends BaseTransferService<UserModel> {
-    constructor() {
-        super('CurrentUser', inject(HttpClient), inject(HttpUrlGenerator), `${environment.apiUrl}/user`);
-    }
+  constructor() {
+    super('CurrentUser', inject(HttpClient), inject(HttpUrlGenerator), `${environment.apiUrl}/user`);
+  }
 
-    public override getAll(): Observable<UserModel[]> {
-        return this.http.get<UserModel>(`${this.rootPath}/current`).pipe(
-            map((user) => [user])
-        );
-    }
+  public override getAll(): Observable<UserModel[]> {
+    return this.http.get<UserModel>(`${this.rootPath}/current`).pipe(
+      map((user) => [user])
+    );
+  }
+
+  public override update(update: { id: string; changes: Partial<UserModel> }): Observable<UserModel> {
+    return this.http.patch<UserModel>(`${this.rootPath}/${update.id}`, update.changes);
+  }
 }

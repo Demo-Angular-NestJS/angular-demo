@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, ElementRef, HostListener, inject, s
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
-import { searchSettingRoute, signInRoute } from '@constants';
+import { searchProfileRoute, searchSettingRoute, signInRoute } from '@constants';
 import { CurrentUserService } from '@data/services';
 import { AuthService } from '@s/auth.service';
 import { PropInitialsModule } from 'app/pipe';
@@ -30,6 +30,7 @@ export class ProfileComponent {
   protected isProfileOpen = signal(false);
   protected currentUser = toSignal(this.currentUserService.current$, { initialValue: null });
   protected searchSettingRoute = searchSettingRoute;
+  protected searchProfileRoute = searchProfileRoute;
 
   @HostListener('document:click', ['$event'])
   clickout(event: PointerEvent | MouseEvent) {

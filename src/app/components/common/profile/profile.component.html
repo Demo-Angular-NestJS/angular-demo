@@ -9,12 +9,24 @@
   <div
     class="absolute right-0 mt-3 w-56 bg-white rounded-2xl shadow-xl border border-slate-100 py-2 z-50 animate-fade-in-down">
     <div class="px-4 py-3 border-b border-slate-50">
-      <p class="text-sm font-bold text-slate-900">{{ currentUser()?.userName }}</p>
+      <p class="text-sm font-bold text-slate-900">
+        {{ currentUser()?.userName }}
+        @if (currentUser()?.phoneNumber) {
+        <span class="text-xs font-normal text-slate-500 ml-1">
+          ({{ currentUser()?.phoneNumber }})
+        </span>
+        }
+      </p>
       <p class="text-xs text-slate-500 truncate">{{ currentUser()?.email }}</p>
     </div>
 
     <div class="p-2">
-      <a class="flex items-center gap-3 px-3 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-indigo-600 rounded-xl transition-all"
+      <a class="flex items-center gap-3 px-3 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-indigo-600 rounded-xl transition-all cursor-pointer"
+        [routerLink]="[searchProfileRoute]" (click)="onCloseClickEvent()">
+        <mat-icon class="w-4 h-4">account_circle</mat-icon>
+        My Profile
+      </a>
+      <a class="flex items-center gap-3 px-3 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-indigo-600 rounded-xl transition-all cursor-pointer"
         [routerLink]="[searchSettingRoute]" (click)="onCloseClickEvent()">
         <mat-icon class="w-4 h-4">settings</mat-icon>
         Configuration

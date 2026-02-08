@@ -2,6 +2,7 @@
 //#region ROUTES
 export const loginRoute = 'login';
 export const logoutRoute = '/logout'
+export const meRoute = '/auth/me';
 export const signInRoute = `${loginRoute}`;
 export const searchSignInRoute = `/${signInRoute}`;
 export const registerRoute = 'register';
@@ -13,12 +14,21 @@ export const toyRoute = 'toy';
 export const searchToyRoute = `/${toyRoute}`;
 export const favoriteRoute = 'favorite';
 export const searchFavoriteRoute = `/${favoriteRoute}`
-export const settingRoute = 'setting';
-export const searchSettingRoute = `/${settingRoute}`;
 export const myPurchaseRoute = 'my-purchase';
 export const searchMyPurchaseRoute = `/${myPurchaseRoute}`;
 
+export const settingRoute = 'settings';
+export const searchSettingRoute = `/${settingRoute}`;
+export const profileRoute = 'profile';
+export const searchProfileRoute = `/${settingRoute}/${profileRoute}`;
+export const changePassowordRoute = 'change-password';
+export const searchChangePasswordRoute = `/${settingRoute}/${changePassowordRoute}`;
+
 export const defaultRoute = searchHomeRoute;
+//#endregion
+
+//#region Patterns
+export const passwordPattern = /^(?=.*[A-Z])(?=.*\d).{4,}$/; //Min 4 characters, 1 Uppercase, 1 Number.
 //#endregion
 
 export const DEBOUNCE_TIME_MS = 400;
@@ -26,7 +36,7 @@ export const DEBOUNCE_TIME_MS = 400;
 export const maskSeparator = {
   int: '9999999999',
   separator: 'separator.0',
-  separator6: 'separator.6',
+separator6: 'separator.6',
   separator3: 'separator.3',
   separator2: 'separator.2',
   thousandSeparator: '',

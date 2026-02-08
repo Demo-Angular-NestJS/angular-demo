@@ -27,14 +27,14 @@ const routes: Routes = [
         loadChildren: () => import('./favorite-page/favorite-page.module').then((m) => m.FavoritePageModule),
       },
       {
-        path: settingRoute,
-        canActivate: [],
-        loadChildren: () => import('./setting-page/setting-page.module').then((m) => m.SettingPageModule),
-      },
-      {
         path: myPurchaseRoute,
         canActivate: [],
         loadChildren: () => import('./my-purchase-page/my-purchase-page.module').then((m) => m.MyPurchasePageModule),
+      },
+      {
+        path: settingRoute,
+        canActivate: [],
+        loadChildren: () => import('./settings/settings.module').then((m) => m.SettingsModule),
       },
       {
         path: '',

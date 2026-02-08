@@ -7,6 +7,7 @@ export class UserConfigurationModel extends BaseModel implements IUserConfigurat
   enableEmailNotifications!: boolean;
   enableOrderStatus!: boolean;
   systemTimeZone!: string;
+  isProfilePublic!: boolean;
 
   constructor(data: Partial<any>) {
     super();

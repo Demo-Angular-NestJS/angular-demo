@@ -9,10 +9,12 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { MatSelectModule } from "@angular/material/select";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { DisableFormDirectiveModule } from "@d/disable-form-directive";
+import { RouterModule } from "@angular/router";
 
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule,
     FormsModule,
     ReactiveFormsModule,
     DisableFormDirectiveModule,
@@ -25,7 +27,9 @@ import { DisableFormDirectiveModule } from "@d/disable-form-directive";
     MatSelectModule,
   ],
   exports: [
+    CommonModule,
     FormsModule,
+    RouterModule,
     ReactiveFormsModule,
     DisableFormDirectiveModule,
     MatFormFieldModule,

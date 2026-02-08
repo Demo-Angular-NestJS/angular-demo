@@ -19,27 +19,27 @@ const defaultOptions: FormBaseSettingsModel = {
   providers: [{ provide: FORM_BASE_SETTINGS, useValue: defaultOptions }]
 })
 export abstract class FormBaseComponent<TModel extends Record<string, any>> {
-  // 1. Inject dependencies
+  //Inject dependencies
   protected readonly fbDirective = viewChild(FormGroupDirective);
   protected readonly injectedSettings = inject(FORM_BASE_SETTINGS, { optional: true });
 
-  // 2. Outputs
+  //Outputs
   readonly okEvent = output<TModel>();
   readonly resetEvent = output<boolean>();
   readonly clearEvent = output<boolean>();
 
-  // 3. Inputs
+  // Inputs
   value = input<TModel | undefined>(undefined);
 
-  // 4. Signals for State Management
+  //Signals for State Management
   public readonly isSubmitting = signal(false);
   public readonly isDisabled = signal(false);
   private readonly _changed = signal(false);
 
-  // Computed signals
+  //Computed signals
   public readonly changed = computed(() => this._changed());
 
-  // 5. Protected Properties
+  //Protected Properties
   protected readonly destroy$ = new Subject<void>();
   protected readonly settings: FormBaseSettingsModel;
   protected readonly maskMaxInt = maskMaxIntDigitsHelper;
@@ -105,7 +105,6 @@ export abstract class FormBaseComponent<TModel extends Record<string, any>> {
     return control;
   }
 
-  // Add the constraint here ----------------------vvvvvvvvvvvvvvvvvvvv
   public array<TGroup extends Record<string, any> = any>(
     name: string,
     subGroup?: string

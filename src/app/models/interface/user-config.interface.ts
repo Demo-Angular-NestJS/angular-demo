@@ -5,4 +5,5 @@ export interface IUserConfiguration extends Partial<IBase> {
   enableEmailNotifications: boolean;
   enableOrderStatus: boolean;
   systemTimeZone: string;
+  isProfilePublic: boolean;
 }

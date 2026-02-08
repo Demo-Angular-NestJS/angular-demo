@@ -1,0 +1,63 @@
+<form [formGroup]="form" autocomplete="off" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+  <div class="space-y-6">
+    <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+      <mat-icon class="w-4 h-4 !text-indigo-500" svgIcon="user_account"></mat-icon>
+      Personal information
+    </h3>
+
+    <div class="space-y-4">
+      <mat-form-field class="w-full" appearance="fill" floatLabel="always">
+        <mat-label>User Name</mat-label>
+        <input id="upfUserName" matInput formControlName="userName" placeholder="User Name"
+          [tDisable]="networkActive()">
+        @if (isError('userName', 'required')) { <mat-error>User Name is required</mat-error> }
+        @if (isError('userName', 'alreadyExists')) { <mat-error>This User Name is already taken</mat-error> }
+        @if (field('userName').hasError('checking')) { <mat-hint>Checking availability...</mat-hint> }
+      </mat-form-field>
+
+      <mat-form-field class="w-full" appearance="fill" floatLabel="always">
+        <mat-label>Email</mat-label>
+        <input id="upfEmail" matInput formControlName="email" placeholder="example@email.com" readonly>
+      </mat-form-field>
+
+      <mat-form-field class="w-full" appearance="fill" floatLabel="always">
+        <mat-label>Phone Number</mat-label>
+        <input id="upfUserName" matInput formControlName="phoneNumber" placeholder="+52 (644) 000 0000"
+          [tDisable]="networkActive()">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="space-y-6">
+    <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+      <mat-icon class="w-5 h-5 !text-indigo-500" svgIcon="preferences"></mat-icon>
+      Preferences
+    </h3>
+
+    <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 space-y-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="font-bold text-slate-700">Notification</p>
+          <p class="text-xs text-slate-500">Receive notifications of new offers.</p>
+        </div>
+        <mat-slide-toggle color="primary" formControlName="enableEmailNotifications" [tDisable]="networkActive()">
+        </mat-slide-toggle>
+      </div>
+      <hr class="border-slate-200">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="font-bold text-slate-700">Profile Public</p>
+          <p class="text-xs text-slate-500">Show my favorites to others.</p>
+        </div>
+        <mat-slide-toggle color="primary" formControlName="isProfilePublic" [tDisable]="networkActive()">
+        </mat-slide-toggle>
+      </div>
+    </div>
+
+    <a class="w-full py-3 border-2 border-dashed border-slate-200 text-slate-500 rounded-2xl font-bold hover:bg-slate-50 hover:border-slate-300 transition-all flex items-center justify-center gap-2 cursor-pointer"
+      [routerLink]="[searchChangePasswordRoute]">
+      <mat-icon class="w-5 h-5" svgIcon="security_padlock"></mat-icon>
+      Change Password
+    </a>
+  </div>
+</form>

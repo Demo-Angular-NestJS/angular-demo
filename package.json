@@ -8,61 +8,54 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:angular-demo": "node dist/angular-demo/server/server.mjs",
-    "lint": "ng lint"
-  },
-  "prettier": {
-    "overrides": [
-      {
-        "files": "*.html",
-        "options": {
-          "parser": "angular"
-        }
-      }
-    ]
+    "lint": "ng lint",
+    "format": "prettier --write \"src/**/*.{ts,html,scss}\""
   },
   "private": true,
   "dependencies": {
-    "@angular/cdk": "^20.2.14",
+    "@angular/animations": "^20.0.0",
+    "@angular/cdk": "^20.0.0",
     "@angular/common": "^20.0.0",
     "@angular/compiler": "^20.0.0",
     "@angular/core": "^20.0.0",
     "@angular/forms": "^20.0.0",
-    "@angular/material": "^20.2.14",
+    "@angular/material": "^20.0.0",
     "@angular/platform-browser": "^20.0.0",
     "@angular/platform-server": "^20.0.0",
     "@angular/router": "^20.0.0",
-    "@angular/ssr": "^20.0.4",
-    "@ngrx/data": "^21.0.1",
-    "@ngrx/effects": "^21.0.1",
-    "@ngrx/entity": "^21.0.1",
-    "@ngrx/store": "^21.0.1",
-    "@ngrx/store-devtools": "^21.0.1",
-    "@tailwindcss/postcss": "^4.1.18",
-    "express": "^5.1.0",
-    "postcss": "^8.5.6",
+    "@angular/ssr": "^20.0.0",
+    "@ngrx/data": "^20.0.0",
+    "@ngrx/effects": "^20.0.0",
+    "@ngrx/entity": "^20.0.0",
+    "@ngrx/store": "^20.0.0",
+    "@ngrx/store-devtools": "^20.0.0",
+    "@tailwindcss/postcss": "^4.0.0",
+    "express": "^5.0.0",
+    "ngx-toastr": "^20.0.5",
+    "postcss": "^8.4.0",
     "rxjs": "~7.8.0",
-    "tailwindcss": "^4.1.18",
-    "tslib": "^2.3.0"
+    "tailwindcss": "^4.0.0",
+    "tslib": "^2.6.0"
   },
   "devDependencies": {
-    "@angular/build": "^20.0.4",
-    "@angular/cli": "^20.0.4",
+    "@angular/build": "^20.0.0",
+    "@angular/cli": "^20.0.0",
     "@angular/compiler-cli": "^20.0.0",
-    "@types/express": "^5.0.1",
+    "@types/express": "^5.0.0",
     "@types/jasmine": "~5.1.0",
-    "@types/node": "^20.17.19",
-    "angular-eslint": "21.0.1",
-    "eslint": "^9.39.1",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.5",
-    "jasmine-core": "~5.7.0",
+    "@types/node": "^20.0.0",
+    "angular-eslint": "^20.0.0",
+    "eslint": "^9.0.0",
+    "eslint-config-prettier": "^10.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "prettier": "^3.8.1",
+    "prettier": "^3.0.0",
     "typescript": "~5.8.2",
-    "typescript-eslint": "8.46.4"
+    "typescript-eslint": "^8.0.0"
   }
 }

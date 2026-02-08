@@ -16,6 +16,11 @@ export class IconsService {
     this.addIcon('purchase', 'assets/icons/purchase.svg');
     this.addIcon('settings', 'assets/icons/settings.svg');
     this.addIcon('singOut', 'assets/icons/singOut.svg');
+    this.addIcon('user_account', 'assets/icons/user-account.svg');
+    this.addIcon('security_padlock', 'assets/icons/security-padlock.svg');
+    this.addIcon('preferences', 'assets/icons/preferences.svg');
+    this.addIcon('verified_account', 'assets/icons/verified-account.svg');
+    this.addIcon('payment_method', 'assets/icons/payment-method.svg');
     // this._matIconRegistry.addSvgIconSetInNamespace(
     //     'mat_outline',
     //     this._domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/material-outline.svg')

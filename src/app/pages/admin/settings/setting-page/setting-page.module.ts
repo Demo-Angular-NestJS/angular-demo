@@ -6,7 +6,7 @@ const routes: Route[] = [
   {
     path: '',
     component: SettingPageComponent,
-    title: 'Setting Page',
+    title: 'Settings Page',
     canActivate: [],
   }
 ];

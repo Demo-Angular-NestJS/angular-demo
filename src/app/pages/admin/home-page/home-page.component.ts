@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { AdminLayoutComponent } from '@c/layout';
+import { BaseComponent } from '@c/shared/base.component';
 import { CurrentUserService } from '@data/services';
 import { PageBreadCrumbModel } from '@m/page-bread-crumb.model';
 
@@ -14,18 +14,13 @@ import { PageBreadCrumbModel } from '@m/page-bread-crumb.model';
     CommonModule,
   ],
 })
-export class HomePageComponent implements OnDestroy {
-  protected adminLayout = inject(AdminLayoutComponent);
+export class HomePageComponent extends BaseComponent {
   protected currentUserService = inject(CurrentUserService);
-
   protected currentUser = toSignal(this.currentUserService.current$, { initialValue: null });
 
   constructor() {
-    this.adminLayout.breadCrumbs.set(breadCrumbs);
-  }
-
-  ngOnDestroy(): void {
-      this.adminLayout.breadCrumbs.set([]);
+    super();
+    this.adminLayout?.breadCrumbs.set(breadCrumbs);
   }
 }
 

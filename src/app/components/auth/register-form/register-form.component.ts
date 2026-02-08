@@ -17,7 +17,6 @@ import { DEBOUNCE_TIME_MS } from '@constants';
 })
 export class RegisterFormComponent extends FormBaseComponent<RegisterFormModel> implements AfterViewInit {
   networkActive = input<boolean>(false);
-  errorMessage = input<string | null>(null);
   submitData = output<RegisterFormModel>();
 
   public form = getGroup(registerForm);
@@ -25,8 +24,8 @@ export class RegisterFormComponent extends FormBaseComponent<RegisterFormModel> 
   protected hidePassword = signal(true);
   protected hideConfirmPassword = signal(true);
 
-  private _destroyRef = inject(DestroyRef);
   private _userHelperService = inject(UserHelperService);
+  private _destroyRef = inject(DestroyRef);
   private _cdr = inject(ChangeDetectorRef);
 
   constructor() {

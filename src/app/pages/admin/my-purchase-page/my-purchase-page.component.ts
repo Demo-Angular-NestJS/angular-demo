@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, OnDestroy } from '@angular/core';
-import { AdminLayoutComponent } from '@c/layout';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { BaseComponent } from '@c/shared/base.component';
 import { PageBreadCrumbModel } from '@m/page-bread-crumb.model';
 
 @Component({
@@ -12,17 +12,10 @@ import { PageBreadCrumbModel } from '@m/page-bread-crumb.model';
     CommonModule,
   ]
 })
-export class MyPurchasePageComponent implements OnDestroy {
-  //#region Service and injectables
-  protected adminLayout = inject(AdminLayoutComponent);
-  //#endregion
-
+export class MyPurchasePageComponent extends BaseComponent {
   constructor() {
-    this.adminLayout.breadCrumbs.set(breadCrumbs);
-  }
-
-  ngOnDestroy(): void {
-      this.adminLayout.breadCrumbs.set([]);
+    super();
+    this.adminLayout?.breadCrumbs.set(breadCrumbs);
   }
 }
 

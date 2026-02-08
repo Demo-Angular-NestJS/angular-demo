@@ -4,11 +4,16 @@ import { UserExistRequestModel } from '@m/request';
 import { UserExistResponseModel } from '@m/response';
 import { Observable } from 'rxjs';
 import { BaseHelperService } from './base-helper.service';
+import { ChangePasswordRequestModel } from '@m/request/change-password.request';
 
 @Injectable({ providedIn: 'root' })
 export class UserHelperService extends BaseHelperService<UserModel>{
   constructor(){
     super('/user', UserModel);
+  }
+
+  public changePassowrd(payload: ChangePasswordRequestModel): Observable<void> {
+    return this.http.post<void>(`${this.fullAPIUrl}/change-password`, payload);
   }
 
   public exists(request: UserExistRequestModel): Observable<UserExistResponseModel> {
