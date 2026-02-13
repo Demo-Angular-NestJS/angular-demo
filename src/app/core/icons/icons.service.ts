@@ -21,6 +21,12 @@ export class IconsService {
     this.addIcon('preferences', 'assets/icons/preferences.svg');
     this.addIcon('verified_account', 'assets/icons/verified-account.svg');
     this.addIcon('payment_method', 'assets/icons/payment-method.svg');
+    this.addIcon('link', 'assets/icons/link.svg');
+    this.addIcon('close', 'assets/icons/close.svg');
+    this.addIcon('plus', 'assets/icons/plus.svg');
+    this.addIcon('cube', 'assets/icons/cube.svg');
+    this.addIcon('star', 'assets/icons/star.svg');
+    this.addIcon('heart', 'assets/icons/heart.svg');
     // this._matIconRegistry.addSvgIconSetInNamespace(
     //     'mat_outline',
     //     this._domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/material-outline.svg')

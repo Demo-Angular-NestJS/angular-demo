@@ -1,4 +1,4 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-wrap gap-2">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-wrap gap-7">
   <mat-form-field class="w-full" appearance="fill" floatLabel="always">
     <mat-label>User Name</mat-label>
     <input id="rfUserName" matInput formControlName="userName" placeholder="User Name" [tDisable]="networkActive()">

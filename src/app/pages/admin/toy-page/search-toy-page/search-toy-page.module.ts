@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule } from '@angular/router';
-import { ToyPageComponent } from './toy-page.component';
+import { categoriesGuard } from '@data/guards';
+import { SearchToyPageComponent } from './search-toy-page.component';
 
 const routes: Route[] = [
   {
     path: '',
-    component: ToyPageComponent,
-    title: 'Toy Page',
-    canActivate: [],
+    component: SearchToyPageComponent,
+    title: 'Toy Search Page',
+    canActivate: [
+      categoriesGuard,
+    ],
   }
 ];
 

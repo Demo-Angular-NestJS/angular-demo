@@ -8,10 +8,12 @@ export const searchSignInRoute = `/${signInRoute}`;
 export const registerRoute = 'register';
 export const searchRegisterRoute = `/${registerRoute}`;
 
+export const detailRoute = 'detail';
 export const homeRoute = 'home';
 export const searchHomeRoute = `/${homeRoute}`;
 export const toyRoute = 'toy';
 export const searchToyRoute = `/${toyRoute}`;
+export const searchToyDetailRoute = `/${toyRoute}/${detailRoute}`;
 export const favoriteRoute = 'favorite';
 export const searchFavoriteRoute = `/${favoriteRoute}`
 export const myPurchaseRoute = 'my-purchase';
@@ -29,6 +31,7 @@ export const defaultRoute = searchHomeRoute;
 
 //#region Patterns
 export const passwordPattern = /^(?=.*[A-Z])(?=.*\d).{4,}$/; //Min 4 characters, 1 Uppercase, 1 Number.
+export const imrgUrlPattern = /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|webp|svg))$/i
 //#endregion
 
 export const DEBOUNCE_TIME_MS = 400;

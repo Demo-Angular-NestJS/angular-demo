@@ -20,7 +20,6 @@ export class SignInFormComponent extends FormBaseComponent<SignInFormModel> {
 
   constructor() {
     super();
-    // Enable change tracking (if watchChanges is true in settings)
     this.initFormListeners();
   }
 

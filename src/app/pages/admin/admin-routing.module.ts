@@ -19,7 +19,7 @@ const routes: Routes = [
       {
         path: toyRoute,
         canActivate: [],
-        loadChildren: () => import('./toy-page/toy-page.module').then((m) => m.ToyPageModule),
+        loadChildren: () => import('./toy-page/toy.module').then((m) => m.ToyPageModule),
       },
       {
         path: favoriteRoute,

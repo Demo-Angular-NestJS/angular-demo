@@ -1,9 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { CurrentUserConfigurationService, CurrentUserService } from '@data/services';
 import { PageBreadCrumbModel } from '@m/page-bread-crumb.model';
 import { PropInitialsModule } from 'app/pipe';
 import { PreferenceNotificationFormComponent, PreferenceNotificationFormModel } from '@c/admin';
@@ -31,10 +30,7 @@ import { MatIconModule } from '@angular/material/icon';
 export class SettingPageComponent extends BaseComponent {
   @ViewChild(PreferenceNotificationFormComponent) preferenceNotificationForm!: PreferenceNotificationFormComponent;
 
-  protected currentUserService = inject(CurrentUserService);
-  protected currentUserConfigService = inject(CurrentUserConfigurationService);
   protected currentPrefeNotifFormData = toSignal(this.currentUserConfigService.current$, { initialValue: null });
-  protected currentUser = toSignal(this.currentUserService.current$, { initialValue: null });
   protected searchProfileRoute = searchProfileRoute;
   protected searchChangePasswordRoute = searchChangePasswordRoute;
 

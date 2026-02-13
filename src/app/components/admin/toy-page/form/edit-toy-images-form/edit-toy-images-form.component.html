@@ -1,0 +1,84 @@
+<form [formGroup]="form" autocomplete="off"
+  class="bg-white p-5 rounded-[2rem] border border-slate-200 shadow-sm transition-all hover:shadow-md">
+  <div class="mb-8">
+    <div class="flex items-center justify-between mb-4">
+      <h3 class="text-xs font-black text-slate-500 uppercase tracking-widest">Main Image</h3>
+      @if (field('imageUrl').value) {
+      <span
+        class="text-[10px] bg-indigo-50 text-indigo-600 px-2 py-0.5 rounded-full font-bold border border-indigo-100">
+        Live Preview
+      </span>
+      }
+    </div>
+
+    <div class="relative group">
+      <div
+        class="w-full aspect-square rounded-3xl overflow-hidden border border-slate-100 bg-slate-50 shadow-inner mb-3">
+        <img [src]="field('imageUrl').value || 'https://placehold.co/600x600/f8fafc/cbd5e1?text=No+Image'"
+          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          alt="Main Preview" />
+      </div>
+
+      <div class="relative">
+        <mat-form-field appearance="fill" floatLabel="always">
+          <input matInput formControlName="imageUrl" placeholder="Paste the main image url..." [tDisable]="networkActive()">
+          @if (isError('imageUrl', 'required')) { <mat-error>Image Url required</mat-error> }
+          @else if (isError('imageUrl', 'pattern')) { <mat-error>Invalid Url format</mat-error> }
+          <button mat-icon-button matPrefix [attr.aria-label]="'Hide password'">
+            <span class="absolute left-0 top-1/2 -translate-y-1/2 text-slate-400">
+              <mat-icon class="w-3.5 h-3.5" svgIcon="link"></mat-icon>
+            </span>
+          </button>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="flex items-center justify-between mb-3 px-1">
+      <h3 class="text-xs font-black text-slate-500 uppercase tracking-widest">
+        Gallery <span class="text-indigo-500 ml-1">({{ (field('imageUrls').value || []).length }})</span>
+      </h3>
+    </div>
+
+    <div class="grid grid-cols-4 gap-3">
+      @for (img of (field('imageUrls').value || []); track img; let i = $index) {
+      <div class="relative group aspect-square">
+        <img class="w-full h-full object-cover rounded-2xl border border-slate-200 shadow-sm transition-all group-hover:ring-2 ring-indigo-500 ring-offset-2 cursor-pointer"
+          [src]="img" alt="Preview Image">
+
+        <button (click)="removeImageGalleryEvent(i)" [disabled]="networkActive()"
+          class="absolute -top-1.5 -right-1.5 bg-slate-900 text-white rounded-full w-5 h-5 flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-opacity transform hover:scale-110 active:scale-90 cursor-pointer">
+          <mat-icon class="w-3 h-3" svgIcon="close"></mat-icon>
+        </button>
+      </div>
+      }
+
+      <button #triggerBtn (click)="showUrlInputEvent()" [class.border-indigo-400]="showUrlInput()" [disabled]="networkActive()"
+        class="w-full aspect-square rounded-2xl border-2 border-dashed border-slate-200 flex flex-col items-center justify-center text-slate-400 hover:bg-slate-50 hover:border-indigo-300 hover:text-indigo-500 transition-all cursor-pointer">
+        <mat-icon class="w-3.5 h-3.5 mb-1" svgIcon="plus"></mat-icon>
+        <span class="text-[9px] font-bold uppercase tracking-tighter">Añadir</span>
+      </button>
+    </div>
+
+    @if (showUrlInput()) {
+    <div class="mt-4 flex flex-row items-top gap-2">
+      <mat-form-field class="flex-1" appearance="fill">
+        <input matInput formControlName="imageForGallery" placeholder="Paste the image url..." [tDisable]="networkActive()">
+        @if (isError('imageForGallery', 'pattern')) { <mat-error>Invalid Url format</mat-error> }
+        <button mat-icon-button matPrefix [attr.aria-label]="'Hide password'">
+          <span class="absolute left-0 top-1/2 -translate-y-1/2 text-slate-400">
+            <mat-icon class="w-3.5 h-3.5" svgIcon="link"></mat-icon>
+          </span>
+        </button>
+      </mat-form-field>
+
+      <button mat-flat-button class="!bg-indigo-600 !text-[12px] !rounded-xl mt-2"
+        [disabled]="networkActive() || !field('imageForGallery').value || !field('imageForGallery').valid"
+        (click)="addOnAddGalleryEvent()">
+        Confirm
+      </button>
+    </div>
+    }
+  </div>
+</form>

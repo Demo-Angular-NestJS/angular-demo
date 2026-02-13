@@ -1,0 +1,43 @@
+<div class="sticky top-[70px] z-5 bg-slate-50/80 backdrop-blur-md mb-4 py-4">
+  <div class="w-full mx-auto px-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <div>
+      <span class="text-indigo-600 font-bold text-xs tracking-widest uppercase">Edit Inventory</span>
+      <h1 class="text-2xl font-black text-slate-900 leading-none">Editing: {{ currentItemData().name || 'New Toy' }}
+      </h1>
+    </div>
+
+    <div class="flex items-center gap-4">
+      <button matButton="outlined" type="button" class="!px-8 !py-3 !rounded-xl" (click)="goBackEvent()"
+        [disabled]="savingData()">
+        <span class="font-black text-sm uppercase tracking-wider">Cancel</span>
+      </button>
+
+      <button matButton="filled" color="primary" type="button" class="!px-8 !py-3 !rounded-xl"
+        [disabled]="networkActive() || savingData()" (click)="saveDataEvent()">
+        @if (savingData()) {
+        <div class="flex items-center justify-center gap-2">
+          <mat-spinner diameter="20" color="accent"></mat-spinner>
+          <span class="font-black text-sm uppercase tracking-wider">{{ currentItemData().id ? 'Updating':
+            'Creating'}}</span>
+        </div>
+        } @else {
+        <span class="font-black text-sm uppercase tracking-wider">{{ currentItemData().id ? 'Update': 'Create'}}</span>
+        }
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="w-full mx-auto px-4 pb-20">
+  <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+    <div class="space-y-6">
+      <app-edit-toy-images-form #editToyImageForm [networkActive]="networkActive() || savingData()"
+        [data]="currentItemData()"></app-edit-toy-images-form>
+    </div>
+
+    <div class="lg:col-span-3 space-y-6">
+      <app-edit-toy-form #editToyForm [networkActive]="networkActive() || savingData()"
+        [data]="currentItemData()"></app-edit-toy-form>
+    </div>
+  </div>
+</div>

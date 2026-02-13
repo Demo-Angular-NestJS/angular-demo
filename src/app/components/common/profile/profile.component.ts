@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
 import { searchProfileRoute, searchSettingRoute, signInRoute } from '@constants';
 import { CurrentUserService } from '@data/services';
+import { UserModel } from '@m/class';
 import { AuthService } from '@s/auth.service';
 import { PropInitialsModule } from 'app/pipe';
 
@@ -28,7 +29,7 @@ export class ProfileComponent {
   protected router = inject(Router);
 
   protected isProfileOpen = signal(false);
-  protected currentUser = toSignal(this.currentUserService.current$, { initialValue: null });
+  protected currentUser = toSignal(this.currentUserService.current$, { initialValue: new UserModel({}) });
   protected searchSettingRoute = searchSettingRoute;
   protected searchProfileRoute = searchProfileRoute;
 

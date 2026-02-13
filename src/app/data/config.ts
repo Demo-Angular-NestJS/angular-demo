@@ -2,9 +2,12 @@ import { DefaultDataServiceConfig, EntityDataModuleConfig, EntityMetadataMap } f
 import { ActionReducer, ActionReducerMap, MetaReducer } from '@ngrx/store';
 import { GlobalActionTypes } from './actions/global.actions';
 import { environment } from '@env/environment';
-import { UserConfigurationModel, UserModel } from '@m/class';
+import { CategoryModel, UserConfigurationModel, UserModel } from '@m/class';
 
 const entityMetadata: EntityMetadataMap = {
+  Category: {
+    selectId: (model: CategoryModel) => model.id,
+  },
   CurrentUserConfiguration: {
     selectId: (model: UserConfigurationModel) => model.id,
   },
@@ -14,6 +17,7 @@ const entityMetadata: EntityMetadataMap = {
 };
 
 const pluralNames = {
+  Category: 'Category',
   CurrentUser: 'CurrentUser',
   CurrentUserConfiguration: 'CurrentUserConfiguration'
 };

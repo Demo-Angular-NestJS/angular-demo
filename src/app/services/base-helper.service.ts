@@ -40,6 +40,18 @@ export abstract class BaseHelperService<T> {
     });
   }
 
+  public create(payload: T): Observable<T> {
+    return this.http.post<T>(this.fullAPIUrl, payload).pipe(
+      map((resp) => this.mapToModel(resp) as T)
+    );
+  }
+
+  public update(id: string | number, payload: T): Observable<T> {
+    return this.http.patch<T>(`${this.fullAPIUrl}/${id}`, payload).pipe(
+      map((resp) => this.mapToModel(resp) as T)
+    );
+  }
+
   private mapToModel(data: any): T;
   private mapToModel(data: any[]): T[];
   private mapToModel(data: any | any[]): T | T[] {

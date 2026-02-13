@@ -1,12 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, inject, ViewChild } from '@angular/core';
-import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
+import { ChangeDetectionStrategy, Component, computed, ViewChild } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { UserProfileFormComponent } from '@c/admin';
 import { BaseComponent } from '@c/shared/base.component';
-import { CurrentUserConfigurationService, CurrentUserService } from '@data/services';
 import { UserConfigurationModel, UserModel } from '@m/class';
 import { PageBreadCrumbModel } from '@m/page-bread-crumb.model';
 import { PropInitialsModule } from 'app/pipe';
@@ -29,11 +28,6 @@ import { combineLatest } from 'rxjs';
 export class ProfilePageComponent extends BaseComponent {
   @ViewChild(UserProfileFormComponent) userProfileForm!: UserProfileFormComponent;
 
-  protected currentUserService = inject(CurrentUserService);
-  protected currentUserConfigService = inject(CurrentUserConfigurationService);
-
-  protected currentUser = toSignal(this.currentUserService.current$, { initialValue: null });
-  protected currentUserConfig = toSignal(this.currentUserConfigService.current$, { initialValue: null });
   protected userProfileData = computed(() => ({ ...this.currentUser(), ...this.currentUserConfig() }));
 
   constructor() {
@@ -48,7 +42,7 @@ export class ProfilePageComponent extends BaseComponent {
       return;
     }
 
-    const userData = new UserModel({ ...formData, id: this.currentUser()?.id ?? '' });
+    const userData = new UserModel({ ...formData, id: this.currentUser().id ?? '' });
     const userConfigData = new UserConfigurationModel({ ...formData, id: this.currentUserConfig()?.id ?? '' });
 
     this.networkActive.set(true);

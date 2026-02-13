@@ -1,0 +1,171 @@
+<form [formGroup]="form" autocomplete="off" class="w-full">
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pb-5">
+    <div
+      class="group relative overflow-hidden bg-gradient-to-br from-indigo-900 to-indigo-950 p-6 rounded-[2rem] text-white shadow-2xl shadow-indigo-500/20 border border-indigo-800/50 transition-all duration-300 hover:shadow-indigo-500/40">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-3">
+          <div class="p-2.5 bg-indigo-800/80 rounded-xl text-yellow-400 shadow-inner">
+            <mat-icon class="w-6 h-6" svgIcon="star"></mat-icon>
+          </div>
+          <div>
+            <p class="text-[10px] uppercase tracking-widest text-indigo-300 font-bold">Rewards</p>
+            <h3 class="font-black text-sm tracking-wide">PUNTOS FUN</h3>
+          </div>
+        </div>
+
+        <span
+          class="text-[10px] bg-yellow-400/10 text-yellow-400 px-2 py-1 rounded-lg border border-yellow-400/20 font-bold">
+          +BONUS
+        </span>
+      </div>
+
+      <div class="relative">
+        <input type="text" inputmode="numeric" pattern="[0-9]*" formControlName="points" placeholder="000" [tDisable]="networkActive()"
+          class="w-full bg-indigo-950/50 border border-indigo-700/30 rounded-2xl text-4xl font-black px-5 py-4 text-yellow-400 placeholder:text-indigo-800 focus:ring-4 focus:ring-yellow-400/30 focus:border-yellow-400/50 outline-none transition-all duration-200 tabular-nums shadow-inner"/>
+
+        @if (isError('points', 'required')) {
+          <div class="relative mt-4">
+            <span class="absolute -top-2.5 bg-indigo-900 border border-indigo-700/50 text-[10px] font-black text-yellow-400 px-2 py-0.5 rounded-full uppercase tracking-widest z-10 shadow-sm">
+              Please add the points for this Toy
+            </span>
+          </div>
+        }
+
+        <span class="absolute right-5 top-1/2 -translate-y-1/2 text-indigo-500 font-black text-xs tracking-tighter pointer-events-none">
+          PTS
+        </span>
+      </div>
+    </div>
+
+    <div
+      class="group relative bg-slate-900 p-5 rounded-[2rem] border border-slate-800 shadow-2xl transition-all duration-300 hover:border-emerald-500/30">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-3">
+          <div class="relative p-2.5 bg-slate-800 rounded-xl text-emerald-400 border border-slate-700/50 shadow-inner">
+            <mat-icon class="w-5 h-5" svgIcon="cube"></mat-icon>
+            <span
+              class="absolute top-0 right-0 w-2 h-2 bg-emerald-500 rounded-full border-2 border-slate-900 animate-pulse"></span>
+          </div>
+
+          <div>
+            <p class="text-[10px] uppercase tracking-[0.2em] text-slate-500 font-black">Warehouse</p>
+            <h3 class="text-white font-bold text-xs tracking-wide">ACTUAL STOCK</h3>
+          </div>
+        </div>
+
+        <div class="hidden sm:block">
+          <span
+            class="text-[10px] py-1 px-2.5 rounded-full bg-slate-800 text-slate-400 border border-slate-700 font-mono">
+            INV-PRD
+          </span>
+        </div>
+      </div>
+
+      <div class="relative">
+        <input type="text" inputmode="numeric" pattern="[0-9]*" formControlName="inStock" placeholder="0" [tDisable]="networkActive()"
+          class="w-full bg-slate-950/40 border border-slate-800 rounded-2xl text-3xl font-mono font-black px-5 py-4 text-emerald-400 placeholder:text-slate-800 focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500/50 outline-none transition-all duration-200 tabular-nums no-spinner" />
+
+        @if (isError('inStock', 'required')) {
+          <div class="relative mt-4">
+            <span class="absolute right-2 bg-slate-900 border border-emerald-500/30 text-[9px] font-black text-emerald-400 px-2 py-0.5 rounded uppercase tracking-[0.2em] z-10 shadow-lg">
+              Please add the in stock quantity for this Toy
+            </span>
+          </div>
+        }
+
+        <div class="absolute right-5 top-1/2 -translate-y-1/2 flex flex-col items-end pointer-events-none">
+          <span class="text-[10px] font-black text-slate-600 tracking-tighter uppercase">Units</span>
+          <span class="text-[10px] font-bold text-emerald-500/40 leading-none">QTY</span>
+        </div>
+      </div>
+
+      <div class="mt-4 flex items-center justify-between px-1">
+        <div class="flex gap-1.5">
+          <div class="w-1 h-3 rounded-full bg-slate-800"></div>
+          <div class="w-1 h-3 rounded-full bg-slate-800"></div>
+          <div class="w-1 h-3 rounded-full bg-emerald-500/50"></div>
+        </div>
+        <span class="text-[10px] text-slate-500 font-medium italic">Ready for shipment</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6">
+    <div class="flex items-center justify-end gap-3 pb-4 border-b border-slate-50">
+      <mat-slide-toggle color="primary" formControlName="isActive" [tDisable]="networkActive()">
+      </mat-slide-toggle>
+      <span class="font-bold text-slate-600 text-sm">Product Active</span>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>Name</mat-label>
+        <input id="etfName" matInput formControlName="name" placeholder="Product Name" [tDisable]="networkActive()">
+        @if (isError('name', 'required')) { <mat-error>Name is required</mat-error> }
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>Product SKU</mat-label>
+        <input id="etfProductSKU" matInput formControlName="productSKU" placeholder="Product SKU"
+          [tDisable]="networkActive()">
+        @if (isError('productSKU', 'required')) { <mat-error>Product SKU is required</mat-error> }
+      </mat-form-field>
+
+      <mat-form-field class="w-full col-span-full" appearance="fill" floatLabel="always">
+        <mat-label>Short Description</mat-label>
+        <input id="etfShortDescr" matInput formControlName="shortDescription" placeholder="Short Description"
+          [tDisable]="networkActive()">
+        @if (isError('shortDescription', 'required')) { <mat-error>Short Description is required</mat-error> }
+        @if (isError('shortDescription', 'maxlength')) { <mat-error>The maximun number characters are 100</mat-error> }
+      </mat-form-field>
+
+      <mat-form-field class="col-span-full" appearance="fill" floatLabel="always">
+        <mat-label>Description</mat-label>
+        <textarea id="etfDescription" matInput formControlName="description" placeholder="Description" rows="2"
+          matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" [tDisable]="networkActive()">
+        </textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>Category</mat-label>
+        <mat-select formControlName="categoryId" [tDisable]="networkActive()">
+          @for (cat of (categoriesService.entities$ | async); track cat.id) {
+          <mat-option [value]="cat.id">{{ cat.name }}</mat-option>
+          } @empty {
+          <mat-option disabled>No Available Categories</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>Price $</mat-label>
+        <input matInput type="number" formControlName="price" placeholder="0.00" [tDisable]="networkActive()">
+      </mat-form-field>
+
+      <div class="col-span-full flex flex-col gap-3">
+        <span class="text-sm font-bold text-slate-700">Tags</span>
+        @if ((field('tags').value || []).length) {
+        <div class="flex flex-wrap gap-2 mb-2">
+          @for (tag of field('tags').value; track tag; let i = $index) {
+          <span
+            class="bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-2 border border-indigo-100">
+            {{ tag }}
+            <button (click)="removeTagEvent(i)" class="hover:text-red-500 font-black cursor-pointer" [disabled]="networkActive()">×</button>
+          </span>
+          }
+        </div>
+        }
+
+        <div class="flex gap-2">
+          <input #tagInput type="text" placeholder="Add Tag..." [disabled]="networkActive()"
+            class="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-600" />
+
+          <button class="bg-slate-900 text-white px-4 rounded-xl font-bold text-sm hover:bg-slate-800 transition-colors cursor-pointer"
+            [disabled]="networkActive()" (click)="addTagEvent(tagInput.value); tagInput.value = ''">
+            Add
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

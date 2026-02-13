@@ -2,7 +2,7 @@
   <button
     class="w-10 h-10 rounded-full bg-yellow-400 border-2 border-white shadow-sm flex items-center justify-center font-bold text-indigo-900 cursor-pointer hover:scale-105 transition-transform"
     (click)="toggleProfileEvent()">
-    {{ currentUser()?.userName | propInitials }}
+    {{ currentUser().userName | propInitials }}
   </button>
 
   @if (isProfileOpen()) {
@@ -10,14 +10,14 @@
     class="absolute right-0 mt-3 w-56 bg-white rounded-2xl shadow-xl border border-slate-100 py-2 z-50 animate-fade-in-down">
     <div class="px-4 py-3 border-b border-slate-50">
       <p class="text-sm font-bold text-slate-900">
-        {{ currentUser()?.userName }}
-        @if (currentUser()?.phoneNumber) {
+        {{ currentUser().userName }}
+        @if (currentUser().phoneNumber) {
         <span class="text-xs font-normal text-slate-500 ml-1">
-          ({{ currentUser()?.phoneNumber }})
+          ({{ currentUser().phoneNumber }})
         </span>
         }
       </p>
-      <p class="text-xs text-slate-500 truncate">{{ currentUser()?.email }}</p>
+      <p class="text-xs text-slate-500 truncate">{{ currentUser().email }}</p>
     </div>
 
     <div class="p-2">

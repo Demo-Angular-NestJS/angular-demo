@@ -1,12 +1,13 @@
+@use "tailwindcss";
+
 @mixin styles() {
   .mat-mdc-form-field {
     --mdc-outlined-field-container-shape: var(--radius-custom, 12px) !important;
-    --mdc-outlined-field-outline-width: var(--border-thin, 1px) !important;
+    --mdc-outlined-field-outline-width: var(--border-thin, 2px) !important;
     --mdc-outlined-field-focus-outline-width: var(
       --border-thick,
-      2px
+      5px
     ) !important;
-
     --mdc-outlined-field-outline-color: var(--slate-200) !important;
     --mdc-outlined-field-focus-outline-color: var(--color-primary) !important;
     --mdc-outlined-field-label-text-color: var(--slate-500) !important;
@@ -14,8 +15,11 @@
       --color-primary
     ) !important;
 
-    margin-bottom: 20px;
-
+    // margin-bottom: 20px;
+    display: inline-flex;
+    flex-direction: column;
+    height: fit-content !important;
+    width: 100%;
 
     .mat-mdc-form-field-subscript-wrapper {
       height: 0;
@@ -24,17 +28,16 @@
       padding: 0 !important;
       overflow: hidden;
       display: grid;
-      transition: all 0.2s ease-in-out; // Smooth transition when error appears
+      transition: all 0.2s ease-in-out;
     }
 
     .mat-mdc-form-field-bottom-align {
       display: none;
     }
 
-    // Using :has() to only show the subscript space if there is content
     &:has(.mat-mdc-form-field-error),
     &:has(.mat-hint) {
-      margin-bottom: 1.25rem; // Add breathing room only when text is present
+      margin-bottom: 0;
 
       .mat-mdc-form-field-subscript-wrapper {
         height: auto;
@@ -48,58 +51,68 @@
     }
 
     .mdc-text-field--filled {
-      background-color: #f8fafc !important; // slate-50
-      border: 1px solid #f1f5f9 !important; // slate-100
-      border-radius: 1rem !important; // rounded-2xl
+      @apply border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-600 outline-none transition-all;
+      background-color: #f8fafc !important;
+      // border: 1px solid #f1f5f9 !important;
+      // border-radius: 1rem !important;
       padding: 0 1rem !important;
-      overflow: visible !important; // Allows label to be seen outside
+      overflow: visible !important;
+      height: auto !important;
+      min-height: 48px !important;
+      align-items: flex-start !important;
 
       .mdc-floating-label--float-above {
-        transform: translateY(-35px) scale(1) !important; // Moves it above the container
-        width: 100%;
-        overflow: visible;
-
-        /* Apply your specific Example styles */
-        font-size: 0.75rem !important; // text-xs
-        font-weight: 500 !important; // font-bold
-        color: #64748b !important; // text-slate-500
-        letter-spacing: 0.05em; // tracking-wider
-        top: 20px !important;
-        right: 12px !important;
+        @apply text-sm font-bold text-slate-700;
+        transform: translateY(-35px) scale(1) !important;
+        font-size: 0.9rem !important;
+        font-weight: 500 !important;
+        top: 12px !important;
+        left: -15px !important;
       }
 
       .mat-mdc-form-field-infix {
         padding: 15px 0;
       }
 
-      /* Focus state */
       &.mdc-text-field--focused {
         background-color: #ffffff !important;
         border-color: transparent !important;
-        outline: 2px solid #4f46e5 !important; // indigo-600
+        outline: 2px solid #4f46e5 !important;
       }
     }
 
-    /* 3. Cleanup: Hide the ripple and bottom line */
     .mdc-line-ripple,
     .mdc-text-field__ripple {
       display: none !important;
     }
 
-    /* 4. Center the input text vertically */
     .mat-mdc-form-field-flex {
-      height: 48px !important;
-      padding-top: 0 !important; // Removes Material's default top gap
-      align-items: center !important;
+      height: auto !important;
+      min-height: 38px !important;
+      align-items: flex-start !important;
+      padding: 0 !important;
     }
 
-    /* Remove the 'notch' gap if using outline, though we are using filled */
+    .mat-mdc-form-field-infix {
+      min-height: 48px !important;
+      height: auto !important;
+      padding-top: 12px !important;
+      padding-bottom: 12px !important;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .mdc-line-ripple,
+    .mdc-text-field__ripple {
+      display: none !important;
+    }
+
     .mdc-notched-outline__notch {
       border-right: none !important;
     }
   }
 
-  // Ensure the native input color matches your slate theme
   input.mat-mdc-input-element {
     color: var(--color-brand-deep, #1e293b);
     font-weight: 500;
@@ -108,93 +121,12 @@
   .mat-mdc-form-field {
     &.mat-form-field-disabled {
       opacity: 0.6;
-      background-color: var(--slate-50); // Slightly grayer background
+      background-color: var(--slate-50);
       cursor: not-allowed;
 
       .mat-mdc-text-field-wrapper {
-        background-color: #f8fafc !important; // slate-50
+        background-color: #f8fafc !important;
       }
     }
   }
 }
-
-// @mixin styles() {
-//   .mat-mdc-form-field {
-//     /* 1. STRUCTURAL OVERRIDES (Shape & Borders) */
-//     // We use the variables defined in your _variables.css and @theme bridge
-//     --mdc-outlined-field-container-shape: var(--radius-custom, 12px) !important;
-//     --mdc-outlined-field-outline-width: var(--border-thin, 1px) !important;
-//     --mdc-outlined-field-focus-outline-width: var(
-//       --border-thick,
-//       2px
-//     ) !important;
-
-//     /* 2. COLOR TOKENS */
-//     // Mapping Material 3 internal tokens to our Tailwind/System variables
-//     --mdc-outlined-field-outline-color: var(--slate-200) !important;
-//     --mdc-outlined-field-focus-outline-color: var(--color-primary) !important;
-//     --mdc-outlined-field-label-text-color: var(--slate-500) !important;
-//     --mdc-outlined-field-focus-label-text-color: var(
-//       --color-primary
-//     ) !important;
-
-//     /* 3. THE "GHOST SPACE" FIX (Subscript Management) */
-//     // By default, collapse the area reserved for hints/errors
-//     .mat-mdc-form-field-subscript-wrapper {
-//       height: 0;
-//       min-height: 0;
-//       margin: 0;
-//       padding: 0 !important;
-//       overflow: hidden;
-//       display: grid;
-//       transition: all 0.2s ease-in-out; // Smooth transition when error appears
-//     }
-
-//     // Remove the bottom-aligner that forces vertical height
-//     .mat-mdc-form-field-bottom-align {
-//       display: none;
-//     }
-
-//     /* 4. CONDITIONAL VISIBILITY */
-//     // Using :has() to only show the subscript space if there is content
-//     &:has(.mat-mdc-form-field-error),
-//     &:has(.mat-hint) {
-//       margin-bottom: 1.25rem; // Add breathing room only when text is present
-
-//       .mat-mdc-form-field-subscript-wrapper {
-//         height: auto;
-//         display: block;
-//         padding-top: 6px !important;
-//       }
-
-//       .mat-mdc-form-field-bottom-align {
-//         display: block;
-//       }
-//     }
-
-//     /* 5. THE NOTCH FIX */
-//     // Ensures the M3 floating label notch doesn't have alignment glitches
-//     .mdc-notched-outline__notch {
-//       border-right: none !important;
-//     }
-//   }
-
-//   /* 6. INPUT TEXT ALIGNMENT */
-//   // Ensure the native input color matches your slate theme
-//   input.mat-mdc-input-element {
-//     color: var(--color-brand-deep, #1e293b);
-//     font-weight: 500;
-//   }
-
-//   .mat-mdc-form-field {
-//     &.mat-form-field-disabled {
-//       opacity: 0.6;
-//       background-color: var(--slate-50); // Slightly grayer background
-//       cursor: not-allowed;
-
-//       .mat-mdc-text-field-wrapper {
-//         background-color: #f8fafc !important; // slate-50
-//       }
-//     }
-//   }
-// }

@@ -1,8 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { BaseComponent } from '@c/shared/base.component';
-import { CurrentUserService } from '@data/services';
 import { PageBreadCrumbModel } from '@m/page-bread-crumb.model';
 
 @Component({
@@ -15,9 +13,6 @@ import { PageBreadCrumbModel } from '@m/page-bread-crumb.model';
   ],
 })
 export class HomePageComponent extends BaseComponent {
-  protected currentUserService = inject(CurrentUserService);
-  protected currentUser = toSignal(this.currentUserService.current$, { initialValue: null });
-
   constructor() {
     super();
     this.adminLayout?.breadCrumbs.set(breadCrumbs);
