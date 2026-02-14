@@ -8,7 +8,8 @@ import { BaseDataService } from '@data/services';
 import { GlobalStateService } from '@s/common';
 
 export function requiredDataGuard<T extends { id?: string | number }>(
-  serviceToken: Type<BaseDataService<T>>
+  serviceToken: Type<BaseDataService<T>>,
+  forceRefresh = false
 ): CanActivateFn {
   return (route, state) => {
     const router = inject(Router);
@@ -23,7 +24,7 @@ export function requiredDataGuard<T extends { id?: string | number }>(
     return service.loaded$.pipe(
       take(1),
       switchMap((isLoaded) => {
-        if (isLoaded) {
+        if (isLoaded && !forceRefresh) {
           return of(true);
         }
 

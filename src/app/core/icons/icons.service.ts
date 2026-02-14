@@ -27,6 +27,7 @@ export class IconsService {
     this.addIcon('cube', 'assets/icons/cube.svg');
     this.addIcon('star', 'assets/icons/star.svg');
     this.addIcon('heart', 'assets/icons/heart.svg');
+    this.addIcon('pencil', 'assets/icons/pencil.svg');
     // this._matIconRegistry.addSvgIconSetInNamespace(
     //     'mat_outline',
     //     this._domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/material-outline.svg')

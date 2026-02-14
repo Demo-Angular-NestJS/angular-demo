@@ -23,5 +23,7 @@ export class InitTransferService {
     });
   }
 
-  public init(): void { }
+  public init(): void {
+
+   }
 }

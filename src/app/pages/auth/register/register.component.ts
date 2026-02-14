@@ -28,7 +28,7 @@ export class RegisterComponent extends BaseComponent {
     const user = new UserModel(value);
 
     this.networkActive.set(true);
-    this._userHelperService.register(user).pipe(takeUntilDestroyed()).subscribe({
+    this._userHelperService.register(user).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: () => {
         this.toastr.success('Your account has been created succesfully, login now an enjoy the expierence!.');
         this.networkActive.set(false);

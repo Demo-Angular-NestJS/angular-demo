@@ -1,8 +1,12 @@
 import { Action } from '@ngrx/store';
 
 export enum GlobalActionTypes {
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   AppLogout = '[Global] Logout',
+  AppLogIn = '[Global] LogIn',
+}
+
+export class LogInAction implements Action {
+  readonly type = GlobalActionTypes.AppLogIn;
 }
 
 export class LogoutAction implements Action {

@@ -45,9 +45,13 @@ export const reducers: ActionReducerMap<State> = {
 
 export function logoutMetaReducer(reducer: ActionReducer<State>): ActionReducer<State> {
   return (state, action) => {
-    if (action.type === GlobalActionTypes.AppLogout) {
-      return reducer(undefined, action);
+    if (
+      action.type === GlobalActionTypes.AppLogout ||
+      action.type === GlobalActionTypes.AppLogIn
+    ) {
+      state = undefined;
     }
+
     return reducer(state, action);
   };
 }

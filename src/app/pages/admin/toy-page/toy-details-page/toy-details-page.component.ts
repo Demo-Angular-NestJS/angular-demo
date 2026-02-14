@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { BaseComponent } from '@c/shared/base.component';
 import { searchToyRoute } from '@constants';
+import { HasPermissionDirectiveModule } from '@d/has-permission-directive/has-permission-directive.module';
 import { CategoriesService } from '@data/services';
 import { CategoryModel, ToyModel } from '@m/class';
 import { PageBreadCrumbModel } from '@m/page-bread-crumb.model';
@@ -17,6 +18,7 @@ import { filter, map, switchMap, tap } from 'rxjs';
   templateUrl: './toy-details-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    HasPermissionDirectiveModule,
     CommonModule,
     MatIconModule,
     MatButtonModule,
@@ -25,6 +27,7 @@ import { filter, map, switchMap, tap } from 'rxjs';
 export class ToyDetailsPageComponent extends BaseComponent implements OnInit {
   protected readonly categoriesService = inject(CategoriesService);
 
+  protected selectedImage = signal<string | null>(null);
   protected readonly ItemData = signal(new ToyModel({}));
   protected readonly categoryMap = toSignal(this.categoriesService.entityMap$, { initialValue: {} });
   protected readonly category = computed<CategoryModel | null>(() => {
@@ -33,6 +36,7 @@ export class ToyDetailsPageComponent extends BaseComponent implements OnInit {
 
     return map[item.categoryId] || null;
   });
+  protected readonly itemImages = computed(() => [this.ItemData().imageUrl, ...(this.ItemData()?.imageUrls ?? [])])
 
   private readonly _toyHelperService = inject(ToyHelperService);
 
@@ -68,8 +72,16 @@ export class ToyDetailsPageComponent extends BaseComponent implements OnInit {
     this.router.navigate([searchToyRoute]);
   }
 
+  protected selectImageEvent(image: string): void {
+     this.selectedImage.set(image);
+  }
+
   protected addCartEvent(): void {
     this.toastr.warning('Not avaiable yet, working on it')
+  }
+
+  protected goToEditItemViewEvent(): void {
+    this.router.navigate([searchToyRoute, this.ItemData().id]);
   }
 
   private setItemData(item: ToyModel): void {
@@ -84,7 +96,7 @@ export class ToyDetailsPageComponent extends BaseComponent implements OnInit {
       breadCrumbs.push({ title: this.ItemData().name, url: null })
     }
 
-    //this.adminLayout?.breadCrumbs.set(breadCrumbs);
+    this.adminLayout?.breadCrumbs.set(breadCrumbs);
   }
 }
 
