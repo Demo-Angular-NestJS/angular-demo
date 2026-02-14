@@ -1,9 +1,13 @@
 <div class="sticky top-[70px] z-5 bg-slate-50/80 backdrop-blur-md mb-4 py-4">
   <div class="w-full mx-auto px-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
     <div>
-      <span class="text-indigo-600 font-bold text-xs tracking-widest uppercase">Edit Inventory</span>
-      <h1 class="text-2xl font-black text-slate-900 leading-none">Editing: {{ currentItemData().name || 'New Toy' }}
-      </h1>
+      @if (currentItemData().id) {
+        <span class="text-indigo-600 font-bold text-xs tracking-widest uppercase">Edit Inventory</span>
+        <h1 class="text-2xl font-black text-slate-900 leading-none">Editing: {{ currentItemData().name }}</h1>
+      } @else {
+        <span class="text-indigo-600 font-bold text-xs tracking-widest uppercase">Create Inventory</span>
+        <h1 class="text-2xl font-black text-slate-900 leading-none">Creating: New Toy</h1>
+      }
     </div>
 
     <div class="flex items-center gap-4">

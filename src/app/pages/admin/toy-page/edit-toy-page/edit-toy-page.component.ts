@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { EditToyFormComponent, EditToyImagesFormComponent } from '@c/admin';
 import { BaseComponent } from '@c/shared/base.component';
-import { searchToyRoute } from '@constants';
+import { searchToyDetailRoute, searchToyRoute } from '@constants';
 import { ToyModel } from '@m/class';
 import { PageBreadCrumbModel } from '@m/page-bread-crumb.model';
 import { ToyHelperService } from '@s/toy-helper.service';
@@ -69,20 +69,15 @@ export class EditToyPageComponent extends BaseComponent implements OnInit {
       return;
     }
 
+    const requestType = this.currentItemData()?.id ? 'updated' : 'saved';
     const saveData = new ToyModel({
       ...this.currentItemData(),
       ...this.editToyImagesForm.validatedValue,
       ...this.editToyForm.validatedValue,
     });
 
-    const requestType = this.currentItemData()?.id ? 'updated' : 'saved';
-    const request = this.currentItemData()?.id ?
-      this._toyHelperService.update(this.currentItemData().id, saveData) :
-      this._toyHelperService.create(saveData);
-
-
     this.savingData.set(true);
-    request.pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
+    this._toyHelperService.upsert(saveData).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (resp) => {
         this.toastr.success(`the toy ${resp.name} has been ${requestType} successfuly!`);
         this.savingData.set(false);
@@ -113,16 +108,16 @@ export class EditToyPageComponent extends BaseComponent implements OnInit {
     const breadCrumbs: PageBreadCrumbModel[] = [...defaultBreadCrumbs];
 
     if (this.currentItemData()?.id) {
+      breadCrumbs.push({ title: 'Details', url: `${searchToyDetailRoute}/${this.currentItemData().id}`, svgIcon: 'star', });
       breadCrumbs.push({ title: this.currentItemData().name, url: null })
     } else {
       breadCrumbs.push({ title: 'New', url: null })
     }
 
-    //this.adminLayout?.breadCrumbs.set(breadCrumbs);
+    this.adminLayout?.breadCrumbs.set(breadCrumbs);
   }
 }
 
 const defaultBreadCrumbs: PageBreadCrumbModel[] = [
   { title: 'Toys', url: searchToyRoute, svgIcon: 'toy' },
-  { title: 'Details', url: null, svgIcon: 'star', },
 ];

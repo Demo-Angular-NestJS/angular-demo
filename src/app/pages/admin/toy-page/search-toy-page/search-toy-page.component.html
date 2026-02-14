@@ -1,18 +1,23 @@
 <div class="w-full mx-auto px-4 py-6 md:py-8 pb-24 md:pb-12">
 
   <div class="flex flex-wrap lg:flex-row lg:items-end justify-between gap-6 mb-8 md:mb-12">
-    <div class="space-y-1">
-      <h1 class="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">Catalog 🧸</h1>
-      <p class="text-slate-500 text-base md:text-lg">Curated collection of fun.</p>
+    <div class="flex flex-row items-center justify-between gap-4">
+      <div class="flex flex-col">
+        <h1 class="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">Catalog 🧸</h1>
+        <p class="text-slate-500 text-base md:text-lg">Curated collection of fun.</p>
+      </div>
+
+      <button class="w-fit p-4 rounded-2xl border-2 border-dashed border-slate-200 flex flex-col items-center justify-center text-slate-400 hover:bg-slate-50 hover:border-indigo-300 hover:text-indigo-500 transition-all cursor-pointer"
+        *hasPermission [disabled]="networkActive()" (click)="addNewItemEvent()">
+        <mat-icon class="w-6 h-6 mb-1" svgIcon="plus"></mat-icon>
+        <span class="text-[10px] font-bold uppercase tracking-tight">Add New Toy</span>
+      </button>
     </div>
 
     <div class="flex flex-wrap justify-end gap-2 w-full lg:w-auto">
       <div class="relative w-2/3 flex-none sm:flex-1 lg:flex-none lg:w-80">
         <span class="absolute inset-y-0 left-4 flex items-center text-slate-400">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
+          <mat-icon class="!w-5 !h-5">search</mat-icon>
         </span>
         <input type="text"
           class="w-full bg-white border-2 border-slate-100 rounded-2xl py-3 pl-11 pr-4 focus:ring-4 focus:ring-indigo-50 focus:border-indigo-600 transition-all text-base md:text-sm font-medium outline-none"
@@ -21,10 +26,7 @@
 
       <button (click)="toggleFilters()"
         class="bg-slate-900 text-white px-4 md:px-6 py-3 rounded-2xl font-bold hover:bg-indigo-600 transition-all flex items-center justify-center gap-2 shadow-xl shadow-slate-200 active:scale-95">
-        <svg class="w-6 h-6 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-        </svg>
+        <mat-icon class="!w-6 !h-6 !md:w-5 !md:h-5" svgIcon="preferences"></mat-icon>
         <span class="hidden sm:inline">Filters</span>
       </button>
     </div>
@@ -60,9 +62,7 @@
     <div class="flex justify-between items-center mb-6 md:mb-8">
       <h2 class="text-xl md:text-2xl font-black text-slate-900">Ajustes de Filtro</h2>
       <button (click)="toggleFilters()" class="p-2 bg-slate-50 hover:bg-slate-100 rounded-full transition-colors">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-        </svg>
+        <mat-icon class="!w-6 !h-6" svgIcon="close"></mat-icon>
       </button>
     </div>
 

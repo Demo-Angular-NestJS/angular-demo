@@ -102,5 +102,5 @@ export class ToyDetailsPageComponent extends BaseComponent implements OnInit {
 
 const defaultBreadCrumbs: PageBreadCrumbModel[] = [
   { title: 'Toys', url: searchToyRoute, svgIcon: 'toy' },
-  { title: 'Details', url: null, },
+  { title: 'Details', url: null, svgIcon: 'star' },
 ];

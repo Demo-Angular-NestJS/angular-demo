@@ -46,6 +46,12 @@ export abstract class BaseHelperService<T> {
     );
   }
 
+  public upsert(payload: T): Observable<T> {
+    return this.http.post<T>(`${this.fullAPIUrl}/upsert`, payload).pipe(
+      map((resp) => this.mapToModel(resp) as T)
+    );
+  }
+
   public update(id: string | number, payload: T): Observable<T> {
     return this.http.patch<T>(`${this.fullAPIUrl}/${id}`, payload).pipe(
       map((resp) => this.mapToModel(resp) as T)
