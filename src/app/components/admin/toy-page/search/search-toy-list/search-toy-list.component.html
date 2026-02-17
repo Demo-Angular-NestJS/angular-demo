@@ -1,0 +1,18 @@
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
+  @for (toy of items(); track toy.id) {
+  <app-toy-view-on-search [toyData]="toy">
+  </app-toy-view-on-search>
+  } @empty {
+  <div class="col-span-full py-20 text-center text-slate-400">
+    No toys found in this category.
+  </div>
+  }
+</div>
+
+@if (totalItems()) {
+<div class="bg-white rounded-2xl border border-slate-200 overflow-hidden mt-8">
+  <mat-paginator aria-label="Select page of toys" class="!bg-transparent" [length]="totalItems()"
+    [pageSize]="defaultPageSize" [pageSizeOptions]="pageSizeOptions" (page)="pageChangeEvent($event)">
+  </mat-paginator>
+</div>
+}

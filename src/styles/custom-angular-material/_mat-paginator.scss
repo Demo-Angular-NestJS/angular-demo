@@ -1,0 +1,58 @@
+@mixin styles() {
+  .mat-mdc-paginator {
+    background-color: transparent !important;
+    font-family: inherit;
+    color: #64748b !important; // slate-500
+
+    .mat-mdc-paginator-container {
+      padding: 0.5rem 1rem;
+      min-height: 56px;
+      justify-content: flex-end;
+    }
+
+    .mat-mdc-paginator-page-size-label,
+    .mat-mdc-paginator-range-label {
+      font-size: 0.875rem !important;
+      font-weight: 500 !important;
+      color: #64748b !important;
+    }
+
+    .mat-mdc-select-value {
+      font-weight: 700;
+      color: #4f46e5 !important; // indigo-600
+    }
+
+    .mat-mdc-paginator-page-size-select {
+      background: #f1f5f9; // slate-100
+      border-radius: 12px;
+      padding: 4px 8px;
+      margin-left: 8px;
+    }
+
+    .mat-mdc-icon-button {
+      background-color: white;
+      border: 1px solid #e2e8f0; // slate-200
+      border-radius: 12px !important;
+      margin: 0 4px;
+      color: #475569 !important; // slate-600
+      transition: all 0.2s ease;
+
+      &:hover:not(.mat-mdc-button-disabled) {
+        background-color: #f8fafc; // slate-50
+        border-color: #4f46e5; // indigo-600
+        color: #4f46e5 !important;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+      }
+
+      &.mat-mdc-button-disabled {
+        opacity: 0.4;
+        background-color: transparent;
+      }
+    }
+
+    .mat-mdc-form-field-focus-indicator {
+      display: none;
+    }
+  }
+}

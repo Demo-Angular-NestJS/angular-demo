@@ -3,6 +3,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { environment } from '@env/environment';
+import { SearchRequestModel } from '@m/request';
+import { SearchResponseModel } from '@m/response';
 import { map, Observable } from 'rxjs';
 
 export abstract class BaseHelperService<T> {
@@ -16,6 +18,19 @@ export abstract class BaseHelperService<T> {
     const base = environment.apiUrl.replace(/\/$/, '');
     const entity = entityUrl.startsWith('/') ? entityUrl : `/${entityUrl}`;
     this.fullAPIUrl = `${base}${entity}`;
+  }
+
+  public search(request?: SearchRequestModel): Observable<SearchResponseModel<T>> {
+    return this.http.post<any[]>(`${this.fullAPIUrl}/search`, request, { observe: 'response' }).pipe(
+      map((response) => {
+        const rawData = response.body || [];
+        return {
+          data: this.mapToModel(rawData),
+          totalCount: Number(response.headers.get('X-Total-Count') ?? 0),
+          messages: null,
+        } as SearchResponseModel<T>;
+      })
+    );
   }
 
   public getAll(): Observable<T[]> {
@@ -58,9 +73,17 @@ export abstract class BaseHelperService<T> {
     );
   }
 
+  public delete(id: string): Observable<boolean> {
+    return this.http.delete<boolean>(`${this.fullAPIUrl}/${id}`);
+  }
+
   private mapToModel(data: any): T;
   private mapToModel(data: any[]): T[];
   private mapToModel(data: any | any[]): T | T[] {
+    if (!data) {
+      return data;
+    }
+
     if (Array.isArray(data)) {
       return data.map((item) => new this.modelConstructor(item));
     }

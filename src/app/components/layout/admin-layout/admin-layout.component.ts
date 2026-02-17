@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterOutlet } from '@angular/router';
-import { AsideComponent, BreadCrumbsComponent, FooterComponent, NavbarComponent } from '@c/common';
+import { AsideComponent, BreadCrumbsComponent, FooterComponent, GlobalLoadingComponent, NavbarComponent } from '@c/common';
 import { PageBreadCrumbModel } from '@m/page-bread-crumb.model';
 import { GlobalStateService } from '@s/common';
 
@@ -14,6 +14,7 @@ import { GlobalStateService } from '@s/common';
   imports: [
     CommonModule,
     RouterOutlet,
+    GlobalLoadingComponent,
     NavbarComponent,
     AsideComponent,
     BreadCrumbsComponent,

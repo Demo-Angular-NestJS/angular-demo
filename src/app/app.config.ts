@@ -11,6 +11,7 @@ import { csrfInterceptor } from '@interc/x-csrf-token.interceptor';
 import { provideIcons } from '@core/icons/icons.provider';
 import { provideData } from './data/data.provider';
 import { customProvideToastr } from '@core/toastr/toastr.provider';
+import { loadingInterceptor } from '@interc/loading.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -25,7 +26,7 @@ export const appConfig: ApplicationConfig = {
     // Networking
     provideHttpClient(
       withFetch(),
-      withInterceptors([authInterceptor, idempotencyInterceptor, csrfInterceptor])
+      withInterceptors([loadingInterceptor, authInterceptor, idempotencyInterceptor, csrfInterceptor])
     ),
 
     // Custom App Logic / Features

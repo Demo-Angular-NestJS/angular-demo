@@ -34,12 +34,15 @@ export const passwordPattern = /^(?=.*[A-Z])(?=.*\d).{4,}$/; //Min 4 characters,
 export const imrgUrlPattern = /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|webp|svg))$/i
 //#endregion
 
+export const pageSizeOptions = [10, 25, 50, 100, 250, 500];
+export const defaultPageSize = pageSizeOptions[0];
 export const DEBOUNCE_TIME_MS = 400;
+export const INPUT_DEBOUNCE_TIME_MS = 600;
 
 export const maskSeparator = {
   int: '9999999999',
   separator: 'separator.0',
-separator6: 'separator.6',
+  separator6: 'separator.6',
   separator3: 'separator.3',
   separator2: 'separator.2',
   thousandSeparator: '',
