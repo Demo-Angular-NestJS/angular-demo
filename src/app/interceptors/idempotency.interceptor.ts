@@ -1,23 +1,33 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-import { HttpContextToken, HttpInterceptorFn } from '@angular/common/http';
-import { generateIdempotencyKey } from '@u/idempotency-key.util';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { HttpInterceptorFn } from '@angular/common/http';
+import { getIdempotencyRequestFingerprint } from '@u/idempotency-key.util';
+import { from, Observable } from 'rxjs';
+import { switchMap, finalize, shareReplay } from 'rxjs/operators';
 
-export const IDEMPOTENCY_KEY_TOKEN = new HttpContextToken<string>(() => '');
+const activeRequests = new Map<string, Observable<any>>();
+
 export const idempotencyInterceptor: HttpInterceptorFn = (req, next) => {
   if (!['POST', 'PUT', 'PATCH'].includes(req.method)) {
     return next(req);
   }
 
-  let key = req.context.get(IDEMPOTENCY_KEY_TOKEN);
+  // Convert the Promise-based fingerprinting into an Observable stream
+  return from(getIdempotencyRequestFingerprint(req)).pipe(
+    switchMap((key) => {
+      if (activeRequests.has(key)) {
+        return activeRequests.get(key)!;
+      }
 
-  if (!key) {
-    key = generateIdempotencyKey();
-    req.context.set(IDEMPOTENCY_KEY_TOKEN, key);
-  }
+      const clonedReq = req.clone({
+        setHeaders: { 'Idempotency-Key': key }
+      });
+      const request$ = next(clonedReq).pipe(
+        shareReplay(1), // shareReplay(1) ensures late subscribers get the same result, if they hit the interceptor before the first finishes
+        finalize(() => activeRequests.delete(key))
+      );
 
-  const clonedReq = req.clone({
-    setHeaders: { 'Idempotency-Key': key }
-  });
-
-  return next(clonedReq);
+      activeRequests.set(key, request$);
+      return request$;
+    })
+  );
 };
