@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { BaseComponent } from '@c/shared/base.component';
 import { searchToyRoute } from '@constants';
 import { HasPermissionDirectiveModule } from '@d/has-permission-directive/has-permission-directive.module';
 import { CategoriesService } from '@data/services';
-import { CategoryModel, ToyModel } from '@m/class';
+import { CategoryModel, FavoriteModel, ToyModel } from '@m/class';
 import { PageBreadCrumbModel } from '@m/page-bread-crumb.model';
 import { ToyHelperService } from '@s/toy-helper.service';
 import { filter, map, switchMap, tap } from 'rxjs';
@@ -29,6 +29,7 @@ export class ToyDetailsPageComponent extends BaseComponent implements OnInit {
 
   protected selectedImage = signal<string | null>(null);
   protected readonly ItemData = signal(new ToyModel({}));
+  protected readonly currentFavouritesMap = toSignal(this.currentFavouritesService.entityMapByToy$, { initialValue: {} as Record<string, FavoriteModel> });
   protected readonly categoryMap = toSignal(this.categoriesService.entityMap$, { initialValue: {} });
   protected readonly category = computed<CategoryModel | null>(() => {
     const map = this.categoryMap() as Record<string, CategoryModel>;
@@ -82,6 +83,30 @@ export class ToyDetailsPageComponent extends BaseComponent implements OnInit {
 
   protected goToEditItemViewEvent(): void {
     this.router.navigate([searchToyRoute, this.ItemData().id]);
+  }
+
+   protected toggleFavoriteEvent(): void {
+    const toyId = this.ItemData()?.id ?? null;
+    const favoriteData = new FavoriteModel({
+      ...this.currentFavouritesMap()[toyId] || null,
+      toyId,
+    });
+    const displayName = this.ItemData().name.length > 25
+      ? this.ItemData().name.slice(0, 25) + '...'
+      : this.ItemData().name;
+
+    this.currentFavouritesService.toggle(favoriteData).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
+      next: (resp) => {
+        if (resp) {
+          this.toastr.success(`The ${displayName} was added to favourites!`);
+        } else {
+          this.toastr.success(`The ${displayName} was removed to favourites!`);
+        }
+      },
+      error: () => {
+        this.toastr.error(`An error occured while adding ${displayName} to favourites!`);
+      }
+    });
   }
 
   private setItemData(item: ToyModel): void {

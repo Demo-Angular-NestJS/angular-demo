@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule } from '@angular/router';
-import { categoriesGuard } from '@data/guards';
+import { categoriesGuard, currentFavouritesGuard } from '@data/guards';
 import { ToyDetailsPageComponent } from './toy-details-page.component';
 
 const routes: Route[] = [
@@ -10,6 +10,7 @@ const routes: Route[] = [
     title: 'Toy Details Page',
     canActivate: [
       categoriesGuard,
+      currentFavouritesGuard,
     ],
   }
 ];

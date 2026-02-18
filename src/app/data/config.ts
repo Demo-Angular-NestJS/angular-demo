@@ -2,11 +2,14 @@ import { DefaultDataServiceConfig, EntityDataModuleConfig, EntityMetadataMap } f
 import { ActionReducer, ActionReducerMap, MetaReducer } from '@ngrx/store';
 import { GlobalActionTypes } from './actions/global.actions';
 import { environment } from '@env/environment';
-import { CategoryModel, UserConfigurationModel, UserModel } from '@m/class';
+import { CategoryModel, FavoriteModel, UserConfigurationModel, UserModel } from '@m/class';
 
 const entityMetadata: EntityMetadataMap = {
   Category: {
     selectId: (model: CategoryModel) => model.id,
+  },
+  CurrentFavourites: {
+    selectId: (model: FavoriteModel) => model.id,
   },
   CurrentUserConfiguration: {
     selectId: (model: UserConfigurationModel) => model.id,
@@ -18,6 +21,7 @@ const entityMetadata: EntityMetadataMap = {
 
 const pluralNames = {
   Category: 'Category',
+  CurrentFavourites: 'CurrentFavourites',
   CurrentUser: 'CurrentUser',
   CurrentUserConfiguration: 'CurrentUserConfiguration'
 };
@@ -28,7 +32,7 @@ export const entityConfig: EntityDataModuleConfig = {
 };
 
 export const defaultDataServiceConfig: DefaultDataServiceConfig = {
-  root: environment.apiUrl, // Or your variable
+  root: environment.apiUrl,
   timeout: environment.apiTimeoutMs,
 };
 

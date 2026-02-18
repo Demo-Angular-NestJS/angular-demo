@@ -1,5 +1,6 @@
 export * from './base.model';
 export * from './category.model';
+export * from './favorite.model';
 export * from './login.model';
 export * from './paging-data.model';
 export * from './sorting-data.model';
