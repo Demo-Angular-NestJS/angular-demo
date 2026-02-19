@@ -61,7 +61,7 @@ By leveraging **Angular Signals** and custom **Structural Directives**, I have o
 ---
 
 ## Contact & Portfolio
-I am a Frontend Developer dedicated to building secure, performant, and user-centric web applications. 
+I am a full-stack developer dedicated to building secure, performant, and user-centric web applications. 
 
 * **GitHub:** [@judeth82](https://github.com/judeth82)
 * **LinkedIn:** [Abel Judeth Cota Nevarez](www.linkedin.com/in/abel-cota)
