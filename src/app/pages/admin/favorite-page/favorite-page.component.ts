@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { SearchFavoriteItemListComponent } from '@c/admin';
 import { BaseComponent } from '@c/shared/base.component';
 import { PageBreadCrumbModel } from '@m/page-bread-crumb.model';
@@ -15,6 +16,8 @@ import { PageBreadCrumbModel } from '@m/page-bread-crumb.model';
   ]
 })
 export class FavoritePageComponent extends BaseComponent {
+  protected readonly items = toSignal(this.currentFavouritesService.entities$, { initialValue: [] });
+
   constructor() {
     super();
     this.adminLayout?.breadCrumbs.set(breadCrumbs);
