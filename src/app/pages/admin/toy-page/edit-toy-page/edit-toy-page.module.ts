@@ -9,7 +9,7 @@ const routes: Route[] = [
     component: EditToyPageComponent,
     title: 'Edit Toy Page',
     canActivate: [
-      categoriesGuard,
+      categoriesGuard(),
     ],
   }
 ];

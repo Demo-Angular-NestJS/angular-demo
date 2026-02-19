@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export const arrayOrValueToArray = <T>(value: T | T[]): T[] => {
   if (Array.isArray(value)) {
     return value;
@@ -6,14 +7,15 @@ export const arrayOrValueToArray = <T>(value: T | T[]): T[] => {
   return value !== null && value !== undefined ? [value] : [];
 };
 
-export const arrayToRecord = <T>(key: keyof T, values: T[]): Record<string | number, T> => {
-  return (values || []).reduce((records, item) => {
-    const keyValue = item[key];
+export const arrayToRecord = <T extends object>(key: keyof T, values: T[]): Record<string | number, T> => {
+  const result: Record<string | number, T> = {};
 
-    if (keyValue !== undefined && keyValue !== null) {
-      records[keyValue as unknown as string | number] = item;
+  for (const item of (values || [])) {
+    const id = item[key];
+    if (id != null) {
+      result[id as any] = { ...item };
     }
+  }
 
-    return records;
-  }, {} as Record<string | number, T>);
+  return result;
 };

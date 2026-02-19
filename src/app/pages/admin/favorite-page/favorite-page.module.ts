@@ -9,7 +9,7 @@ const routes: Route[] = [
     component: FavoritePageComponent,
     title: 'Favorite Page',
     canActivate: [
-      currentFavouritesGuard
+      currentFavouritesGuard(true)
     ],
   }
 ];

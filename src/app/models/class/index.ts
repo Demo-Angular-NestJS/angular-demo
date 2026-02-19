@@ -5,6 +5,7 @@ export * from './login.model';
 export * from './paging-data.model';
 export * from './sorting-data.model';
 export * from './search-criterion.model';
+export * from './short-toy.model';
 export * from './toy.model';
 export * from './user-config.model';
 export * from './user.model';

@@ -9,8 +9,8 @@ const routes: Route[] = [
     component: SearchToyPageComponent,
     title: 'Toy Search Page',
     canActivate: [
-      categoriesGuard,
-      currentFavouritesGuard,
+      categoriesGuard(),
+      currentFavouritesGuard(),
     ],
   }
 ];

@@ -68,7 +68,6 @@ export abstract class BaseSearchHelperService<TSearchObjectModel, THelperFilterM
           ]
         };
 
-        // Handle non-criteria model fields
         dataMap.filter(dm => dm?.notPartOfCriteria).forEach(dm => {
           const val = params[dm.urlField];
           const mappedVal = dm.mapToSearchCriterionFunc ? dm.mapToSearchCriterionFunc(val) :
@@ -94,16 +93,13 @@ export abstract class BaseSearchHelperService<TSearchObjectModel, THelperFilterM
         paramMap.forEach((mapItem) => {
           const modelKey = mapItem.modelFieldName as keyof THelperFilterModel;
 
-          // Check if the property exists in the passed model
           if (modelKey && Object.prototype.hasOwnProperty.call(model, modelKey)) {
             const rawValue = model[modelKey];
 
-            // Map the value
             const finalValue = mapItem.mapToUrlParamFunc
               ? mapItem.mapToUrlParamFunc(rawValue)
               : rawValue;
 
-            // Convert empty strings to undefined so they are removed from the URL
             params[mapItem.urlField] = finalValue === '' ? undefined : finalValue;
           }
         });
@@ -155,7 +151,7 @@ export abstract class BaseSearchHelperService<TSearchObjectModel, THelperFilterM
     return this.router.navigate([], {
       relativeTo: this.route,
       queryParams: this._currentParams,
-      replaceUrl: true // Common requirement for search/paging
+      replaceUrl: true
     });
   }
 

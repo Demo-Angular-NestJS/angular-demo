@@ -34,7 +34,7 @@ export const passwordPattern = /^(?=.*[A-Z])(?=.*\d).{4,}$/; //Min 4 characters,
 export const imrgUrlPattern = /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|webp|svg))$/i
 //#endregion
 
-export const pageSizeOptions = [10, 25, 50, 100, 250, 500];
+export const pageSizeOptions = [5, 10, 25, 50, 100];
 export const defaultPageSize = pageSizeOptions[0];
 export const DEBOUNCE_TIME_MS = 400;
 export const INPUT_DEBOUNCE_TIME_MS = 600;

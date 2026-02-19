@@ -7,8 +7,8 @@ const routes: Routes = [
   {
     path: '',
     canActivate: [
-      currentUserGuard,
-      currentUserConfigurationGuard,
+      currentUserGuard(),
+      currentUserConfigurationGuard(),
     ],
     children: [
       {
