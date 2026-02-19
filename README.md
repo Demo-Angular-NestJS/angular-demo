@@ -54,7 +54,7 @@ By leveraging **Angular Signals** and custom **Structural Directives**, I have o
 
 ---
 
-## 🧪 Testing & Quality
+## Testing & Quality
 * **Unit Tests:** Run `ng test` to execute business logic validation.
 * **Build for Production:** Run `ng build` to generate optimized artifacts in the `dist/` directory.
 
