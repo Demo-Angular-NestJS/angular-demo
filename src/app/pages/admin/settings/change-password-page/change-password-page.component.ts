@@ -9,6 +9,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { searchSettingRoute } from '@constants';
 
 @Component({
   standalone: true,
@@ -48,12 +49,17 @@ export class ChangePasswordPageComponent extends BaseComponent {
       next: () => {
         this.networkActive.set(false);
         this.toastr.success('The password has been change succesfully');
+        this.changePasswordForm.resetForm();
       },
       error: (err: HttpErrorResponse) => {
         this.networkActive.set(false);
         this.toastr.error(err?.error?.message ?? 'An error ocurrend changing the password');
       },
     })
+  }
+
+  protected cancelEvent(): void {
+    this.router.navigate([searchSettingRoute]);
   }
 }
 

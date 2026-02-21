@@ -21,6 +21,13 @@
     height: fit-content !important;
     width: 100%;
 
+    .mat-mdc-form-field-has-icon-prefix {
+      .mdc-floating-label--float-above {
+        left: 0 !important;
+        transform: translateY(-35px) translateX(-38px) scale(1) !important;
+      }
+    }
+
     .mat-mdc-form-field-subscript-wrapper {
       height: 0;
       min-height: 0;
@@ -38,7 +45,6 @@
     &:has(.mat-mdc-form-field-error),
     &:has(.mat-hint) {
       margin-bottom: 0;
-
       .mat-mdc-form-field-subscript-wrapper {
         height: auto;
         display: block;
@@ -61,13 +67,16 @@
       min-height: 48px !important;
       align-items: flex-start !important;
 
+      .mdc-floating-label {
+        transform-origin: left top !important;
+      }
+
       .mdc-floating-label--float-above {
         @apply text-sm font-bold text-slate-700;
-        transform: translateY(-35px) scale(1) !important;
         font-size: 0.9rem !important;
         font-weight: 500 !important;
         top: 12px !important;
-        left: -15px !important;
+        transform: translateY(-35px) scale(1) !important;
       }
 
       .mat-mdc-form-field-infix {
@@ -79,11 +88,6 @@
         border-color: transparent !important;
         outline: 2px solid #4f46e5 !important;
       }
-    }
-
-    .mdc-line-ripple,
-    .mdc-text-field__ripple {
-      display: none !important;
     }
 
     .mat-mdc-form-field-flex {
@@ -118,15 +122,12 @@
     font-weight: 500;
   }
 
-  .mat-mdc-form-field {
-    &.mat-form-field-disabled {
-      opacity: 0.6;
-      background-color: var(--slate-50);
-      cursor: not-allowed;
-
-      .mat-mdc-text-field-wrapper {
-        background-color: #f8fafc !important;
-      }
+  .mat-mdc-form-field.mat-form-field-disabled {
+    opacity: 0.6;
+    background-color: var(--slate-50);
+    cursor: not-allowed;
+    .mat-mdc-text-field-wrapper {
+      background-color: #f8fafc !important;
     }
   }
 }

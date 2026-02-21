@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { RegisterFormComponent, RegisterFormModel } from '@c/auth';
 import { BaseComponent } from '@c/shared/base.component';
@@ -16,6 +17,7 @@ import { UserHelperService } from '@s/user-helper.service';
   imports: [
     CommonModule,
     RouterModule,
+    MatIconModule,
     RegisterFormComponent,
   ]
 })

@@ -3,6 +3,7 @@ import { FormBaseComponent } from '@c/shared/form-base.component';
 import { signInForm, SignInFormModel } from './sign-in-form.model';
 import { getGroup } from '@u/generic';
 import { FormDefaultsModule } from '@c/shared/form-defaults.module';
+import { searchForgotPasswordRoute } from '@constants';
 
 @Component({
   standalone: true,
@@ -17,6 +18,7 @@ export class SignInFormComponent extends FormBaseComponent<SignInFormModel> {
 
   public form = getGroup(signInForm);
   protected hidePassword = signal(true);
+  protected searchForgotPasswordRoute = searchForgotPasswordRoute;
 
   constructor() {
     super();

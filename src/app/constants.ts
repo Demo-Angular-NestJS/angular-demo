@@ -7,6 +7,8 @@ export const signInRoute = `${loginRoute}`;
 export const searchSignInRoute = `/${signInRoute}`;
 export const registerRoute = 'register';
 export const searchRegisterRoute = `/${registerRoute}`;
+export const forgotPasswordRoute = 'forgot-password';
+export const searchForgotPasswordRoute = `/${forgotPasswordRoute}`;
 
 export const detailRoute = 'detail';
 export const homeRoute = 'home';
@@ -18,7 +20,6 @@ export const favoriteRoute = 'favorite';
 export const searchFavoriteRoute = `/${favoriteRoute}`
 export const myPurchaseRoute = 'my-purchase';
 export const searchMyPurchaseRoute = `/${myPurchaseRoute}`;
-
 export const settingRoute = 'settings';
 export const searchSettingRoute = `/${settingRoute}`;
 export const profileRoute = 'profile';

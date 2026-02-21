@@ -10,7 +10,7 @@ export class IconsService {
   public init(): void {
     // Register icon sets
     this.addIcon('home', 'assets/icons/home.svg');
-    this.addIcon('right-direction', 'assets/icons/right-direction.svg');
+    this.addIcon('right_direction', 'assets/icons/right-direction.svg');
     this.addIcon('toy', 'assets/icons/toy.svg');
     this.addIcon('favorite', 'assets/icons/favorite.svg');
     this.addIcon('purchase', 'assets/icons/purchase.svg');
@@ -28,6 +28,9 @@ export class IconsService {
     this.addIcon('star', 'assets/icons/star.svg');
     this.addIcon('heart', 'assets/icons/heart.svg');
     this.addIcon('pencil', 'assets/icons/pencil.svg');
+    this.addIcon('secure_key', 'assets/icons/secure-key.svg');
+    this.addIcon('arrow_left', 'assets/icons/arrow-left.svg');
+    this.addIcon('at_sign', 'assets/icons/at-sign.svg');
     // this._matIconRegistry.addSvgIconSetInNamespace(
     //     'mat_outline',
     //     this._domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/material-outline.svg')

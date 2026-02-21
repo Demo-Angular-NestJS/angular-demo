@@ -7,8 +7,8 @@ import { BaseHelperService } from './base-helper.service';
 import { ChangePasswordRequestModel } from '@m/request/change-password.request';
 
 @Injectable({ providedIn: 'root' })
-export class UserHelperService extends BaseHelperService<UserModel>{
-  constructor(){
+export class UserHelperService extends BaseHelperService<UserModel> {
+  constructor() {
     super('/user', UserModel);
   }
 
@@ -28,5 +28,9 @@ export class UserHelperService extends BaseHelperService<UserModel>{
 
   public register(payload: UserModel): Observable<UserModel> {
     return this.http.post<UserModel>(`${this.fullAPIUrl}/register`, payload);
+  }
+
+  public sendTempPassword(email: string) {
+    return this.http.post<UserModel>(`${this.fullAPIUrl}/tempPassword`, { email });
   }
 }
