@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
+import { TranslationLanguageEnum } from './enum';
+
 //#region ROUTES
 export const loginRoute = 'login';
 export const logoutRoute = '/logout'
@@ -62,3 +64,5 @@ export const maskMaxIntDigitsHelper = {
   max3: '100',
   max2: '10',
 };
+
+export const defaultLanguage = { id: TranslationLanguageEnum.English, label: 'English (US)' };

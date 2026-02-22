@@ -6,16 +6,21 @@ import { RouterModule } from '@angular/router';
 import { ForgotPasswordFormComponent, ForgotPasswordFormModel } from '@c/auth';
 import { BaseComponent } from '@c/shared/base.component';
 import { searchSignInRoute } from '@constants';
+import { TranslocoModule } from '@ngneat/transloco';
 import { UserHelperService } from '@s/user-helper.service';
+import { provideTranslation } from '@u/helper';
+import { TranslationLanguageEnum } from 'app/enum';
 
 @Component({
   standalone: true,
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [provideTranslation('forgotPasswordPage', (lang: TranslationLanguageEnum) => import(`./i18n/${lang}.json`))],
   imports: [
     CommonModule,
     RouterModule,
+    TranslocoModule,
     MatIconModule,
     ForgotPasswordFormComponent,
   ]
@@ -35,12 +40,14 @@ export class ForgotPasswordComponent extends BaseComponent {
     this.networkActive.set(true);
     this._userHelperService.sendTempPassword(form.email).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: () => {
-        this.toastr.success('An email was send succesfully, please check your email account and follow instructions');
+        const message = this.translocoService.translate('forgotPasswordPage.An email was send succesfully message');
+        this.toastr.success(message);
         this.networkActive.set(false);
         this.forgotPasswordForm.resetForm();
       },
       error: () => {
-        this.toastr.error('An error ocurred while sending the email, please try later');
+        const message = this.translocoService.translate('forgotPasswordPage.An error ocurred message');
+        this.toastr.error(message);
         this.networkActive.set(false);
       }
     });

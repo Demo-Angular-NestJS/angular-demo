@@ -1,3 +1,4 @@
+export * from './choose-language';
 export * from './core';
 export * from './global-loading';
 export * from './notifications';

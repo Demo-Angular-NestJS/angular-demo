@@ -5,15 +5,20 @@ import { defaultRoute, searchHomeRoute, searchRegisterRoute } from '@constants';
 import { AuthService } from '@s/auth.service';
 import { SignInFormComponent, SignInFormModel } from '@c/auth';
 import { BaseComponent } from '@c/shared/base.component';
+import { TranslocoModule } from '@ngneat/transloco';
+import { provideTranslation } from '@u/helper';
+import { TranslationLanguageEnum } from 'app/enum';
 
 @Component({
   standalone: true,
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [provideTranslation('signInPage', (lang: TranslationLanguageEnum) => import(`./i18n/${lang}.json`))],
   imports: [
     CommonModule,
     RouterModule,
+    TranslocoModule,
     SignInFormComponent,
   ]
 })
@@ -33,7 +38,8 @@ export class SignInComponent extends BaseComponent {
       },
       error: (err) => {
         this.networkActive.set(false);
-        this.toastr.error(err?.error?.message ?? 'something was wrong');
+        const errorMessage = err?.error?.message ?? 'An error occurred, please try again';
+        this.toastr.error(this.translocoService.translate(`global.generalErrors.${errorMessage}`));
       }
     });
   }

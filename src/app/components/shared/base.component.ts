@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { AdminLayoutComponent } from "@c/layout";
 import { CurrentFavouritesService, CurrentUserConfigurationService, CurrentUserService } from "@data/services";
 import { UserConfigurationModel, UserModel } from "@m/class";
+import { TranslocoService } from "@ngneat/transloco";
 import { GlobalStateService } from "@s/common";
 import { ToastrService } from "ngx-toastr";
 
@@ -12,6 +13,7 @@ import { ToastrService } from "ngx-toastr";
 })
 export abstract class BaseComponent implements OnDestroy {
   protected readonly globalStateService = inject(GlobalStateService);
+  protected readonly translocoService = inject(TranslocoService);
   protected readonly currentFavouritesService = inject(CurrentFavouritesService);
   protected readonly currentUserService = inject(CurrentUserService);
   protected readonly currentUserConfigService = inject(CurrentUserConfigurationService);

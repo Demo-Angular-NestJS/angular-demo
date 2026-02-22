@@ -4,12 +4,15 @@ import { signInForm, SignInFormModel } from './sign-in-form.model';
 import { getGroup } from '@u/generic';
 import { FormDefaultsModule } from '@c/shared/form-defaults.module';
 import { searchForgotPasswordRoute } from '@constants';
+import { provideTranslation } from '@u/helper';
+import { TranslationLanguageEnum } from 'app/enum';
 
 @Component({
   standalone: true,
   selector: 'app-sign-in-form',
   templateUrl: './sign-in-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [provideTranslation('signInForm', (lang: TranslationLanguageEnum) => import(`./i18n/${lang}.json`))],
   imports: [FormDefaultsModule]
 })
 export class SignInFormComponent extends FormBaseComponent<SignInFormModel> {

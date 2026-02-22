@@ -1,0 +1,28 @@
+{
+  "projectShortName": "ToyStore",
+  "pageTitles":  {
+    "Sign In": "Sign In",
+    "Forgot Password": "Forgot Password"
+  },
+  "common": {
+    "Hello": "Hello"
+  },
+  "form": {
+    "fields": {
+      "Email": "Email",
+      "Password": "Password",
+      "Field Required": "The {{fieldName}} is required",
+      "Enter a valid field": "Please enter a valid value for {{fieldName}}"
+    },
+    "placeholders": {
+      "": ""
+    }
+  },
+  "buttons": {
+    "": ""
+  },
+  "generalErrors": {
+    "Invalid username or password": "Invalid username or password",
+    "An error occurred, please try again": "An error occurred, please try again"
+  }
+}

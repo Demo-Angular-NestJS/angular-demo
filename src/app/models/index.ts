@@ -5,4 +5,5 @@ export * from './response';
 export * from './search';
 export * from './environment.model';
 export * from './form-base-settings.model';
+export * from './load-translation-result.models';
 export * from './page-bread-crumb.model';

@@ -1,0 +1,28 @@
+{
+  "projectShortName": "ToyStore",
+  "pageTitles":  {
+    "Sign In": "Iniciar Sesion",
+    "Forgot Password": "Has olvidado tu contraseña"
+  },
+  "common": {
+    "Hello": "Hola"
+  },
+  "form": {
+    "fields": {
+      "Email": "Correo",
+      "Password": "Contraseña",
+      "Field Required": "{{fieldName}} es requerido",
+      "Enter a valid field": "Por favor, introduzca un valor válido para {{fieldName}}"
+    },
+    "placeholders": {
+      "": ""
+    }
+  },
+  "buttons": {
+    "": ""
+  },
+  "generalErrors": {
+    "Invalid username or password": "Nombre de usuario o contraseña no válidos",
+    "An error occurred, please try again": "Se produjo un error, por favor inténtelo de nuevo."
+  }
+}

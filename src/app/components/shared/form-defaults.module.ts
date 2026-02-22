@@ -10,6 +10,7 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { DisableFormDirectiveModule } from "@d/disable-form-directive";
 import { RouterModule } from "@angular/router";
+import { TranslocoModule } from "@ngneat/transloco";
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { RouterModule } from "@angular/router";
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
+    TranslocoModule,
     DisableFormDirectiveModule,
     MatFormFieldModule,
     MatInputModule,
@@ -31,6 +33,7 @@ import { RouterModule } from "@angular/router";
     FormsModule,
     RouterModule,
     ReactiveFormsModule,
+    TranslocoModule,
     DisableFormDirectiveModule,
     MatFormFieldModule,
     MatInputModule,

@@ -12,6 +12,7 @@ import { provideIcons } from '@core/icons/icons.provider';
 import { provideData } from './data/data.provider';
 import { customProvideToastr } from '@core/toastr/toastr.provider';
 import { loadingInterceptor } from '@interc/loading.interceptor';
+import { customTranslocoProvider } from '@core/translate/transloco.provider';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -31,6 +32,7 @@ export const appConfig: ApplicationConfig = {
 
     // Custom App Logic / Features
     ...provideData(),
+    customTranslocoProvider(),
     provideIcons(),
     provideCSFRInitializer(),
     provideCheckSessionInitializer(),
