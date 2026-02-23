@@ -4,6 +4,6 @@
   "Return to login": "Regresar al inicio de sesión",
   "Do you have problems": "¿Tienes problemas?",
   "Contact Support": "Contactar con soporte técnico",
-  "An email was send succesfully message": "Se envió un correo electrónico exitosamente, por favor revise su cuenta de correo electrónico y siga las instrucciones.",
-  "An error ocurred message": "Se produjo un error al enviar el correo electrónico, inténtelo más tarde."
+  "An email was send successfully message": "Se envió un correo electrónico exitosamente, por favor revise su cuenta de correo electrónico y siga las instrucciones.",
+  "An error occurred message": "Se produjo un error al enviar el correo electrónico, inténtelo más tarde."
 }

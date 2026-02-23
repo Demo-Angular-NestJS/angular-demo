@@ -17,8 +17,8 @@ import { CustomTranslocoMissingHandler } from './custom-transloco-missing-handle
 import { TemplatesTranslocoInterceptor } from './templates-transloco.interceptor';
 import { TranslationsService } from '@s/common';
 import { defaultLanguage } from '@constants';
-import { TranslationPageTitleStrategy } from './tejas-page-title.strategy';
 import { TitleStrategy } from '@angular/router';
+import { TranslationPageTitleStrategy } from './translate-page-title.strategy';
 
 export const customTranslocoProvider = (): EnvironmentProviders => {
   return makeEnvironmentProviders([

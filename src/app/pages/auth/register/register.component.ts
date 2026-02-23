@@ -7,16 +7,21 @@ import { RegisterFormComponent, RegisterFormModel } from '@c/auth';
 import { BaseComponent } from '@c/shared/base.component';
 import { searchSignInRoute } from '@constants';
 import { UserModel } from '@m/class';
+import { TranslocoModule } from '@ngneat/transloco';
 import { UserHelperService } from '@s/user-helper.service';
+import { provideTranslation } from '@u/helper';
+import { TranslationLanguageEnum } from 'app/enum';
 
 @Component({
   standalone: true,
   selector: 'app-register',
   templateUrl: './register.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [provideTranslation('registerPage', (lang: TranslationLanguageEnum) => import(`./i18n/${lang}.json`))],
   imports: [
     CommonModule,
     RouterModule,
+    TranslocoModule,
     MatIconModule,
     RegisterFormComponent,
   ]
@@ -32,12 +37,12 @@ export class RegisterComponent extends BaseComponent {
     this.networkActive.set(true);
     this._userHelperService.register(user).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: () => {
-        this.toastr.success('Your account has been created succesfully, login now an enjoy the expierence!.');
+        this.toastr.success(this.translocoService.translate('registerPage.Your account has been created message'));
         this.networkActive.set(false);
         this.router.navigate([searchSignInRoute]);
       },
-      error: (err) => {
-        this.toastr.error(err?.error?.message ?? 'something was wrong registering the account');
+      error: () => {
+        this.toastr.error(this.translocoService.translate('registerPage.An error occurred message'));
         this.networkActive.set(false);
       }
     });

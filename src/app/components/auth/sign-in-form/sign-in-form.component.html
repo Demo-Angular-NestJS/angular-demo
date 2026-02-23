@@ -5,11 +5,11 @@
       [tDisable]="networkActive()">
     @if (isError('email', 'required')) {
     <mat-error>
-      {{ t('global.form.fields.Field Required', { fieldName: t('global.form.fields.Email') })}}
+      {{ t('global.form.validations.Field Required', { fieldName: t('global.form.fields.Email') })}}
     </mat-error>
     } @else if (isError('email', 'email')) {
     <mat-error>
-      {{ t('global.form.fields.Enter a valid field', { fieldName: t('global.form.fields.Email') })}}
+      {{ t('global.form.validations.Enter a valid field', { fieldName: t('global.form.fields.Email') })}}
     </mat-error>
     }
   </mat-form-field>
@@ -28,7 +28,7 @@
     </button>
     @if (isError('password', 'required')) {
     <mat-error>
-      {{ t('global.form.fields.Field Required', { fieldName: t('global.form.fields.Password') })}}
+      {{ t('global.form.validations.Field Required', { fieldName: t('global.form.fields.Password') })}}
     </mat-error>
     }
   </mat-form-field>

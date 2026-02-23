@@ -63,7 +63,7 @@ export class ToyDetailsPageComponent extends BaseComponent implements OnInit {
         }
       },
       error: () => {
-        this.toastr.error('An error ocurred getting the Toy, please try again or later.');
+        this.toastr.error('An error occurred getting the Toy, please try again or later.');
         this.networkActive.set(false);
       }
     })

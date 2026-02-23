@@ -1,4 +1,4 @@
-<div class="relative" #profileContainer>
+<div *transloco="let t" class="relative" #profileContainer>
   <button
     class="w-10 h-10 rounded-full bg-yellow-400 border-2 border-white shadow-sm flex items-center justify-center font-bold text-indigo-900 cursor-pointer hover:scale-105 transition-transform"
     (click)="toggleProfileEvent()">
@@ -24,13 +24,18 @@
       <a class="flex items-center gap-3 px-3 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-indigo-600 rounded-xl transition-all cursor-pointer"
         [routerLink]="[searchProfileRoute]" (click)="onCloseClickEvent()">
         <mat-icon class="w-4 h-4">account_circle</mat-icon>
-        My Profile
+        {{ t('profileSection.My Profile') }}
       </a>
       <a class="flex items-center gap-3 px-3 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-indigo-600 rounded-xl transition-all cursor-pointer"
         [routerLink]="[searchSettingRoute]" (click)="onCloseClickEvent()">
         <mat-icon class="w-4 h-4">settings</mat-icon>
-        Configuration
+        {{ t('profileSection.Configuration') }}
       </a>
+
+      <div class="flex items-center gap-3 px-3 py-2 text-sm text-slate-600">
+        <mat-icon class="w-4 h-4">language</mat-icon>
+        <app-choose-language #chooseLanguage></app-choose-language>
+      </div>
     </div>
 
     <div class="p-2 border-t border-slate-50">
@@ -38,7 +43,7 @@
         class="w-full flex items-center gap-3 px-3 py-2 text-sm text-pink-600 hover:bg-pink-50 rounded-xl transition-all font-medium cursor-pointer"
         (click)="signOutEvent()">
         <mat-icon class="w-4 h-4" svgIcon="singOut"></mat-icon>
-        Sign Out
+        {{ t('profileSection.Sign Out') }}
       </button>
     </div>
   </div>

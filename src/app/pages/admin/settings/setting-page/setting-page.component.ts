@@ -47,7 +47,7 @@ export class SettingPageComponent extends BaseComponent {
 
     this.currentUserConfigService.update(updateData).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       error: () => {
-        this.toastr.warning('An error ocurred while updating your settings, please update the page and try again.');
+        this.toastr.warning('An error occurred while updating your settings, please update the page and try again.');
         this.preferenceNotificationForm.data = this.currentPrefeNotifFormData() || null;
       }
     });

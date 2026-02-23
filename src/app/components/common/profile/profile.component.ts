@@ -6,19 +6,26 @@ import { Router, RouterModule } from '@angular/router';
 import { searchProfileRoute, searchSettingRoute, signInRoute } from '@constants';
 import { CurrentUserService } from '@data/services';
 import { UserModel } from '@m/class';
+import { TranslocoModule } from '@ngneat/transloco';
 import { AuthService } from '@s/auth.service';
+import { provideTranslation } from '@u/helper';
+import { TranslationLanguageEnum } from 'app/enum';
 import { PropInitialsModule } from 'app/pipe';
+import { ChooseLanguageComponent } from '../choose-language';
 
 @Component({
   standalone: true,
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [provideTranslation('profileSection', (lang: TranslationLanguageEnum) => import(`./i18n/${lang}.json`))],
   imports: [
     CommonModule,
-    MatIconModule,
     RouterModule,
+    TranslocoModule,
+    MatIconModule,
     PropInitialsModule,
+    ChooseLanguageComponent,
   ]
 })
 export class ProfileComponent {

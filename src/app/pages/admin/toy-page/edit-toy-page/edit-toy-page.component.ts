@@ -57,7 +57,7 @@ export class EditToyPageComponent extends BaseComponent implements OnInit {
         this.setItemData(data);
       },
       error: () => {
-        this.toastr.error('An error ocurred getting the Toy, please try again or later.');
+        this.toastr.error('An error occurred getting the Toy, please try again or later.');
         this.networkActive.set(false);
         this.goBackEvent();
       }
@@ -90,7 +90,7 @@ export class EditToyPageComponent extends BaseComponent implements OnInit {
       },
       error: () => {
         this.savingData.set(false);
-        this.toastr.error(`An error ocurred when ${requestType} the Toy, please try again or later.`);
+        this.toastr.error(`An error occurred when ${requestType} the Toy, please try again or later.`);
       }
     });
   }

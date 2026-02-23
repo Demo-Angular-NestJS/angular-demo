@@ -1,14 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ElementRef, HostListener, signal, ViewChild } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { TranslocoModule } from '@ngneat/transloco';
+import { provideTranslation } from '@u/helper';
+import { TranslationLanguageEnum } from 'app/enum';
 
 @Component({
   standalone: true,
   selector: 'app-notifications',
   templateUrl: './notifications.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [provideTranslation('notificationSection', (lang: TranslationLanguageEnum) => import(`./i18n/${lang}.json`))],
   imports: [
     CommonModule,
+    TranslocoModule,
     MatIconModule,
   ]
 })

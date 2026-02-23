@@ -48,7 +48,7 @@ export class ChangePasswordPageComponent extends BaseComponent {
     this._userHelperService.changePassowrd(request).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: () => {
         this.networkActive.set(false);
-        this.toastr.success('The password has been change succesfully');
+        this.toastr.success('The password has been change successfully');
         this.changePasswordForm.resetForm();
       },
       error: (err: HttpErrorResponse) => {

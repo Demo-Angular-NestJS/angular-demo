@@ -1,17 +1,17 @@
-<div class="hidden md:flex flex-1 relative w-full" #searchContainer>
+<div *transloco="let t" class="hidden md:flex flex-1 relative w-full" #searchContainer>
   <form [formGroup]="form" (ngSubmit)="onSubmit()" class="relative w-full">
     <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
       <mat-icon class="w-5 h-5">search</mat-icon>
     </span>
     <input type="text" (click)="onSearchFocusEvent()" (focus)="onSearchFocusEvent()"
       class="w-full bg-slate-100 border-none rounded-xl py-2 pl-10 focus:ring-2 focus:ring-indigo-600 transition-all text-sm"
-      placeholder="Buscar el juguete perfecto..." formControlName="search">
+      [placeholder]="t('global.form.placeholders.Finding the perfect toy')" formControlName="search">
   </form>
 
   @if (isSearchOpen() && field('search').value) {
   <div class="absolute top-full left-0 w-full mt-2 bg-white rounded-2xl shadow-2xl border border-slate-100 z-50 overflow-hidden animate-fade-in-down">
     <div class="p-3">
-      <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-3 mb-2">Suggestions</p>
+      <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-3 mb-2">{{ t('searchBarSection.Suggestions') }}</p>
 
       <div class="space-y-1">
         @for (item of (searchResults() || []); track $index) {
@@ -40,7 +40,7 @@
         </a>
         } @empty {
           <div class="w-full text-center text-xs font-bold text-indigo-600 hover:text-indigo-800 transition-colors">
-            No Results match for search "{{ field('search').value }}"
+            {{ t('searchBarSection.No Results match for search') }} "{{ field('search').value }}"
           </div>
         }
       </div>
@@ -49,7 +49,7 @@
     @if (searchResults().length) {
     <div class="bg-slate-50 p-3 border-t border-slate-100">
       <button class="w-full text-center text-xs font-bold text-indigo-600 hover:text-indigo-800 transition-colors">
-        Results for "{{ field('search').value }}"
+        {{ t('searchBarSection.Results for') }} "{{ field('search').value }}"
       </button>
     </div>
     }

@@ -2,20 +2,29 @@
   "projectShortName": "ToyStore",
   "pageTitles":  {
     "Sign In": "Sign In",
-    "Forgot Password": "Forgot Password"
+    "Forgot Password": "Forgot Password",
+    "Register": "Register",
+    "Home Page": "Home Page"
   },
   "common": {
     "Hello": "Hello"
   },
   "form": {
     "fields": {
+      "User Name": "User Name",
       "Email": "Email",
       "Password": "Password",
+      "Confirm Password": "Confirm Password"
+    },
+    "validations": {
       "Field Required": "The {{fieldName}} is required",
-      "Enter a valid field": "Please enter a valid value for {{fieldName}}"
+      "Enter a valid field": "Please enter a valid value for {{fieldName}}",
+      "minimum amount of characters": "{{min}} is the minimum amount of characters",
+      "Field do not match": "{{fieldName}} do not match"
     },
     "placeholders": {
-      "": ""
+      "Email Example": "your@email.com",
+      "Finding the perfect toy": "Finding the perfect toy..."
     }
   },
   "buttons": {

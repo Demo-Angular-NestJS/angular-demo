@@ -52,11 +52,11 @@ export class ProfilePageComponent extends BaseComponent {
     ]).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: () => {
         this.networkActive.set(false);
-        this.toastr.success('Your information has been update succesfully!');
+        this.toastr.success('Your information has been update successfully!');
       },
       error: () => {
         this.networkActive.set(false);
-        this.toastr.warning('An error ocurred while updating your information, please update the page and try again.');
+        this.toastr.warning('An error occurred while updating your information, please update the page and try again.');
       },
     });
   }

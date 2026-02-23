@@ -3,7 +3,10 @@ import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit, signal }
 import { MatIconModule } from '@angular/material/icon';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { searchFavoriteRoute, searchHomeRoute, searchMyPurchaseRoute, searchSettingRoute, searchToyRoute } from '@constants';
+import { TranslocoModule } from '@ngneat/transloco';
 import { GlobalStateService } from '@s/common';
+import { provideTranslation } from '@u/helper';
+import { TranslationLanguageEnum } from 'app/enum';
 import { filter, Subject, takeUntil } from 'rxjs';
 
 @Component({
@@ -11,9 +14,11 @@ import { filter, Subject, takeUntil } from 'rxjs';
   selector: 'app-aside',
   templateUrl: './aside.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [provideTranslation('asideBarSection', (lang: TranslationLanguageEnum) => import(`./i18n/${lang}.json`))],
   imports: [
     CommonModule,
     RouterLink,
+    TranslocoModule,
     MatIconModule,
   ],
 })

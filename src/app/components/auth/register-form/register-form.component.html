@@ -1,55 +1,55 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-wrap gap-7">
+<form *transloco="let t" [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-wrap gap-7">
   <mat-form-field class="w-full" appearance="fill" floatLabel="always">
-    <mat-label>User Name</mat-label>
-    <input id="rfUserName" matInput formControlName="userName" placeholder="User Name" [tDisable]="networkActive()">
-    @if (isError('userName', 'required')) { <mat-error>User Name is required</mat-error> }
-    @if (isError('userName', 'alreadyExists')) { <mat-error>This User Name is already taken</mat-error> }
-    @if (field('userName').hasError('checking')) { <mat-hint>Checking availability...</mat-hint> }
+    <mat-label>{{ t('global.form.fields.User Name') }}</mat-label>
+    <input id="rfUserName" matInput formControlName="userName" [placeholder]="t('global.form.fields.User Name')" [tDisable]="networkActive()">
+    @if (isError('userName', 'required')) { <mat-error>{{ t('global.form.validations.Field Required', { fieldName: t('global.form.fields.User Name') })}}</mat-error> }
+    @if (isError('userName', 'alreadyExists')) { <mat-error>{{ t('registerForm.This field is already taken', { fieldName: t('global.form.fields.User Name') }) }}</mat-error> }
+    @if (field('userName').hasError('checking')) { <mat-hint>{{ ('registerForm.Checking availability') }}</mat-hint> }
   </mat-form-field>
 
   <mat-form-field class="w-full" appearance="fill" floatLabel="always">
-    <mat-label>Email</mat-label>
-    <input id="rfEmail" matInput formControlName="email" autocomplete="email" placeholder="ejemplo@correo.com"
+    <mat-label>{{ t('global.form.fields.Email') }}</mat-label>
+    <input id="rfEmail" matInput formControlName="email" autocomplete="email" [placeholder]="t('global.form.placeholders.Email Example')"
       [tDisable]="networkActive()">
-    @if (isError('email', 'required')) { <mat-error>Email is required</mat-error> }
-    @else if (isError('email', 'email')) { <mat-error>Please enter a valid email</mat-error> }
-    @if (isError('email', 'alreadyExists')) { <mat-error>This Email is already taken</mat-error> }
-    @if (field('email').hasError('checking')) { <mat-hint>Checking availability...</mat-hint> }
+    @if (isError('email', 'required')) { <mat-error>{{ t('global.form.validations.Field Required', { fieldName: t('global.form.fields.Email') })}}</mat-error> }
+    @else if (isError('email', 'email')) { <mat-error>{{ t('global.form.validations.Enter a valid field', { fieldName: t('global.form.fields.Email') })}}</mat-error> }
+    @if (isError('email', 'alreadyExists')) { <mat-error>{{ t('registerForm.This field is already taken', { fieldName: t('global.form.fields.Email') }) }}</mat-error> }
+    @if (field('email').hasError('checking')) { <mat-hint>{{ ('registerForm.Checking availability') }}</mat-hint> }
   </mat-form-field>
 
   <mat-form-field class="w-full" appearance="fill" floatLabel="always">
-    <mat-label>Password</mat-label>
-    <input id="rfPassword" matInput formControlName="password" placeholder="Password" autocomplete="new-password"
+    <mat-label>{{ t('global.form.fields.Password') }}</mat-label>
+    <input id="rfPassword" matInput formControlName="password" [placeholder]="t('global.form.fields.Password')" autocomplete="new-password"
       [type]="hidePassword() ? 'password' : 'text'" [tDisable]="networkActive()">
     <button type="button" mat-icon-button matSuffix [attr.aria-label]="'Hide password'"
       [attr.aria-pressed]="hidePassword()" [disabled]="networkActive()" (click)="togglePasswordEvent()">
       <mat-icon>{{ hidePassword() ? 'visibility_off' : 'visibility' }}</mat-icon>
     </button>
-    @if (isError('password', 'minlength')) { <mat-error>4 is the minimum amount of characters</mat-error> }
-    @else if (isError('password', 'required')) { <mat-error>Password is required</mat-error> }
+    @if (isError('password', 'minlength')) { <mat-error>{{ t('global.form.validations.minimum amount of characters', { min: 4 }) }}</mat-error> }
+    @else if (isError('password', 'required')) { <mat-error>{{ t('global.form.validations.Field Required', { fieldName: t('global.form.fields.Password') }) }}</mat-error> }
   </mat-form-field>
 
   <mat-form-field class="w-full" appearance="fill" floatLabel="always">
-    <mat-label>Confirm Password</mat-label>
-    <input id="rfConfirmPassword" matInput formControlName="confirmPassword" placeholder="Confirm Password"
+    <mat-label>{{ t('global.form.fields.Confirm Password') }}</mat-label>
+    <input id="rfConfirmPassword" matInput formControlName="confirmPassword" [placeholder]="t('global.form.fields.Confirm Password')"
       autocomplete="new-password" [type]="hideConfirmPassword() ? 'password' : 'text'" [tDisable]="networkActive()">
     <button type="button" mat-icon-button matSuffix [attr.aria-label]="'Hide password'"
       [attr.aria-pressed]="hideConfirmPassword()" [disabled]="networkActive()" (click)="toggleConfirmPasswordEvent()">
       <mat-icon>{{ hideConfirmPassword() ? 'visibility_off' : 'visibility' }}</mat-icon>
     </button>
-    @if (isError('confirmPassword', 'minlength')) { <mat-error>4 is the minimum amount of characters</mat-error> }
-    @else if (isError('confirmPassword', 'required')) { <mat-error>Confirm Password is required</mat-error> }
-    @else if (isError('confirmPassword', 'mismatch')) { <mat-error>Passwords do not match</mat-error> }
+    @if (isError('confirmPassword', 'minlength')) { <mat-error>{{ t('global.form.validations.minimum amount of characters', { min: 4 }) }}</mat-error> }
+    @else if (isError('confirmPassword', 'required')) { <mat-error>{{ t('global.form.validations.Field Required', { fieldName: t('global.form.fields.Confirm Password') })}}</mat-error> }
+    @else if (isError('confirmPassword', 'mismatch')) { <mat-error>{{ t('global.form.validations.Field do not match', { fieldName: t('global.form.fields.Password') })}}</mat-error> }
   </mat-form-field>
 
   <button matButton="filled" color="primary" type="submit" class="w-full" [disabled]="networkActive() || !form.valid">
     @if (networkActive()) {
     <div class="flex items-center justify-center gap-2">
       <mat-spinner diameter="20" color="accent"></mat-spinner>
-      <span>Registering...</span>
+      <span>{{ t('registerForm.Registering') }}</span>
     </div>
     } @else {
-    <span>Register</span>
+    <span>{{ t('registerForm.Register') }}</span>
     }
   </button>
 </form>

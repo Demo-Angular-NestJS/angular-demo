@@ -7,12 +7,15 @@ import { combineLatest, debounceTime, distinctUntilChanged, filter, switchMap, t
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { UserHelperService } from '@s/user-helper.service';
 import { DEBOUNCE_TIME_MS } from '@constants';
+import { provideTranslation } from '@u/helper';
+import { TranslationLanguageEnum } from 'app/enum';
 
 @Component({
   standalone: true,
   selector: 'app-register-form',
   templateUrl: './register-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [provideTranslation('registerForm', (lang: TranslationLanguageEnum) => import(`./i18n/${lang}.json`))],
   imports: [FormDefaultsModule]
 })
 export class RegisterFormComponent extends FormBaseComponent<RegisterFormModel> implements AfterViewInit {

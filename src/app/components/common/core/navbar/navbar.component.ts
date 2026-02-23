@@ -4,6 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { NotificationsComponent } from '@c/common/notifications';
 import { ProfileComponent } from '@c/common/profile';
 import { SearchBarComponent } from '@c/common/search-bar';
+import { TranslocoModule } from '@ngneat/transloco';
 import { GlobalStateService } from '@s/common';
 
 @Component({
@@ -14,6 +15,7 @@ import { GlobalStateService } from '@s/common';
   imports: [
     CommonModule,
     MatIconModule,
+    TranslocoModule,
     ProfileComponent,
     NotificationsComponent,
     SearchBarComponent,

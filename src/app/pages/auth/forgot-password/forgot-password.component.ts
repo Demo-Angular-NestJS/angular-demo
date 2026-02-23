@@ -40,13 +40,13 @@ export class ForgotPasswordComponent extends BaseComponent {
     this.networkActive.set(true);
     this._userHelperService.sendTempPassword(form.email).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: () => {
-        const message = this.translocoService.translate('forgotPasswordPage.An email was send succesfully message');
+        const message = this.translocoService.translate('forgotPasswordPage.An email was send successfully message');
         this.toastr.success(message);
         this.networkActive.set(false);
         this.forgotPasswordForm.resetForm();
       },
       error: () => {
-        const message = this.translocoService.translate('forgotPasswordPage.An error ocurred message');
+        const message = this.translocoService.translate('forgotPasswordPage.An error occurred message');
         this.toastr.error(message);
         this.networkActive.set(false);
       }

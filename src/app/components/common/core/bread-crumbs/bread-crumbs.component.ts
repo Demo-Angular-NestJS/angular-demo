@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { PageBreadCrumbModel } from '@m/page-bread-crumb.model';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   standalone: true,
@@ -12,6 +13,7 @@ import { PageBreadCrumbModel } from '@m/page-bread-crumb.model';
   imports: [
     CommonModule,
     RouterLink,
+    TranslocoModule,
     MatIconModule,
   ]
 })

@@ -1,6 +1,4 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, HostListener, inject, signal, ViewChild } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 import { FormBaseComponent } from '@c/shared/form-base.component';
 import { searchBarForm, SearchBarFormModel } from './search-bar.model';
 import { getGroup } from '@u/generic';
@@ -8,19 +6,22 @@ import { ToyModel } from '@m/class';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { ToyHelperService } from '@s/toy-helper.service';
 import { SearchRequestModel } from '@m/request';
-import { SearchOperatorTypeEnum } from 'app/enum';
+import { SearchOperatorTypeEnum, TranslationLanguageEnum } from 'app/enum';
 import { debounceTime } from 'rxjs';
 import { DEBOUNCE_TIME_MS, searchToyDetailRoute } from '@constants';
 import { FormDefaultsModule } from '@c/shared/form-defaults.module';
 import { CategoriesService } from '@data/services';
 import { LookupMapPipe } from '@data/pipe';
 import { ToastrService } from 'ngx-toastr';
+import { provideTranslation } from '@u/helper';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   standalone: true,
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [provideTranslation('searchBarSection', (lang: TranslationLanguageEnum) => import(`./i18n/${lang}.json`))],
   imports: [
     LookupMapPipe,
     FormDefaultsModule,
@@ -40,6 +41,7 @@ export class SearchBarComponent extends FormBaseComponent<SearchBarFormModel> {
   protected searchResults = signal<ToyModel[]>([]);
   protected searchToyDetailRoute = searchToyDetailRoute
 
+  private readonly _translocoService = inject(TranslocoService);
   private readonly _destroyRef = inject(DestroyRef);
 
   constructor() {
@@ -84,7 +86,7 @@ export class SearchBarComponent extends FormBaseComponent<SearchBarFormModel> {
         this.searchResults.set(resp?.data ?? []);
       },
       error: () => {
-        this.toastr.error('An error ocurred while searching the item, please try again.')
+        this.toastr.error(this._translocoService.translate('searchBarSection.An error occurred message'));
       }
     });
   }

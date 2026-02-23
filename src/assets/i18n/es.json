@@ -1,21 +1,30 @@
 {
   "projectShortName": "ToyStore",
-  "pageTitles":  {
+  "pageTitles": {
     "Sign In": "Iniciar Sesion",
-    "Forgot Password": "Has olvidado tu contraseña"
+    "Forgot Password": "Has olvidado tu contraseña",
+    "Register": "Crear Cuenta",
+    "Home Page": "Pagina Principal"
   },
   "common": {
     "Hello": "Hola"
   },
   "form": {
     "fields": {
+      "User Name": "Nombre de usuario",
       "Email": "Correo",
       "Password": "Contraseña",
+      "Confirm Password": "Confirmar Contraseña"
+    },
+    "validations": {
       "Field Required": "{{fieldName}} es requerido",
-      "Enter a valid field": "Por favor, introduzca un valor válido para {{fieldName}}"
+      "Enter a valid field": "Por favor, introduzca un valor válido para {{fieldName}}",
+      "minimum amount of characters": "{{min}} es la cantidad mínima de caracteres",
+      "Field do not match": "{{fieldName}} no coinciden"
     },
     "placeholders": {
-      "": ""
+      "Email Example": "tu@correo.com",
+      "Finding the perfect toy": "Buscar el juguete perfecto..."
     }
   },
   "buttons": {
