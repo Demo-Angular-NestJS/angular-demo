@@ -27,10 +27,7 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles/tailwind.css",
-              "src/styles/styles.scss"
-            ],
+            "styles": ["src/styles/tailwind.css", "src/styles/styles.scss"],
             "server": "src/main.server.ts",
             "outputMode": "server",
             "ssr": {
@@ -81,6 +78,7 @@
           "options": {
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
+            "polyfills": [],
             "assets": [
               "src/assets",
               {
@@ -91,24 +89,20 @@
             "styles": [
               "src/styles/tailwind.css",
               "src/styles/styles.scss"
-            ]
+            ],
+            "karmaConfig": "karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": [
-              "src/**/*.ts",
-              "src/**/*.html"
-            ]
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
           }
         }
       }
     }
   },
   "cli": {
-    "schematicCollections": [
-      "angular-eslint"
-    ]
+    "schematicCollections": ["angular-eslint"]
   }
 }
