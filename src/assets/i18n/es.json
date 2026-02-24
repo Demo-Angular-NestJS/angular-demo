@@ -4,33 +4,90 @@
     "Sign In": "Iniciar Sesion",
     "Forgot Password": "Has olvidado tu contraseña",
     "Register": "Crear Cuenta",
-    "Home Page": "Pagina Principal"
+    "Home Page": "Pagina Principal",
+    "Toys Search": "Búsqueda de juguetes",
+    "Toys": "Juguetes",
+    "Toy Details Page": "Detalles del Juguete",
+    "Edit Toy Page": "Editar Juguete",
+    "Favorite Page": "Favoritos",
+    "Favorite": "Favoritos",
+    "Whishlist": "Lista de deseos",
+    "Settings Page": "Ajustes",
+    "Settings": "Ajustes",
+    "Profile Page": "Perfil",
+    "Profile": "Perfil",
+    "Change Password Page": "Cambio de contraseña",
+    "Change Password": "Cambio de contraseña"
   },
   "common": {
+    "Search": "Búsqueda",
+    "Details": "Detalles",
+    "Saved": "Guardado",
+    "Updated": "Actualizado",
+    "New": "Nuevo",
+    "Security": "Seguridad",
+    "Qty": "Quantity",
+    "Years": "Años",
     "Hello": "Hola"
   },
   "form": {
     "fields": {
       "User Name": "Nombre de usuario",
       "Email": "Correo",
+      "Phone Number": "Número de teléfono",
       "Password": "Contraseña",
-      "Confirm Password": "Confirmar Contraseña"
+      "Confirm Password": "Confirmar Contraseña",
+      "Price": "Precio",
+      "Image Url": "URL de la imagen",
+      "Url": "URL",
+      "Warehouse": "Depósito",
+      "Units": "Unidades",
+      "Name": "Nombre",
+      "Product SKU": "SKU del producto",
+      "Short Description": "Descripción breve",
+      "Description": "Descripción",
+      "Category": "Categoría",
+      "Tags": "Etiquetas",
+      "System Timezone": "Zona horaria del sistema"
     },
     "validations": {
       "Field Required": "{{fieldName}} es requerido",
       "Enter a valid field": "Por favor, introduzca un valor válido para {{fieldName}}",
+      "Invalid Format": "Formato no válido para {{fieldName}}",
       "minimum amount of characters": "{{min}} es la cantidad mínima de caracteres",
+      "maximun amount of characters": "{{max}} es la cantidad máxima de caracteres",
       "Field do not match": "{{fieldName}} no coinciden"
     },
     "placeholders": {
       "Email Example": "tu@correo.com",
-      "Finding the perfect toy": "Buscar el juguete perfecto..."
+      "Finding the perfect toy": "Buscar el juguete perfecto...",
+      "Add Tag": "Agregar etiqueta...",
+      "Select Timezone": "Selecciona zona horaria"
     }
   },
   "buttons": {
-    "": ""
+    "Add": "Agregar",
+    "Edit": "Editar",
+    "Create": "Crear",
+    "Creating": "Creando",
+    "Save": "Guardar",
+    "Saving": "Guardando",
+    "Update": "Actualizar",
+    "Updating": "Actualizando",
+    "Cancel": "Cancelar",
+    "Restore": "Restaurar",
+    "Confirm": "Confirmar",
+    "All": "Todos",
+    "Filters": "Filtros",
+    "Clear Filters": "Borrar filtros",
+    "Add Cart": "Añadir carrito",
+    "Share": "Compartir",
+    "Change your password": "Cambiar tu contraseña",
+    "Change Password": "Cambiar contraseña",
+    "Delete Account": "Eliminar cuenta"
   },
   "generalErrors": {
+    "Invalid or missing CSRF token": "¡Actualice la pantalla e inténtelo nuevamente!",
     "Invalid username or password": "Nombre de usuario o contraseña no válidos",
     "An error occurred, please try again": "Se produjo un error, por favor inténtelo de nuevo."
   }

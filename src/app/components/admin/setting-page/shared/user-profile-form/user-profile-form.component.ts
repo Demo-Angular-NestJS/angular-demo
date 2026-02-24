@@ -9,12 +9,15 @@ import { debounceTime, distinctUntilChanged, filter, switchMap, tap } from 'rxjs
 import { DEBOUNCE_TIME_MS, searchChangePasswordRoute } from '@constants';
 import { UserHelperService } from '@s/user-helper.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { provideTranslation } from '@u/helper';
+import { TranslationLanguageEnum } from 'app/enum';
 
 @Component({
   standalone: true,
   selector: 'app-user-profile-form',
   templateUrl: './user-profile-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [provideTranslation('userProfileForm', (lang: TranslationLanguageEnum) => import(`./i18n/${lang}.json`))],
   imports: [
     FormDefaultsModule,
   ]

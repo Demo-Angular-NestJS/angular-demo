@@ -1,0 +1,10 @@
+{
+  "Profile Configuration": "Configuración del perfil",
+  "Manage your personal information and account preferences": "Administre su información personal y preferencias de cuenta.",
+  "Member since": "Miembro desde {{sinceYear}}",
+  "Account Verified": "Cuenta verificada",
+  "Protection activated": "Protección activada",
+  "Payment Method": "Método de pago",
+  "Your information has been updated successfully": "¡Su información ha sido actualizada exitosamente!",
+  "An error occurred while updating message": "Se produjo un error al actualizar su información, actualice la página y vuelva a intentarlo."
+}

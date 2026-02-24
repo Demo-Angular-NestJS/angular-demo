@@ -1,12 +1,12 @@
-<div class="w-full mx-auto px-4">
+<div *transloco="let t" class="w-full mx-auto px-4">
   <div class="flex flex-wrap items-center justify-between gap-6">
     <button matIconButton (click)="goBackEvent()">
       <mat-icon class="w-6 h-6">arrow_back</mat-icon>
     </button>
 
     <div class="space-y-1">
-      <h1 class="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">Product Details</h1>
-      <p class="text-slate-500 text-base md:text-lg">Curated collection of fun.</p>
+      <h1 class="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">{{ t('toyDetailsPage.Product Details') }}</h1>
+      <p class="text-slate-500 text-base md:text-lg">{{ t('toyDetailsPage.Curated collection of fun') }}</p>
     </div>
 
     <div class="flex items-center space-x-2">
@@ -19,7 +19,7 @@
       <button class="flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-slate-700 px-5 py-2.5 rounded-2xl border border-slate-200 shadow-sm transition-all duration-200 group active:scale-95 cursor-pointer"
         *hasPermission (click)="goToEditItemViewEvent()">
         <mat-icon class="!w-5 !h-5 !text-indigo-600 group-hover:rotate-12 transition-transform" svgIcon="pencil"></mat-icon>
-        <span class="font-bold text-sm uppercase tracking-wide">Edit Product</span>
+        <span class="font-bold text-sm uppercase tracking-wide">{{ t('toyDetailsPage.Edit Product') }}</span>
       </button>
     </div>
   </div>
@@ -57,11 +57,12 @@
           <div class="flex items-center gap-4 mb-6">
             <div class="flex items-center bg-amber-50 text-amber-600 px-3 py-1.5 rounded-lg font-black text-sm">
               <mat-icon class="w-4 h-4 mr-1.5" svgIcon="star"></mat-icon>
-              {{ ItemData().stars}} <span class="ml-1 opacity-50 font-bold">(120 comments)</span>
+              {{ ItemData().stars}} <span class="ml-1 opacity-50 font-bold">(120 {{ t('toyDetailsPage.Comments') }})</span>
             </div>
             <span class="text-slate-400 font-bold">•</span>
-            <span class="text-slate-600 font-bold text-sm">Age: {{category()?.minAge}}-{{category()?.maxAge}}
-              Years</span>
+            <span class="text-slate-600 font-bold text-sm">
+              {{ t('toyDetailsPage.Age') }}: {{category()?.minAge}}-{{category()?.maxAge}} {{ t('global.common.Years') }}
+            </span>
           </div>
           <p class="text-slate-500 text-lg leading-relaxed text-justify">
             {{ ItemData().shortDescription }}
@@ -73,7 +74,7 @@
         </div>
 
         <div class="bg-slate-50 rounded-[2.5rem] mb-8 border border-slate-100">
-          <h3 class="text-[10px] font-black uppercase tracking-[0.2em] text-indigo-600 mb-4">Educational Approach</h3>
+          <h3 class="text-[10px] font-black uppercase tracking-[0.2em] text-indigo-600 mb-4">{{ t('toyDetailsPage.Educational Approach') }}</h3>
           <ul class="space-y-4">
             @for (ef of (category()?.educationalFocus ?? []); track ef) {
             <li class="flex items-center gap-4">
@@ -91,14 +92,14 @@
 
         <div class="mt-auto flex items-center gap-6 border-t border-slate-100">
           <div class="flex-1">
-            <p class="text-[10px] text-slate-400 uppercase font-black tracking-widest mb-1">Investment in Fun</p>
+            <p class="text-[10px] text-slate-400 uppercase font-black tracking-widest mb-1">{{ t('toyDetailsPage.Investment in Fun') }}</p>
             <p class="text-4xl font-black text-indigo-600 tracking-tight">{{ ItemData().price | currency:'USD' }}</p>
           </div>
           <button
             class="flex-[2] bg-slate-900 text-white h-20 rounded-[2rem] font-black text-xl hover:bg-indigo-600 transition-all shadow-2xl shadow-slate-200 active:scale-95 flex items-center justify-center gap-3 cursor-pointer"
             (click)="addCartEvent()">
             <mat-icon class="!w-6 !h-6" svgIcon="plus"></mat-icon>
-            Add Cart
+            {{ t('global.buttons.Add Cart') }}
           </button>
         </div>
       </div>

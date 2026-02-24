@@ -1,0 +1,4 @@
+{
+  "My Favourities": "Mis Favoritos",
+  "You have x toys saved": "Tiens <span class='text-indigo-600 font-bold'>{{count}} juguetes</span> en favoritos."
+}

@@ -6,8 +6,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { UserProfileFormComponent } from '@c/admin';
 import { BaseComponent } from '@c/shared/base.component';
+import { searchSettingRoute } from '@constants';
 import { UserConfigurationModel, UserModel } from '@m/class';
 import { PageBreadCrumbModel } from '@m/page-bread-crumb.model';
+import { TranslocoModule } from '@ngneat/transloco';
+import { provideTranslation } from '@u/helper';
+import { TranslationLanguageEnum } from 'app/enum';
 import { PropInitialsModule } from 'app/pipe';
 import { combineLatest } from 'rxjs';
 
@@ -16,14 +20,16 @@ import { combineLatest } from 'rxjs';
   selector: 'app-profile-page',
   templateUrl: './profile-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [provideTranslation('profilePage', (lang: TranslationLanguageEnum) => import(`./i18n/${lang}.json`))],
   imports: [
     CommonModule,
+    TranslocoModule,
     MatIconModule,
     MatButtonModule,
     MatProgressSpinnerModule,
     PropInitialsModule,
     UserProfileFormComponent,
-  ],
+],
 })
 export class ProfilePageComponent extends BaseComponent {
   @ViewChild(UserProfileFormComponent) userProfileForm!: UserProfileFormComponent;
@@ -52,11 +58,11 @@ export class ProfilePageComponent extends BaseComponent {
     ]).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: () => {
         this.networkActive.set(false);
-        this.toastr.success('Your information has been update successfully!');
+        this.toastr.success(this.translocoService.translate('profilePage.Your information has been updated successfully'));
       },
       error: () => {
         this.networkActive.set(false);
-        this.toastr.warning('An error occurred while updating your information, please update the page and try again.');
+        this.toastr.warning(this.translocoService.translate('profilePage.An error occurred while updating message'));
       },
     });
   }
@@ -67,6 +73,6 @@ export class ProfilePageComponent extends BaseComponent {
 }
 
 const defaultBreadCrumbs: PageBreadCrumbModel[] = [
-  { title: 'Settings', url: null, svgIcon: 'settings' },
-  { title: 'Profile', url: null, matIcon: 'account_circle' },
+  { title: 'global.pageTitles.Settings', url: searchSettingRoute, svgIcon: 'settings' },
+  { title: 'global.pageTitles.Profile', url: null, matIcon: 'account_circle' },
 ];

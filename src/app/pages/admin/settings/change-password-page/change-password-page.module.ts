@@ -6,7 +6,7 @@ const routes: Route[] = [
   {
     path: '',
     component: ChangePasswordPageComponent,
-    title: 'Change Passowrd Page',
+    title: 'Change Password Page',
     canActivate: [],
   }
 ];

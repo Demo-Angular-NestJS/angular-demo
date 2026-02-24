@@ -6,12 +6,15 @@ import { getGroup } from '@u/generic';
 import { changePasswordForm, ChangePasswordFormModel } from './change-password-form.model';
 import { combineLatest } from 'rxjs';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
+import { provideTranslation } from '@u/helper';
+import { TranslationLanguageEnum } from 'app/enum';
 
 @Component({
   standalone: true,
   selector: 'app-change-password-form',
   templateUrl: './change-password-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [provideTranslation('changePasswordForm', (lang: TranslationLanguageEnum) => import(`./i18n/${lang}.json`))],
   imports: [
     FormDefaultsModule,
   ]

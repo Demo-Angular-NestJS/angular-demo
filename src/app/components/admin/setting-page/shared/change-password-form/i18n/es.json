@@ -1,0 +1,6 @@
+{
+  "Current Password": "Contraseña actual",
+  "The password should match message": "La contraseña debe coincidir con un mínimo de 4 caracteres, 1 mayúscula y 1 número.",
+  "Password shouldnt match message": "La contraseña no debe coincidir con la nueva, cámbiela.",
+  "Sugerencia message": "Sugerencia: Usa números y símbolos para mayor seguridad."
+}

@@ -1,0 +1,9 @@
+{
+  "Edit Inventory": "Editar inventario",
+  "Editing": "Editando",
+  "Create Inventory": "Crear inventario",
+  "Creating New Toy": "Creando: Nuevo juguete",
+  "The toy successfuly message": "¡El juguete {{name}} ha sido {{type}} exitosamente!",
+  "An error occurred getting message": "Ocurrió un error al obtener el juguete, inténtalo nuevamente o más tarde.",
+  "An error occurred saving message": "Se produjo un error al intentar guardar la información del juguete, inténtelo nuevamente o más tarde."
+}

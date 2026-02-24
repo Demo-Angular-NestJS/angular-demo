@@ -1,23 +1,23 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
-import { MatIconModule } from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
 import { searchToyDetailRoute } from '@constants';
 import { CurrentFavouritesService } from '@data/services';
 import { FavoriteModel, ShortToyModel } from '@m/class';
+import { provideTranslation } from '@u/helper';
+import { TranslationLanguageEnum } from 'app/enum';
 import { ToastrService } from 'ngx-toastr';
+import { FormDefaultsModule } from "@c/shared/form-defaults.module";
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   standalone: true,
   selector: 'app-search-favorite-item-list',
   templateUrl: './search-favorite-item-list.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [provideTranslation('searchFavoriteItemList', (lang: TranslationLanguageEnum) => import(`./i18n/${lang}.json`))],
   imports: [
-    CommonModule,
-    RouterModule,
-    MatIconModule,
-  ]
+    FormDefaultsModule,
+  ],
 })
 export class SearchFavoriteItemListComponent {
   protected readonly currentFavouritesService = inject(CurrentFavouritesService);
@@ -25,7 +25,8 @@ export class SearchFavoriteItemListComponent {
   protected readonly currentFavouritesMap = toSignal(this.currentFavouritesService.entityMapByToy$, { initialValue: {} as Record<string, FavoriteModel> });
   protected searchToyDetailRoute = searchToyDetailRoute;
 
-  protected readonly _toastr = inject(ToastrService);
+  private readonly _toastr = inject(ToastrService);
+  private readonly _translocoService = inject(TranslocoService);
   private readonly _destroyRef = inject(DestroyRef);
 
   protected toggleFavoriteEvent(toy: ShortToyModel): void {
@@ -40,10 +41,12 @@ export class SearchFavoriteItemListComponent {
 
     this.currentFavouritesService.toggle(favoriteData).pipe(takeUntilDestroyed(this._destroyRef)).subscribe({
       next: () => {
-        this._toastr.success(`The ${displayName} was removed to favourites!`);
+        const message = this._translocoService.translate('searchFavoriteItemList.Removed success message', { displayName });
+        this._toastr.success(message);
       },
       error: () => {
-        this._toastr.error(`An error occured while adding ${displayName} to favourites!`);
+        const message = this._translocoService.translate('searchFavoriteItemList.An error occured message', { displayName });
+        this._toastr.error(message);
       }
     });
   }

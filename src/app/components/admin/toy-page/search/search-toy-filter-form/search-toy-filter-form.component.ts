@@ -10,14 +10,17 @@ import { debounceTime } from 'rxjs';
 import { DEBOUNCE_TIME_MS } from '@constants';
 import { CategoriesService } from '@data/services';
 import { CategoryModel } from '@m/class';
+import { provideTranslation } from '@u/helper';
+import { TranslationLanguageEnum } from 'app/enum';
 
 @Component({
   standalone: true,
   selector: 'app-search-toy-filter-form',
   templateUrl: './search-toy-filter-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [provideTranslation('searchToyFilterForm', (lang: TranslationLanguageEnum) => import(`./i18n/${lang}.json`))],
   imports: [
-    FormDefaultsModule
+    FormDefaultsModule,
   ],
 })
 export class SearchToyFilterFormComponent extends FormBaseComponent<SearchToyFilterFormModel> {
@@ -45,7 +48,6 @@ export class SearchToyFilterFormComponent extends FormBaseComponent<SearchToyFil
       } else {
         this.filterDataChanged.emit(v);
       }
-
     });
   };
 

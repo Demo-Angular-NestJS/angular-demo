@@ -7,7 +7,7 @@ const routes: Route[] = [
   {
     path: '',
     component: SearchToyPageComponent,
-    title: 'Toy Search Page',
+    title: 'Toys Search',
     canActivate: [
       categoriesGuard(),
       currentFavouritesGuard(),

@@ -9,7 +9,10 @@ import { HasPermissionDirectiveModule } from '@d/has-permission-directive/has-pe
 import { CategoriesService } from '@data/services';
 import { CategoryModel, FavoriteModel, ToyModel } from '@m/class';
 import { PageBreadCrumbModel } from '@m/page-bread-crumb.model';
+import { TranslocoModule } from '@ngneat/transloco';
 import { ToyHelperService } from '@s/toy-helper.service';
+import { provideTranslation } from '@u/helper';
+import { TranslationLanguageEnum } from 'app/enum';
 import { filter, map, switchMap, tap } from 'rxjs';
 
 @Component({
@@ -17,9 +20,11 @@ import { filter, map, switchMap, tap } from 'rxjs';
   selector: 'app-toy-details-page',
   templateUrl: './toy-details-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [provideTranslation('toyDetailsPage', (lang: TranslationLanguageEnum) => import(`./i18n/${lang}.json`))],
   imports: [
     HasPermissionDirectiveModule,
     CommonModule,
+    TranslocoModule,
     MatIconModule,
     MatButtonModule,
   ]
@@ -126,6 +131,6 @@ export class ToyDetailsPageComponent extends BaseComponent implements OnInit {
 }
 
 const defaultBreadCrumbs: PageBreadCrumbModel[] = [
-  { title: 'Toys', url: searchToyRoute, svgIcon: 'toy' },
-  { title: 'Details', url: null, svgIcon: 'star' },
+  { title: 'global.pageTitles.Toys', url: searchToyRoute, svgIcon: 'toy' },
+  { title: 'global.common.Details', url: null, svgIcon: 'star' },
 ];

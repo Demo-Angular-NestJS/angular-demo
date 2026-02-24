@@ -1,0 +1,6 @@
+{
+  "Out of stock": "Agotado",
+  "Notify me when coming soon": "Avísame cuando llegue pronto",
+  "Removed success message": "El {{displayName}} fue removido de tus favoritos!",
+  "An error occured message": "¡Se produjo un error al agregar {{displayName}} a favoritos!"
+}

@@ -8,7 +8,10 @@ import { BaseComponent } from '@c/shared/base.component';
 import { searchToyDetailRoute, searchToyRoute } from '@constants';
 import { ToyModel } from '@m/class';
 import { PageBreadCrumbModel } from '@m/page-bread-crumb.model';
+import { TranslocoModule } from '@ngneat/transloco';
 import { ToyHelperService } from '@s/toy-helper.service';
+import { provideTranslation } from '@u/helper';
+import { TranslationLanguageEnum } from 'app/enum';
 import { filter, map, of, switchMap, tap } from 'rxjs';
 
 @Component({
@@ -16,8 +19,10 @@ import { filter, map, of, switchMap, tap } from 'rxjs';
   selector: 'app-edit-toy-page',
   templateUrl: './edit-toy-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [provideTranslation('editToyPage', (lang: TranslationLanguageEnum) => import(`./i18n/${lang}.json`))],
   imports: [
     CommonModule,
+    TranslocoModule,
     MatButtonModule,
     MatProgressSpinnerModule,
     EditToyImagesFormComponent,
@@ -57,7 +62,7 @@ export class EditToyPageComponent extends BaseComponent implements OnInit {
         this.setItemData(data);
       },
       error: () => {
-        this.toastr.error('An error occurred getting the Toy, please try again or later.');
+        this.toastr.error(this.translocoService.translate('editToyPage.An error occurred getting message'));
         this.networkActive.set(false);
         this.goBackEvent();
       }
@@ -69,7 +74,6 @@ export class EditToyPageComponent extends BaseComponent implements OnInit {
       return;
     }
 
-    const requestType = this.currentItemData()?.id ? 'updated' : 'saved';
     const saveData = new ToyModel({
       ...this.currentItemData(),
       ...this.editToyImagesForm.validatedValue,
@@ -79,7 +83,9 @@ export class EditToyPageComponent extends BaseComponent implements OnInit {
     this.savingData.set(true);
     this._toyHelperService.upsert(saveData).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (resp) => {
-        this.toastr.success(`the toy ${resp.name} has been ${requestType} successfuly!`);
+        const requestType = this.translocoService.translate(`global.common.${this.currentItemData()?.id ? 'Updated' : 'Saved'}`).toLowerCase();
+        const message = this.translocoService.translate('editToyPage.The toy successfuly message', { name: resp.name, type: requestType});
+        this.toastr.success(message);
         this.savingData.set(false);
 
         if (saveData?.id) {
@@ -90,7 +96,7 @@ export class EditToyPageComponent extends BaseComponent implements OnInit {
       },
       error: () => {
         this.savingData.set(false);
-        this.toastr.error(`An error occurred when ${requestType} the Toy, please try again or later.`);
+        this.toastr.error(this.translocoService.translate('editToyPage.An error occurred saving message'));
       }
     });
   }
@@ -108,10 +114,10 @@ export class EditToyPageComponent extends BaseComponent implements OnInit {
     const breadCrumbs: PageBreadCrumbModel[] = [...defaultBreadCrumbs];
 
     if (this.currentItemData()?.id) {
-      breadCrumbs.push({ title: 'Details', url: `${searchToyDetailRoute}/${this.currentItemData().id}`, svgIcon: 'star', });
+      breadCrumbs.push({ title: 'global.common.Details', url: `${searchToyDetailRoute}/${this.currentItemData().id}`, svgIcon: 'star', });
       breadCrumbs.push({ title: this.currentItemData().name, url: null })
     } else {
-      breadCrumbs.push({ title: 'New', url: null })
+      breadCrumbs.push({ title: 'global.common.New', url: null })
     }
 
     this.adminLayout?.breadCrumbs.set(breadCrumbs);
@@ -119,5 +125,5 @@ export class EditToyPageComponent extends BaseComponent implements OnInit {
 }
 
 const defaultBreadCrumbs: PageBreadCrumbModel[] = [
-  { title: 'Toys', url: searchToyRoute, svgIcon: 'toy' },
+  { title: 'global.pageTitles.Toys', url: searchToyRoute, svgIcon: 'toy' },
 ];

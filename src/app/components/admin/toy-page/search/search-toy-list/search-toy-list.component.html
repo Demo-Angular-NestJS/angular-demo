@@ -1,10 +1,10 @@
-<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
+<div *transloco="let t" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
   @for (toy of items(); track toy.id) {
   <app-toy-view-on-search [toyData]="toy">
   </app-toy-view-on-search>
   } @empty {
   <div class="col-span-full py-20 text-center text-slate-400">
-    No toys found in this category.
+    {{ t('searchToyList.No toys found') }}
   </div>
   }
 </div>

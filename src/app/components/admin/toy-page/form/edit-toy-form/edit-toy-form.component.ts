@@ -6,6 +6,8 @@ import { getGroup } from '@u/generic';
 import { editToyForm, EditToyFormModel } from './edit-toy-form.model';
 import { mapToEditToyFormModel } from './edit-toy-form.mapper';
 import { CategoriesService } from '@data/services';
+import { provideTranslation } from '@u/helper';
+import { TranslationLanguageEnum } from 'app/enum';
 
 
 @Component({
@@ -13,6 +15,7 @@ import { CategoriesService } from '@data/services';
   selector: 'app-edit-toy-form',
   templateUrl: './edit-toy-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [provideTranslation('editToyForm', (lang: TranslationLanguageEnum) => import(`./i18n/${lang}.json`))],
   imports: [
     FormDefaultsModule,
   ]

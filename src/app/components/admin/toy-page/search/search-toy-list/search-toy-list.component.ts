@@ -4,14 +4,19 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { ToyViewOnSearchComponent } from '../../shared';
 import { PagingDataModel, ToyModel } from '@m/class';
 import { defaultPageSize, pageSizeOptions } from '@constants';
+import { TranslocoModule } from '@ngneat/transloco';
+import { provideTranslation } from '@u/helper';
+import { TranslationLanguageEnum } from 'app/enum';
 
 @Component({
   standalone: true,
   selector: 'app-search-toy-list',
   templateUrl: './search-toy-list.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [provideTranslation('searchToyList', (lang: TranslationLanguageEnum) => import(`./i18n/${lang}.json`))],
   imports: [
     CommonModule,
+    TranslocoModule,
     MatPaginatorModule,
     ToyViewOnSearchComponent,
   ]

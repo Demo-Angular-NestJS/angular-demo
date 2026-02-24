@@ -1,0 +1,9 @@
+{
+  "Edit Inventory": "Edit Inventory",
+  "Editing": "Editing",
+  "Create Inventory": "Create Inventory",
+  "Creating New Toy": "Creating: New Toy",
+  "The toy successfuly message": "the toy {{name}} has been {{type}} successfuly!",
+  "An error occurred getting message": "An error occurred getting the Toy, please try again or later.",
+  "An error occurred saving message": "An error occurred trying to save the Toy information, please try again or later."
+}

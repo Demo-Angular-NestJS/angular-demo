@@ -1,12 +1,11 @@
-<form [formGroup]="form" autocomplete="off"
+<form *transloco="let t" [formGroup]="form" autocomplete="off"
   class="bg-white p-5 rounded-[2rem] border border-slate-200 shadow-sm transition-all hover:shadow-md">
   <div class="mb-8">
     <div class="flex items-center justify-between mb-4">
-      <h3 class="text-xs font-black text-slate-500 uppercase tracking-widest">Main Image</h3>
+      <h3 class="text-xs font-black text-slate-500 uppercase tracking-widest">{{ t('editToyImageForm.Main Image') }}</h3>
       @if (field('imageUrl').value) {
-      <span
-        class="text-[10px] bg-indigo-50 text-indigo-600 px-2 py-0.5 rounded-full font-bold border border-indigo-100">
-        Live Preview
+      <span class="text-[10px] bg-indigo-50 text-indigo-600 px-2 py-0.5 rounded-full font-bold border border-indigo-100">
+        {{ t('editToyImageForm.Live Preview') }}
       </span>
       }
     </div>
@@ -21,9 +20,9 @@
 
       <div class="relative">
         <mat-form-field appearance="fill" floatLabel="always">
-          <input matInput formControlName="imageUrl" placeholder="Paste the main image url..." [tDisable]="networkActive()">
-          @if (isError('imageUrl', 'required')) { <mat-error>Image Url required</mat-error> }
-          @else if (isError('imageUrl', 'pattern')) { <mat-error>Invalid Url format</mat-error> }
+          <input matInput formControlName="imageUrl" [placeholder]="t('editToyImageForm.Paste the main image url')" [tDisable]="networkActive()">
+          @if (isError('imageUrl', 'required')) { <mat-error>{{ t('global.form.validations.Field Required', { fieldName: t('global.form.fields.Image Url') })}}</mat-error> }
+          @else if (isError('imageUrl', 'pattern')) { <mat-error>{{ t('global.form.validations.Invalid Format', { fieldName: t('global.form.fields.Url') })}}</mat-error> }
           <button mat-icon-button matPrefix [attr.aria-label]="'Hide password'">
             <span class="absolute left-0 top-1/2 -translate-y-1/2 text-slate-400">
               <mat-icon class="w-3.5 h-3.5" svgIcon="link"></mat-icon>
@@ -37,7 +36,7 @@
   <div>
     <div class="flex items-center justify-between mb-3 px-1">
       <h3 class="text-xs font-black text-slate-500 uppercase tracking-widest">
-        Gallery <span class="text-indigo-500 ml-1">({{ (field('imageUrls').value || []).length }})</span>
+        {{ t('editToyImageForm.Gallery') }} <span class="text-indigo-500 ml-1">({{ (field('imageUrls').value || []).length }})</span>
       </h3>
     </div>
 
@@ -57,7 +56,7 @@
       <button #triggerBtn (click)="showUrlInputEvent()" [class.border-indigo-400]="showUrlInput()" [disabled]="networkActive()"
         class="w-full aspect-square rounded-2xl border-2 border-dashed border-slate-200 flex flex-col items-center justify-center text-slate-400 hover:bg-slate-50 hover:border-indigo-300 hover:text-indigo-500 transition-all cursor-pointer">
         <mat-icon class="w-3.5 h-3.5 mb-1" svgIcon="plus"></mat-icon>
-        <span class="text-[9px] font-bold uppercase tracking-tighter">Add</span>
+        <span class="text-[9px] font-bold uppercase tracking-tighter">{{ t('global.buttons.Add') }}</span>
       </button>
     </div>
 
@@ -65,7 +64,7 @@
     <div class="mt-4 flex flex-row items-top gap-2">
       <mat-form-field class="flex-1" appearance="fill">
         <input matInput formControlName="imageForGallery" placeholder="Paste the image url..." [tDisable]="networkActive()">
-        @if (isError('imageForGallery', 'pattern')) { <mat-error>Invalid Url format</mat-error> }
+        @if (isError('imageForGallery', 'pattern')) { <mat-error>{{ t('global.form.validations.Invalid Format', { fieldName: t('global.form.fields.Url') })}}</mat-error> }
         <button mat-icon-button matPrefix [attr.aria-label]="'Hide password'">
           <span class="absolute left-0 top-1/2 -translate-y-1/2 text-slate-400">
             <mat-icon class="w-3.5 h-3.5" svgIcon="link"></mat-icon>
@@ -76,7 +75,7 @@
       <button mat-flat-button class="!bg-indigo-600 !text-[12px] !rounded-xl mt-2"
         [disabled]="networkActive() || !field('imageForGallery').value || !field('imageForGallery').valid"
         (click)="addOnAddGalleryEvent()">
-        Confirm
+        {{ t('global.buttons.Confirm') }}
       </button>
     </div>
     }

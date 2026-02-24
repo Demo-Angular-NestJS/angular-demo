@@ -9,7 +9,10 @@ import { HasPermissionDirectiveModule } from '@d/has-permission-directive';
 import { CategoriesService } from '@data/services';
 import { PagingDataModel } from '@m/class';
 import { PageBreadCrumbModel } from '@m/page-bread-crumb.model';
+import { TranslocoModule } from '@ngneat/transloco';
 import { ToySearchHelperService } from '@s/search/toy-search-helper.service';
+import { provideTranslation } from '@u/helper';
+import { TranslationLanguageEnum } from 'app/enum';
 import { skip, take } from 'rxjs';
 
 @Component({
@@ -17,9 +20,11 @@ import { skip, take } from 'rxjs';
   selector: 'app-search-toy-page',
   templateUrl: './search-toy-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [provideTranslation('searchToyPage', (lang: TranslationLanguageEnum) => import(`./i18n/${lang}.json`))],
   imports: [
     HasPermissionDirectiveModule,
     CommonModule,
+    TranslocoModule,
     MatIconModule,
     SearchToyFilterFormComponent,
     SearchToyListComponent
@@ -80,6 +85,6 @@ export class SearchToyPageComponent extends BaseComponent {
 }
 
 const defaultBreadCrumbs: PageBreadCrumbModel[] = [
-  { title: 'Toys', url: null, svgIcon: 'toy' },
-  { title: 'Search', url: null, matIcon: 'search' },
+  { title: 'global.pageTitles.Toys', url: null, svgIcon: 'toy' },
+  { title: 'global.common.Search', url: null, matIcon: 'search' },
 ];

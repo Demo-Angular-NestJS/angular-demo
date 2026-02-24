@@ -11,15 +11,20 @@ import { searchChangePasswordRoute, searchProfileRoute } from '@constants';
 import { RouterModule } from '@angular/router';
 import { BaseComponent } from '@c/shared/base.component';
 import { MatIconModule } from '@angular/material/icon';
+import { provideTranslation } from '@u/helper';
+import { TranslationLanguageEnum } from 'app/enum';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   standalone: true,
   selector: 'app-setting-page',
   templateUrl: './setting-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [provideTranslation('settingPage', (lang: TranslationLanguageEnum) => import(`./i18n/${lang}.json`))],
   imports: [
     CommonModule,
     RouterModule,
+    TranslocoModule,
     PropInitialsModule,
     MatFormFieldModule,
     MatInputModule,
@@ -47,7 +52,7 @@ export class SettingPageComponent extends BaseComponent {
 
     this.currentUserConfigService.update(updateData).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       error: () => {
-        this.toastr.warning('An error occurred while updating your settings, please update the page and try again.');
+        this.toastr.warning(this.translocoService.translate('settingPage.An error occurred while updating message'));
         this.preferenceNotificationForm.data = this.currentPrefeNotifFormData() || null;
       }
     });
@@ -55,5 +60,5 @@ export class SettingPageComponent extends BaseComponent {
 }
 
 const breadCrumbs: PageBreadCrumbModel[] = [
-  { title: 'Settings', url: null, svgIcon: 'settings' },
+  { title: 'global.pageTitles.Settings', url: null, svgIcon: 'settings' },
 ];

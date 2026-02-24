@@ -8,12 +8,15 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { mapToPreferenceNotificationFormModel } from './preference-notification-form.mapper';
 import { DEBOUNCE_TIME_MS } from '@constants';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { provideTranslation } from '@u/helper';
+import { TranslationLanguageEnum } from 'app/enum';
 
 @Component({
   standalone: true,
   selector: 'app-preference-notification-form',
   templateUrl: './preference-notification-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [provideTranslation('preferenceNotificationForm', (lang: TranslationLanguageEnum) => import(`./i18n/${lang}.json`))],
   imports: [
     FormDefaultsModule,
   ]

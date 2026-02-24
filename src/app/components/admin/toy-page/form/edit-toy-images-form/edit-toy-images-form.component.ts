@@ -5,6 +5,8 @@ import { FormDefaultsModule } from '@c/shared/form-defaults.module';
 import { getGroup } from '@u/generic';
 import { editToyImagesForm, EditToyImagesFormModel } from './edit-toy-images-form.model';
 import { mapToEditToyImagesFormModel } from './edit-toy-images-form.mapper';
+import { provideTranslation } from '@u/helper';
+import { TranslationLanguageEnum } from 'app/enum';
 
 
 @Component({
@@ -12,6 +14,7 @@ import { mapToEditToyImagesFormModel } from './edit-toy-images-form.mapper';
   selector: 'app-edit-toy-images-form',
   templateUrl: './edit-toy-images-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [provideTranslation('editToyImageForm', (lang: TranslationLanguageEnum) => import(`./i18n/${lang}.json`))],
   imports: [
     FormDefaultsModule,
   ]

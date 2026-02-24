@@ -4,33 +4,90 @@
     "Sign In": "Sign In",
     "Forgot Password": "Forgot Password",
     "Register": "Register",
-    "Home Page": "Home Page"
+    "Home Page": "Home Page",
+    "Toys Search": "Toys Search",
+    "Toys": "Toys",
+    "Toy Details Page": "Toy Details Page",
+    "Edit Toy Page": "Edit Toy Page",
+    "Favorite Page": "Favorite Page",
+    "Favorite": "Favorite",
+    "Whishlist": "Whishlist",
+    "Settings Page": "Settings Page",
+    "Settings": "Settings",
+    "Profile Page": "Profile Page",
+    "Profile": "Profile",
+    "Change Password Page": "Change Password Page",
+    "Change Password": "Change Password"
   },
   "common": {
+    "Search": "Search",
+    "Details": "Details",
+    "Saved": "Saved",
+    "Updated": "Updated",
+    "New": "New",
+    "Security": "Security",
+    "Qty": "Qty",
+    "Years": "Years",
     "Hello": "Hello"
   },
   "form": {
     "fields": {
       "User Name": "User Name",
       "Email": "Email",
+      "Phone Number": "Phone Number",
       "Password": "Password",
-      "Confirm Password": "Confirm Password"
+      "Confirm Password": "Confirm Password",
+      "Price": "Price",
+      "Image Url": "Image Url",
+      "Url": "URL",
+      "Warehouse": "Warehouse",
+      "Units": "Units",
+      "Name": "Name",
+      "Product SKU": "Product SKU",
+      "Short Description": "Short Description",
+      "Description": "Description",
+      "Category": "Category",
+      "Tags": "Tags",
+      "System Timezone": "System Timezone"
     },
     "validations": {
       "Field Required": "The {{fieldName}} is required",
       "Enter a valid field": "Please enter a valid value for {{fieldName}}",
+      "Invalid Format": "Invalid format for {{fieldName}}",
       "minimum amount of characters": "{{min}} is the minimum amount of characters",
+      "maximun amount of characters": "{{max}} is the maximun amount of characters",
       "Field do not match": "{{fieldName}} do not match"
     },
     "placeholders": {
       "Email Example": "your@email.com",
-      "Finding the perfect toy": "Finding the perfect toy..."
+      "Finding the perfect toy": "Finding the perfect toy...",
+      "Add Tag": "Add Tag...",
+      "Select Timezone": "Select Timezone"
     }
   },
   "buttons": {
-    "": ""
+    "Add": "Add",
+    "Edit": "Edit",
+    "Create": "Create",
+    "Creating": "Creating",
+    "Save": "Save",
+    "Saving": "Saving",
+    "Update": "Update",
+    "Updating": "Updating",
+    "Cancel": "Cancelar",
+    "Restore": "Restore",
+    "Confirm": "Confirm",
+    "All": "Todos",
+    "Filters": "Filters",
+    "Clear Filters": "Clear Filters",
+    "Add Cart": "Add Cart",
+    "Share": "Share",
+    "Change your password": "Change your password",
+    "Change Password": "Change Password",
+    "Delete Account": "Delete Account"
   },
   "generalErrors": {
+    "Invalid or missing CSRF token": "Please refresh the screen and try it again!",
     "Invalid username or password": "Invalid username or password",
     "An error occurred, please try again": "An error occurred, please try again"
   }

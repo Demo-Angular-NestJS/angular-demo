@@ -1,0 +1,6 @@
+{
+  "Current Password": "Current Password",
+  "The password should match message": "The password should match with min 4 characters, 1 Uppercase, 1 Number.",
+  "Password shouldnt match message": "Password shouldn't match with the newone, please change it.",
+  "Sugerencia message": "Suggestion: Use numbers and symbols for added security."
+}

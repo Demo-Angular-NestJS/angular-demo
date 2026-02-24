@@ -1,19 +1,19 @@
-<div class="sticky top-[70px] z-5 bg-slate-50/80 backdrop-blur-md mb-4 py-4">
+<div *transloco="let t" class="sticky top-[70px] z-5 bg-slate-50/80 backdrop-blur-md mb-4 py-4">
   <div class="w-full mx-auto px-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
     <div>
       @if (currentItemData().id) {
-        <span class="text-indigo-600 font-bold text-xs tracking-widest uppercase">Edit Inventory</span>
-        <h1 class="text-2xl font-black text-slate-900 leading-none">Editing: {{ currentItemData().name }}</h1>
+        <span class="text-indigo-600 font-bold text-xs tracking-widest uppercase">{{ t('editToyPage.Edit Inventory') }}</span>
+        <h1 class="text-2xl font-black text-slate-900 leading-none">{{ t('editToyPage.Editing') }}: {{ currentItemData().name }}</h1>
       } @else {
-        <span class="text-indigo-600 font-bold text-xs tracking-widest uppercase">Create Inventory</span>
-        <h1 class="text-2xl font-black text-slate-900 leading-none">Creating: New Toy</h1>
+        <span class="text-indigo-600 font-bold text-xs tracking-widest uppercase">{{ t('editToyPage.Create Inventory') }}</span>
+        <h1 class="text-2xl font-black text-slate-900 leading-none">{{ t('editToyPage.Creating New Toy') }}</h1>
       }
     </div>
 
     <div class="flex items-center gap-4">
       <button matButton="outlined" type="button" class="!px-8 !py-3 !rounded-xl" (click)="goBackEvent()"
         [disabled]="savingData()">
-        <span class="font-black text-sm uppercase tracking-wider">Cancel</span>
+        <span class="font-black text-sm uppercase tracking-wider">{{ t('global.buttons.Cancel') }}</span>
       </button>
 
       <button matButton="filled" color="primary" type="button" class="!px-8 !py-3 !rounded-xl"
@@ -21,11 +21,14 @@
         @if (savingData()) {
         <div class="flex items-center justify-center gap-2">
           <mat-spinner diameter="20" color="accent"></mat-spinner>
-          <span class="font-black text-sm uppercase tracking-wider">{{ currentItemData().id ? 'Updating':
-            'Creating'}}</span>
+          <span class="font-black text-sm uppercase tracking-wider">
+            {{ currentItemData().id ? t('global.buttons.Updating') : t('global.buttons.Creating')  }}
+          </span>
         </div>
         } @else {
-        <span class="font-black text-sm uppercase tracking-wider">{{ currentItemData().id ? 'Update': 'Create'}}</span>
+        <span class="font-black text-sm uppercase tracking-wider">
+          {{ currentItemData().id ? t('global.buttons.Update') : t('global.buttons.Create')  }}
+        </span>
         }
       </button>
     </div>

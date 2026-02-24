@@ -7,6 +7,7 @@ import { searchToyDetailRoute } from '@constants';
 import { LookupMapPipe } from '@data/pipe';
 import { CategoriesService, CurrentFavouritesService } from '@data/services';
 import { FavoriteModel, ToyModel } from '@m/class';
+import { TranslocoModule } from '@ngneat/transloco';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -17,6 +18,7 @@ import { ToastrService } from 'ngx-toastr';
   imports: [
     CommonModule,
     RouterModule,
+    TranslocoModule,
     MatIconModule,
     LookupMapPipe,
   ]

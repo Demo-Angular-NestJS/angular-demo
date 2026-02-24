@@ -10,14 +10,19 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { searchSettingRoute } from '@constants';
+import { provideTranslation } from '@u/helper';
+import { TranslationLanguageEnum } from 'app/enum';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   standalone: true,
   selector: 'app-change-password-page',
   templateUrl: './change-password-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [provideTranslation('changePasswordPage', (lang: TranslationLanguageEnum) => import(`./i18n/${lang}.json`))],
   imports: [
     CommonModule,
+    TranslocoModule,
     MatButtonModule,
     MatProgressSpinnerModule,
     ChangePasswordFormComponent,
@@ -47,13 +52,15 @@ export class ChangePasswordPageComponent extends BaseComponent {
     this.networkActive.set(true);
     this._userHelperService.changePassowrd(request).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: () => {
+        const message = this.translocoService.translate('changePasswordPage.The password has been change successfully');
+        this.toastr.success(message);
         this.networkActive.set(false);
-        this.toastr.success('The password has been change successfully');
         this.changePasswordForm.resetForm();
       },
       error: (err: HttpErrorResponse) => {
+        const defaultMessage = this.translocoService.translate('changePasswordPage.An error ocurrend changing the password');
+        this.toastr.error(err?.error?.message ?? defaultMessage);
         this.networkActive.set(false);
-        this.toastr.error(err?.error?.message ?? 'An error ocurrend changing the password');
       },
     })
   }
@@ -64,6 +71,6 @@ export class ChangePasswordPageComponent extends BaseComponent {
 }
 
 const breadCrumbs: PageBreadCrumbModel[] = [
-  { title: 'Settings', url: null, svgIcon: 'settings' },
-  { title: 'Change Password', url: null, svgIcon: 'security_padlock' },
+  { title: 'global.pageTitles.Settings', url: null, svgIcon: 'settings' },
+  { title: 'global.pageTitles.Change Password', url: null, svgIcon: 'security_padlock' },
 ];
